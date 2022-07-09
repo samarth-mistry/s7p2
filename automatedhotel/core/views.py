@@ -4,7 +4,7 @@ from django.shortcuts import redirect,reverse,render,HttpResponse,HttpResponseRe
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from .forms import *
-
+from .models import customer_registration
 
 # Create your views here.
 def dashboard(request):
@@ -15,8 +15,8 @@ def logins(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        if password == 'admin123' and username == 'admin@admin.com':
-            customer = User.objects.all().exclude(username='admin')
+        if password == 'admin1234' and username == 'admin@admin.com':
+            customer = User.objects.all().exclude(username='admin@admin.com')
             return render(request,'index.html',{'customer':customer})
         else:
             return render(request,'login.html')
@@ -66,7 +66,9 @@ def update_customer(request,id):
             customer = CustomerRegistration(request.POST, instance=pi)
             if customer.is_valid():
                 if request.POST['email']==temp:
-                    customer.save()
+                    name=request.POST['name']
+                    hotel=request.POST['hotel_name']
+                    User.objects.filter(id=pi.id).update(username=name,last_name=hotel)
                     return redirect('/dashboard')
                 else:
                     messages.info(request,"Can't Change Email")
