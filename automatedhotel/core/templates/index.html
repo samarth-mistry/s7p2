@@ -535,9 +535,9 @@
                         {{ i.last_name }}
                       </td>
                       <td id='td1' width='70px'>
-                        <a href="{% url 'update_customer' i.id %}"><button type="submit" class="btn btn-primary ">Update</button></a>
-                        <a href="{% url 'remove_customer' i.id %}"><button type="submit" class="btn btn-danger ">Remove</button></a>
-                        <a href="{% url 'view_customer' i.id %}"><button type="submit" class="btn btn-info ">View</button></a>
+                        <a href="{% url 'update_customer' i.id %}"><i class="mdi mdi-pencil"></i></a>
+                        <a href="{% url 'remove_customer' i.id %}"><i class="mdi mdi-delete"></i></a>
+                        <a href="{% url 'view_customer' i.id %}"><i class="mdi mdi-eye"></i></a>
                       </td>
                       {%endfor%}
                     </table>
