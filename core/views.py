@@ -3,21 +3,25 @@ from django.shortcuts import render
 from django.shortcuts import redirect,reverse,render,HttpResponse,HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.contrib.auth import login, logout, authenticate
 from .forms import *
 from .models import customer_registration
 
 # Create your views here.
 def dashboard(request):
-    customer = User.objects.all().exclude(username='admin')
-    return render(request,'index.html',{'customer':customer})
+    customer = User.objects.all().exclude(username='admin@admin.com')
+    return render(request,'admin_dasboard.html',{'customer':customer})
 
 def logins(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        if password == 'admin1234' and username == 'admin@admin.com':
-            customer = User.objects.all().exclude(username='admin@admin.com')
-            return render(request,'index.html',{'customer':customer})
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            username = request.POST['username']
+            password = request.POST['password']
+            if password == 'admin1234' and username == 'admin@admin.com':
+                customer = User.objects.all().exclude(username='admin@admin.com')
+                return render(request,'admin_dasboard.html',{'customer':customer})
+            else:
+                return render(request,'login.html')
         else:
             return render(request,'login.html')
     else:
@@ -50,7 +54,7 @@ def remove_customer(request,id):
         if request.method == "POST":
             cu = User.objects.get(pk=id)
             cu.delete()
-            return redirect('/dashboard')
+            return redirect('/admin_dashboard')
         else:
             cu=User.objects.get(pk=id)
         customer = User.objects.get(pk=id)
