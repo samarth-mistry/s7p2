@@ -4,37 +4,41 @@
 <div class="main-panel">
 <div class="content-wrapper">
   <div class="row">
-    <div class="col-sm-12">
-      <div class="home-tab">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card card-body">
+        <h4 class="card-title"><b>List of Hotel Owners</b></h4>
+        <div class="table-responsive">
           {% if customer %}
-          <table border=0 id='table1' align='left'>
+            <table class="table table-hover table-striped" id='table1'>
               <tr>
                   <th>No.</th>
                   <th>Customer Name</th>
                   <th>Restaurant Name</th>
                   <th>Actions</th>
               </tr>
-            {% for i in customer %}
-            <tr id='tr1'>
-              <td id='td1' width='50px' >
-                {{forloop.counter}}.
-              </td>
-            <td id='td1' style='text-align: left;'>
-            {{ i.username }}
-            </td>
-            <td>
-              {{ i.last_name }}
-            </td>
-            <td id='td1' width='70px'>
-              <a href="{% url 'update_customer' i.id %}"><i class="mdi mdi-pencil"></i></a>
-              <a href="{% url 'remove_customer' i.id %}"><i class="mdi mdi-delete"></i></a>
-              <a href="{% url 'view_customer' i.id %}"><i class="mdi mdi-eye"></i></a>
-            </td>
-            {%endfor%}
-          </table>
+              {% for i in customer %}
+                <tr id='tr1'>
+                  <td id='td1' width='50px' >
+                    {{forloop.counter}}.
+                  </td>
+                  <td id='td1' style='text-align: left;'>
+                  {{ i.username }}
+                  </td>
+                  <td>
+                    {{ i.last_name }}
+                  </td>
+                  <td id='td1' width='70px'>
+                    <a href="{% url 'update_customer' i.id %}"><i class="mdi mdi-pencil"></i></a>
+                    <a href="{% url 'remove_customer' i.id %}"><i class="mdi mdi-delete"></i></a>
+                    <a href="{% url 'view_customer' i.id %}"><i class="mdi mdi-eye"></i></a>
+                  </td>
+                </tr>
+              {%endfor%}
+            </table>
           {% else %}
             <h4 class = 'text-center alert alert-warning'>No records to show</h4>
             {% endif %}
+        </div>
       </div>
     </div>
   </div>

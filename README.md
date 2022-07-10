@@ -1,1 +1,1 @@
-# s7p2
+# s7p2 | AKA automated hotel
