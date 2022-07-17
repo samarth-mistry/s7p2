@@ -37,10 +37,10 @@
               </div>
               <h4>Hello! Greetings of the day!</h4>
               <h6 class="fw-light">Please Sign in to continue.</h6>
-              <form class="pt-3" method="Post">
+              <form class="pt-3" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                  <select class="form-control form-control-lg text-primary text-center" id="role_id" name="role_id">
+                  <select name="user_role" class="form-control form-control-lg text-primary text-center" id="role_id" name="role_id">
                     <option value="0" disabled selected>- - - Select Role - - -</option>
                     <option value="1">Hotel Owner</option>
                     <option value="2">Hotel Table</option>

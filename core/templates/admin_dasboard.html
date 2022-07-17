@@ -38,6 +38,9 @@
           {% else %}
             <h4 class = 'text-center alert alert-warning'>No records to show</h4>
             {% endif %}
+            <br/>
+            <a href="{% url 'super_admin_register' %}"><button class="btn btn-block btn-primary" style=" width: 15em; height:3em;">Add Super-admin</button></a>
+            <a href="{% url 'user-register' %}"><button class="btn btn-block btn-primary">Add customer</button></a>
         </div>
       </div>
     </div>
