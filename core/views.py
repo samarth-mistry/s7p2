@@ -9,6 +9,11 @@ from .forms import *
 from .encrypt_util import *
 
 # Create your views here.
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
 def dashboard(request):
     customer = User.objects.all().exclude(username='admin@admin.com')
     return render(request,'admin_dasboard.html',{'customer':customer})
@@ -30,10 +35,10 @@ def logins(request):
         elif value == '3':
             if super_admin.objects.filter(email=username).exists():
                 user  = super_admin.objects.get(email = username)
-                decryptpass= decrypt(user.password)
-                if decryptpass == password:
+                #decryptpass= decrypt(user.password)
+                if user.password == password:
                     customer = User.objects.all().exclude(username='admin@admin.com')
-                    return render(request,'admin_dasboard.html',{'customer':customer})
+                    return render(request,'admin_dasboard.html',{'customer':customer,'username':user})
             else:
                 return render(request,'login.html')
     else:
@@ -81,7 +86,7 @@ def admin_register(request):
     return render(request, 'super_admin_register.html',{'form':admin})
 
 def remove_customer(request,id):
-    if request.user.is_authenticated:
+    #if request.user.is_authenticated:
         if request.method == "POST":
             cu = User.objects.get(pk=id)
             cu.delete()
@@ -90,11 +95,11 @@ def remove_customer(request,id):
             cu=User.objects.get(pk=id)
         customer = User.objects.get(pk=id)
         return render(request,'confirm_delete.html',{'customer':customer})
-    else:
-        return redirect('/dashboard')
+    #else:
+        #return redirect('/dashboard')
 
 def update_customer(request,id):
-    if request.user.is_authenticated:
+    #if request.user.is_authenticated:
         if request.method == 'POST':
             pi = User.objects.get(pk=id)
             temp=pi.email
@@ -110,12 +115,12 @@ def update_customer(request,id):
         pi = User.objects.get(pk=id)
         customer = CustomerRegistration(instance=pi)
         return render(request,'update_customer.html',{'form':customer})
-    else:
-        return redirect('/dashboard')
+    #else:
+        #return redirect('/dashboard')
 
 def view_customer(request,id):
-    if request.user.is_authenticated:
+    #if request.user.is_authenticated:
         customer = User.objects.get(pk=id)
         return render(request,'view_customer.html',{'customer':customer})
-    else:
-        return redirect('/dashboard')
+    #else:
+        #return redirect('/dashboard')
