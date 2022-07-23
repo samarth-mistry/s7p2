@@ -14,10 +14,10 @@ class CustomerRegistration(forms.ModelForm):
 
 class AdminRegistration(forms.ModelForm):
     class Meta:
-        model = super_admin
-        fields = ('name','email','password')
+        model = User
+        fields = ('username','email','password')
         widgets = {
-        'name' : forms.TextInput(attrs={'class':'form-control'}),
+        'username' : forms.TextInput(attrs={'class':'form-control'}),
         'email' : forms.EmailInput(attrs={'class':'form-control'}),
         'password' : forms.PasswordInput(render_value=True, attrs={'class':'form-control'}),
         }

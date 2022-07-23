@@ -15,7 +15,7 @@ def logout_view(request):
     return redirect('/')
 
 def dashboard(request):
-    customer = User.objects.all().exclude(username='admin@admin.com')
+    customer = User.objects.all().exclude(is_superuser = True)
     return render(request,'admin_dasboard.html',{'customer':customer})
 
 def logins(request):
@@ -24,25 +24,26 @@ def logins(request):
             username = request.POST['username']
             password = request.POST['password']
             value = request.POST.get('user_role')
-
             if value == '1':
-                user = auth.authenticate(email=username)
+                user = User.objects.get(email=username)
+                # user = auth.authenticate(email=username , password=password)
                 return HttpResponse(user)
+                auth.authenticate(user)
                 if user is not None:
-                    auth.login(request,user)
-                    return render(request,'customer_dashboard.html')
+                    return HttpResponse(password == user.password)
+                    if password == user.password:
+                        # auth.login(request,user)
+                        return render(request,'customer_dashboard.html')
             elif value =='2':
                 pass
             elif value == '3':
                 if User.objects.filter(email=username).exists():
                     user  = User.objects.get(email = username)
-                    #decryptpass= decrypt(user.password)
-                    if user.password == password:
-                        customer = User.objects.all().exclude(username='admin@admin.com')
-                        customer=customer.exclude(last_name='admin')
+                    if user.password == password and user.is_superuser == True:
+                        customer = User.objects.all().exclude(is_superuser = True)
                         login(request,user)
-                        return redirect('/dashboard',{'customer':customer,'username':user})
-                        # return render(request,'admin_dasboard.html',{'customer':customer,'username':user})
+                        # return redirect('/dashboard',{'customer':customer,'username':user})
+                        return render(request,'admin_dasboard.html',{'customer':customer,'username':user})
                     else:
                         messages.info(request,'Incorrect Password')
                         return render(request,'login.html')
@@ -89,7 +90,7 @@ def admin_register(request):
     if request.method == 'POST':
         admin = AdminRegistration(request.POST)
         if admin.is_valid():
-            name = request.POST['name']
+            name = request.POST['username']
             email = request.POST['email']
             encryptpass= request.POST['password']
             if User.objects.filter(email=email).exists():
@@ -97,6 +98,9 @@ def admin_register(request):
                 return render(request, 'super_admin_register.html',{'form':admin})
             else:
                 data=User(username=name, email=email, password=encryptpass,last_name='admin')
+                data.is_active = True
+                data.is_staff = True
+                data.is_superuser = True
                 data.save()
                 messages.info(request,'Admin Registered')
                 return redirect('/')
