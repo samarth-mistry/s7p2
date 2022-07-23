@@ -470,6 +470,11 @@
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                  <div class="">
+                    {% for message in messages %}
+                    <center><h5 style='color:red'>{{ message }}</h5></center>
+                    {% endfor %}
+                  </div>
                   <h4 class="card-title">Basic form elements</h4>
                   <p class="card-description">
                     Basic form elements

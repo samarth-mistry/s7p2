@@ -19,29 +19,39 @@ def dashboard(request):
     return render(request,'admin_dasboard.html',{'customer':customer})
 
 def logins(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        value = request.POST.get('user_role')
-        if value == '1':
-            user = auth.authenticate(email=username)
-            return HttpResponse(user)
-            # SOLVE THE BUG HERE!!!!!!!
-            if user is not None:
-                auth.login(request,user)
-                return render(request,'customer_dashboard.html')
-        elif value =='2':
-            pass
-        elif value == '3':
-            if super_admin.objects.filter(email=username).exists():
-                user  = super_admin.objects.get(email = username)
-                #decryptpass= decrypt(user.password)
-                if user.password == password:
-                    customer = User.objects.all().exclude(username='admin@admin.com')
-                    return render(request,'admin_dasboard.html',{'customer':customer,'username':user})
-            else:
-                return render(request,'login.html')
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            username = request.POST['username']
+            password = request.POST['password']
+            value = request.POST.get('user_role')
+            if value == '1':
+                user = auth.authenticate(email=username)
+                return HttpResponse(user)
+                # SOLVE THE BUG HERE!!!!!!!
+                if user is not None:
+                    auth.login(request,user)
+                    return render(request,'customer_dashboard.html')
+            elif value =='2':
+                pass
+            elif value == '3':
+                if User.objects.filter(email=username).exists():
+                    user  = User.objects.get(email = username)
+                    #decryptpass= decrypt(user.password)
+                    if user.password == password:
+                        customer = User.objects.all().exclude(username='admin@admin.com')
+                        customer=customer.exclude(last_name='admin')
+                        login(request,user)
+                        return render(request,'admin_dasboard.html',{'customer':customer,'username':user})
+                    else:
+                        messages.info(request,'Incorrect Password')
+                        return render(request,'login.html')
+                else:
+                    messages.info(request,'Invalid Admin')
+                    return render(request,'login.html')
+        else:
+            return render(request,'login.html')
     else:
+        logout_view(request)
         return render(request,'login.html')
 
 def customer_register(request):
@@ -55,6 +65,9 @@ def customer_register(request):
                 pass1 = customer.cleaned_data['password']
                 if User.objects.filter(email=email).exists():
                     messages.info(request,'Email already taken')
+                    return render(request,'user-register.html')
+                elif company_name=='admin':
+                    messages.info(request,'Sorry Company Name Not Allowed ')
                     return render(request,'user-register.html')
                 else:
                     reg = User.objects.create_user(username=name, last_name=company_name, email=email)
@@ -73,14 +86,15 @@ def admin_register(request):
         if admin.is_valid():
             name = request.POST['name']
             email = request.POST['email']
-            encryptpass= encrypt(request.POST['password'])
-            if super_admin.objects.filter(email=email).exists():
+            encryptpass= request.POST['password']
+            if User.objects.filter(email=email).exists():
                 messages.info(request,'Email already taken')
-                return render(request,'super_admin_register.html')
+                return render(request, 'super_admin_register.html',{'form':admin})
             else:
-                data=super_admin(name=name, email=email, password=encryptpass)
+                data=User(username=name, email=email, password=encryptpass,last_name='admin')
                 data.save()
-                return redirect('/dashboard')
+                messages.info(request,'Admin Registered')
+                return redirect('/')
     else:
         admin = AdminRegistration(request.POST)
     return render(request, 'super_admin_register.html',{'form':admin})
