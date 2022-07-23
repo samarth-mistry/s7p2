@@ -11,4 +11,5 @@ urlpatterns = [
     path('remove_customer/<int:id>/',views.remove_customer,name='remove_customer'),
     path('<int:id>/',views.update_customer,name='update_customer'),
     path('view_customer/<int:id>/',views.view_customer,name='view_customer'),
+    path('hotel-owner',views.hotelOwner,name='hotel-owner'),
 ]

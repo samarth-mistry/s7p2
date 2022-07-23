@@ -42,54 +42,34 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            <b>Machine learning and Analytics data</b>
-            <div class="row mx-auto mt-3">
-              <div class="col-lg-4">
-                <div class="card bg-primary">
-                  <div class="card-body">
-                    <h4 class="card-title text-white">Daily Sale</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="card bg-warning">
-                  <div class="card-body">
-                    <h4 class="card-title">Delivery Monitoring</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="card bg-info">
-                  <div class="card-body">
-                    <h4 class="card-title">Raw Food Mangement</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mx-auto mt-3">
-              <div class="col-lg-4">
-                <div class="card bg-dark">
-                  <div class="card-body">
-                    <h4 class="card-title text-white">Refresh Analytics</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="card bg-success">
-                  <div class="card-body">
-                    <h4 class="card-title text-white">User Management</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="card bg-secondary">
-                  <div class="card-body">
-                    <h4 class="card-title text-white">Troubleshooting</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <b>List of Hotel Owners</b> 
+            <a href="{% url 'super_admin_register' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Super-admin</a>
+            <a href="{% url 'user-register' %}" class="btn btn-primary" style="float: right;">Add customer</a>
           </h4>
+          {% if customer %}
+          <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id='table1'>
+            <tr class="text-center bg-gradient-secondary">
+                <th>Sr/No.</th>
+                <th>Customer Name</th>
+                <th class="text-white">Restaurant Name</th>
+                <th class="text-white">Actions</th>
+            </tr>
+            {% for i in customer %}
+              <tr class="text-center">
+                <td>{{forloop.counter}}</td>
+                <td>{{ i.username }}</td>
+                <td>{{ i.last_name }}</td>
+                <td>
+                  <a class="ml-2" href="{% url 'update_customer' i.id %}"><i class="mdi mdi-pencil"></i></a>
+                  <a class="ml-2" href="{% url 'remove_customer' i.id %}"><i class="mdi mdi-delete"></i></a>
+                  <a href="{% url 'view_customer' i.id %}"><i class="mdi mdi-eye"></i></a>
+                </td>
+              </tr>
+            {%endfor%}
+          </table>
+          {% else %}
+          <h4 class = 'text-center alert alert-warning'>No records to show</h4>
+          {% endif %}
         </div>
       </div>
     </div>

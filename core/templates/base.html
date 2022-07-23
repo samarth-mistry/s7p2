@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Dash-Board</title>
+  <title>Automated Hotel</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'core/vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'core/vendors/mdi/css/materialdesignicons.min.css' %}">
@@ -60,7 +60,8 @@
           </div>
           <div>
             <a class="navbar-brand brand-logo" href="{% url 'dashboard' %}">
-              <img src="{% static 'core/images/logo.svg' %}" alt="logo">
+              <img src="{% static 'core/images/logo.png' %}" alt="logo"> 
+              <h4>Automated!</h4>
             </a>
             <a class="navbar-brand brand-logo-mini" href="{% url 'dashboard' %}">
               <img src="{% static 'core/images/logo-mini.svg' %}" alt="logo">
@@ -89,8 +90,8 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">Hotels</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="#">Owners</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'hotel-owner' %}">Hotels</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{% url 'hotel-owner' %}">Owners</a></li>
                   <li class="nav-item"> <a class="nav-link" href="#">Subscription period</a></li>
                 </ul>
               </div>

@@ -7,7 +7,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Star Admin2 </title>
+  <title>Automated Hotel </title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'core/vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'core/vendors/mdi/css/materialdesignicons.min.css' %}">
@@ -22,7 +22,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'core/css/vertical-layout-light/style.css'%}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{% static 'core/images/favicon.png'%}" />
+  <link rel="shortcut icon" href="{% static 'core/images/logo.png'%}" />
 </head>
 
 <body>
@@ -32,15 +32,20 @@
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="brand-logo">
-                <img src="{% static 'core/images/logo.png'%}" alt="logo">
+              <div class="brand-logo text-center">
+                <img src="{% static 'core/images/logo.png'%}" alt="logo" class="img-thumbnail">
               </div>
-              <h4>Hello! Greetings of the day!</h4>
-              <h6 class="fw-light">Please Sign in to continue.</h6>
+              <h4 class="text-center">Hello! Greetings of the day!</h4>
+              <h6 class="fw-light text-center">Please Sign in to continue.</h6>
+              <h5 class="text-center text-danger">
+                {% for message in messages %}
+                <center><h5>{{ message }}</h5></center>
+                {% endfor %}
+              </h5>
               <form class="pt-3" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                  <select name="user_role" class="form-control form-control-lg text-primary text-center" id="role_id" name="role_id">
+                  <select name="user_role" class="form-control form-control-lg text-primary text-center" id="role_id">
                     <option value="0" disabled selected>- - - Select Role - - -</option>
                     <option value="1">Hotel Owner</option>
                     <option value="2">Hotel Table</option>
@@ -67,11 +72,7 @@
                 </div>
                 <div class="text-center mt-4 fw-light text-danger">
                   <!-- Don't have an account? <a href="{% url 'user-register' %}" class="text-primary">Create</a> -->
-                  <div class="">
-                    {% for message in messages %}
-                    <center><h5>{{ message }}</h5></center>
-                    {% endfor %}
-                  </div>
+                  
                 </div>
               </form>
             </div>

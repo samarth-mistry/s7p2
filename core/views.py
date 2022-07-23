@@ -24,10 +24,10 @@ def logins(request):
             username = request.POST['username']
             password = request.POST['password']
             value = request.POST.get('user_role')
+
             if value == '1':
                 user = auth.authenticate(email=username)
                 return HttpResponse(user)
-                # SOLVE THE BUG HERE!!!!!!!
                 if user is not None:
                     auth.login(request,user)
                     return render(request,'customer_dashboard.html')
@@ -41,13 +41,17 @@ def logins(request):
                         customer = User.objects.all().exclude(username='admin@admin.com')
                         customer=customer.exclude(last_name='admin')
                         login(request,user)
-                        return render(request,'admin_dasboard.html',{'customer':customer,'username':user})
+                        return redirect('/dashboard',{'customer':customer,'username':user})
+                        # return render(request,'admin_dasboard.html',{'customer':customer,'username':user})
                     else:
                         messages.info(request,'Incorrect Password')
                         return render(request,'login.html')
                 else:
                     messages.info(request,'Invalid Admin')
                     return render(request,'login.html')
+            elif value == '0':
+                messages.info(request,'Please select role!')
+                return render(request,'login.html')
         else:
             return render(request,'login.html')
     else:
@@ -78,7 +82,8 @@ def customer_register(request):
             customer = CustomerRegistration()
         return render(request,'user-register.html',{'form':customer})
     else:
-        return render(request,'user-register.html')
+        return redirect('hotel-owner')
+        # return render(request,'user-register.html')
 
 def admin_register(request):
     if request.method == 'POST':
@@ -138,3 +143,7 @@ def view_customer(request,id):
         return render(request,'view_customer.html',{'customer':customer})
     #else:
         #return redirect('/dashboard')
+
+def hotelOwner(request):
+    customer = User.objects.all().exclude(username='admin@admin.com')
+    return render(request,'hotel_owners.html',{'customer':customer})
