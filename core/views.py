@@ -16,7 +16,8 @@ def logout_view(request):
 
 def dashboard(request):
     customer = User.objects.all().exclude(is_superuser = True)
-    return render(request,'admins/dashboard.html',{'customer':customer})
+    user=request.user
+    return render(request,'admins/dashboard.html',{'customer':customer,'name':user})
 
 def logins(request):
     if not request.user.is_authenticated:
@@ -42,10 +43,10 @@ def logins(request):
                     if user.password == password and user.is_superuser == True:
                         customer = User.objects.all().exclude(is_superuser = True)
                         login(request,user)
-                        # return redirect('/dashboard',{'customer':customer,'username':user})
-                        return render(request,'admins/dashboard.html',{'customer':customer,'username':user})
+                        return redirect('/dashboard',user)
+                        #return render(request,'admins/dashboard.html',{'customer':customer,'name':user})
                     else:
-                        messages.info(request,'Incorrect Password')
+                        messages.info(request,'Invalid Username or Password')
                         return render(request,'login.html')
                 else:
                     messages.info(request,'Invalid username or password!')
