@@ -61,7 +61,10 @@
                 <td>{{ i.last_name }}</td>
                 <td>
                   <a class="ml-2" href="{% url 'hotel-owner.update' i.id %}"><i class="mdi mdi-pencil"></i></a>
-                  <a class="ml-2" href="{% url 'hotel-owner.delete' i.id %}"><i class="mdi mdi-delete"></i></a>
+                  <form action="{% url 'hotel-owner.delete' i.id %}" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
+                    {% csrf_token %}
+                    <button href="" type="submit" title="Delete"><a href=""><i class="mdi mdi-delete"></i></a></button>
+                  </form>
                   <a href="{% url 'hotel-owner.show' i.id %}"><i class="mdi mdi-eye"></i></a>
                 </td>
               </tr>
