@@ -137,7 +137,7 @@ def update_customer(request,id):
                     messages.info(request,"Can't Change Email")
         pi = User.objects.get(pk=id)
         customer = CustomerRegistration(instance=pi)
-        return render(request,'h_owners/update.html',{'form':customer})
+        return render(request,'h_owners/edit.html',{'form':customer})
     #else:
         #return redirect('/dashboard')
 

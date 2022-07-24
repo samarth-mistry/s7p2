@@ -60,9 +60,9 @@
                 <td>{{ i.username }}</td>
                 <td>{{ i.last_name }}</td>
                 <td>
-                  <a class="ml-2" href="{% url 'update_customer' i.id %}"><i class="mdi mdi-pencil"></i></a>
-                  <a class="ml-2" href="{% url 'remove_customer' i.id %}"><i class="mdi mdi-delete"></i></a>
-                  <a href="{% url 'view_customer' i.id %}"><i class="mdi mdi-eye"></i></a>
+                  <a class="ml-2" href="{% url 'hotel-owner.update' i.id %}"><i class="mdi mdi-pencil"></i></a>
+                  <a class="ml-2" href="{% url 'hotel-owner.delete' i.id %}"><i class="mdi mdi-delete"></i></a>
+                  <a href="{% url 'hotel-owner.show' i.id %}"><i class="mdi mdi-eye"></i></a>
                 </td>
               </tr>
             {%endfor%}

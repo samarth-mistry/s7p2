@@ -8,8 +8,8 @@ urlpatterns = [
     path('', views.logins, name='login'),
     path('user-register/', views.customer_register, name='user-register'),
     path('super_admin_register/', views.admin_register, name='super_admin_register'),
-    path('remove_customer/<int:id>/',views.remove_customer,name='remove_customer'),
-    path('<int:id>/',views.update_customer,name='update_customer'),
-    path('view_customer/<int:id>/',views.view_customer,name='view_customer'),
+    path('hotel-owner/update/<int:id>/',views.update_customer,name='hotel-owner.update'),
+    path('hotel-owner/delete/<int:id>/',views.remove_customer,name='hotel-owner.delete'),
+    path('hotel-owner/show/<int:id>/',views.view_customer,name='hotel-owner.show'),
     path('hotel-owner',views.hotelOwner,name='hotel-owner'),
 ]
