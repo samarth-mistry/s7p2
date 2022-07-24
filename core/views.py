@@ -64,10 +64,6 @@ def logins(request):
 def customer_register(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            #customer = CustomerRegistration(request.POST)
-            #if customer.is_valid():
-            # return HttpResponse("tt")
-
             name = request.POST['username']
             company_name = request.POST['hotel_name']
             email = request.POST['email']
@@ -152,6 +148,6 @@ def view_customer(request,id):
 def hotelOwner(request):
     if request.user.is_authenticated:
         customer = User.objects.all().exclude(is_superuser = True)
-        return render(request,'admins/hotel_owners.html',{'customer':customer})
+        return render(request,'admins/hotel_owners.html',{'customer':customer,'name':request.user})
     else:
         return redirect('/')
