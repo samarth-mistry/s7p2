@@ -151,7 +151,7 @@ def view_customer(request,id):
 
 def hotelOwner(request):
     if request.user.is_authenticated:
-        customer = User.objects.all().exclude(username='admin@admin.com')
+        customer = User.objects.all().exclude(is_superuser = True)
         return render(request,'admins/hotel_owners.html',{'customer':customer})
     else:
         return redirect('/')
