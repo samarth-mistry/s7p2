@@ -17,8 +17,7 @@ def logout_view(request):
 def dashboard(request):
     if request.user.is_authenticated:
         customer = User.objects.all().exclude(is_superuser = True)
-        user=request.user
-        return render(request,'admins/dashboard.html',{'customer':customer,'name':user})
+        return render(request,'admins/dashboard.html',{'customer':customer})
     else:
         return redirect('/')
 
@@ -58,9 +57,8 @@ def logins(request):
         else:
             return render(request,'login.html')
     else:
-        logout_view(request)
-        return render(request,'login.html')
-
+        return redirect('/dashboard')
+        
 def customer_register(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -148,6 +146,6 @@ def view_customer(request,id):
 def hotelOwner(request):
     if request.user.is_authenticated:
         customer = User.objects.all().exclude(is_superuser = True)
-        return render(request,'admins/hotel_owners.html',{'customer':customer,'name':request.user})
+        return render(request,'admins/hotel_owners.html',{'customer':customer})
     else:
         return redirect('/')

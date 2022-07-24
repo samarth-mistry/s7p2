@@ -73,7 +73,7 @@
         <div class="navbar-menu-wrapper d-flex align-items-top">
           <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-              <h1 class="welcome-text">Greetings of the day! <span class="text-black fw-bold">{{ name.username }}</span></h1>
+              <h1 class="welcome-text">Greetings of the day! <span class="text-black fw-bold">{{ request.user.username }}</span></h1>
             </li>
           </ul>
           <ul class="navbar-nav ms-auto">
@@ -89,8 +89,8 @@
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
                   <img class="img-md rounded-circle" src="/static/core/images/faces/face8.jpg" alt="Profile image">
-                  <p class="mb-1 mt-3 font-weight-semibold">{{ name.username }}</p>
-                  <p class="fw-light text-muted mb-0">{{ name.email }}</p>
+                  <p class="mb-1 mt-3 font-weight-semibold">{{ request.user.username }}</p>
+                  <p class="fw-light text-muted mb-0">{{ request.user.email }}</p>
                 </div>
                 <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-success me-2"></i> My Profile</a>
                 <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
@@ -120,9 +120,9 @@
                 <span class="menu-title">Manage</span>
                 <i class="menu-arrow"></i>
               </a>
-              <div class="collapse" id="ui-basic">
+              <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{% url 'hotel-owner' %}">Hotels</a></li>
+                  <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'hotel-owner.create' %} active{% else %} {% endif %}" href="{% url 'hotel-owner' %}">Hotels</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{% url 'hotel-owner' %}">Owners</a></li>
                   <li class="nav-item"> <a class="nav-link" href="#">Subscription period</a></li>
                 </ul>
