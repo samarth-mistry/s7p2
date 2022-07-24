@@ -129,18 +129,16 @@ def update_customer(request,id):
         if request.method == 'POST':
             pi = User.objects.get(pk=id)
             temp=pi.email
-            customer = CustomerRegistration(request.POST, instance=pi)
-            if customer.is_valid():
-                if request.POST['email']==temp:
-                    name=request.POST['name']
-                    hotel=request.POST['hotel_name']
-                    User.objects.filter(id=pi.id).update(username=name,last_name=hotel)
-                    return redirect('/dashboard')
-                else:
-                    messages.info(request,"Can't Change Email")
+            if request.POST['emailid']==temp:
+                name=request.POST['name']
+                hotel=request.POST['hotel_name']
+                User.objects.filter(id=pi.id).update(username=name,last_name=hotel)
+                return redirect('/hotel-owner')
+            else:
+                messages.info(request,"Can't Change Email")
         pi = User.objects.get(pk=id)
         customer = CustomerRegistration(instance=pi)
-        return render(request,'h_owners/edit.html',{'form':customer})
+        return render(request,'h_owners/edit.html',{'form':customer,'data':pi})
     else:
         return redirect('/')
 
