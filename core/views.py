@@ -72,20 +72,20 @@ def customer_register(request):
                 pass1 = customer.cleaned_data['password']
                 if User.objects.filter(email=email).exists():
                     messages.info(request,'Email already taken')
-                    return render(request,'user-register.html')
+                    return render(request,'h_owners/create.html.html')
                 elif company_name=='admin':
                     messages.info(request,'Sorry Company Name Not Allowed ')
-                    return render(request,'user-register.html')
+                    return render(request,'h_owners/create.html.html')
                 else:
                     reg = User.objects.create_user(username=name, last_name=company_name, email=email)
                     reg.set_password(pass1)
                     reg.save()
-                    return redirect('/user-register/')
+                    return redirect('/hotel-owner/create/')
             else:
-                return render(request,'user-register.html',{'form':customer})
+                return render(request,'h_owners/create.html',{'form':customer})
         else:
             customer = CustomerRegistration()
-        return render(request,'user-register.html',{'form':customer})
+        return render(request,'h_owners/create.html',{'form':customer})
     else:
         return redirect('/')
 
