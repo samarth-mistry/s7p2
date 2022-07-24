@@ -50,7 +50,7 @@ def logins(request):
                 else:
                     messages.info(request,'Invalid username or password!')
                     return render(request,'login.html')
-            elif value == '0':
+            elif value == '':
                 messages.info(request,'Please select role!')
                 return render(request,'login.html')
         else:
