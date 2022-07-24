@@ -15,9 +15,12 @@ def logout_view(request):
     return redirect('/')
 
 def dashboard(request):
-    customer = User.objects.all().exclude(is_superuser = True)
-    user=request.user
-    return render(request,'admins/dashboard.html',{'customer':customer,'name':user})
+    if request.user.is_authenticated:
+        customer = User.objects.all().exclude(is_superuser = True)
+        user=request.user
+        return render(request,'admins/dashboard.html',{'customer':customer,'name':user})
+    else:
+        return redirect('/')
 
 def logins(request):
     if not request.user.is_authenticated:
@@ -80,37 +83,41 @@ def customer_register(request):
                     reg.set_password(pass1)
                     reg.save()
                     return redirect('/user-register/')
+            else:
+                return render(request,'user-register.html',{'form':customer})
         else:
             customer = CustomerRegistration()
         return render(request,'user-register.html',{'form':customer})
     else:
-        return redirect('hotel-owner')
-        # return render(request,'user-register.html')
+        return redirect('/')
 
 def admin_register(request):
-    if request.method == 'POST':
-        admin = AdminRegistration(request.POST)
-        if admin.is_valid():
-            name = request.POST['username']
-            email = request.POST['email']
-            encryptpass= request.POST['password']
-            if User.objects.filter(email=email).exists():
-                messages.info(request,'Email already taken')
-                return render(request, 'admins/super_admin_register.html',{'form':admin})
-            else:
-                data=User(username=name, email=email, password=encryptpass,last_name='admin')
-                data.is_active = True
-                data.is_staff = True
-                data.is_superuser = True
-                data.save()
-                messages.info(request,'Admin Registered')
-                return redirect('/')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            admin = AdminRegistration(request.POST)
+            if admin.is_valid():
+                name = request.POST['username']
+                email = request.POST['email']
+                encryptpass= request.POST['password']
+                if User.objects.filter(email=email).exists():
+                    messages.info(request,'Email already taken')
+                    return render(request, 'admins/super_admin_register.html',{'form':admin})
+                else:
+                    data=User(username=name, email=email, password=encryptpass,last_name='admin')
+                    data.is_active = True
+                    data.is_staff = True
+                    data.is_superuser = True
+                    data.save()
+                    messages.info(request,'Admin Registered')
+                    return redirect('/')
+        else:
+            admin = AdminRegistration(request.POST)
+        return render(request, 'admins/super_admin_register.html',{'form':admin})
     else:
-        admin = AdminRegistration(request.POST)
-    return render(request, 'admins/super_admin_register.html',{'form':admin})
+        return redirect('/')
 
 def remove_customer(request,id):
-    #if request.user.is_authenticated:
+    if request.user.is_authenticated:
         if request.method == "POST":
             cu = User.objects.get(pk=id)
             cu.delete()
@@ -119,11 +126,11 @@ def remove_customer(request,id):
             cu=User.objects.get(pk=id)
         customer = User.objects.get(pk=id)
         return render(request,'admins/confirm_delete.html',{'customer':customer})
-    #else:
-        #return redirect('/dashboard')
+    else:
+        return redirect('/')
 
 def update_customer(request,id):
-    #if request.user.is_authenticated:
+    if request.user.is_authenticated:
         if request.method == 'POST':
             pi = User.objects.get(pk=id)
             temp=pi.email
@@ -139,16 +146,19 @@ def update_customer(request,id):
         pi = User.objects.get(pk=id)
         customer = CustomerRegistration(instance=pi)
         return render(request,'h_owners/edit.html',{'form':customer})
-    #else:
-        #return redirect('/dashboard')
+    else:
+        return redirect('/')
 
 def view_customer(request,id):
-    #if request.user.is_authenticated:
+    if request.user.is_authenticated:
         customer = User.objects.get(pk=id)
         return render(request,'h_owners/show.html',{'customer':customer})
-    #else:
-        #return redirect('/dashboard')
+    else:
+        return redirect('/')
 
 def hotelOwner(request):
-    customer = User.objects.all().exclude(username='admin@admin.com')
-    return render(request,'admins/hotel_owners.html',{'customer':customer})
+    if request.user.is_authenticated:
+        customer = User.objects.all().exclude(username='admin@admin.com')
+        return render(request,'admins/hotel_owners.html',{'customer':customer})
+    else:
+        return redirect('/')
