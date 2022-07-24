@@ -14,21 +14,22 @@
                         <p class="text-center alert alert-info">{{ message }}</p>
                         {% endfor %}
                       </div>
-                      <form class="form-sample">
+                      <form class="form-sample" method="POST" action="{% url 'hotel-owner.create' %}">
+                        {% csrf_token %}
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">First Name:</label>
                               <div class="col-lg-9">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="username" required>
                               </div>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Last Name:</label>
+                              <label class="col-sm-3 col-form-label">Restaurant Name:</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="hotel_name" required>
                               </div>
                             </div>
                           </div>
@@ -38,7 +39,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">Email ID:</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="email" class="form-control" name="email" required>
                               </div>
                             </div>
                           </div>
@@ -46,7 +47,7 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">Password:</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="password" class="form-control" name="password" required>
                               </div>
                             </div>
                           </div>

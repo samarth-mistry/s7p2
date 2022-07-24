@@ -64,25 +64,26 @@ def logins(request):
 def customer_register(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            customer = CustomerRegistration(request.POST)
-            if customer.is_valid():
-                name = customer.cleaned_data['name']
-                company_name = customer.cleaned_data['hotel_name']
-                email = customer.cleaned_data['email']
-                pass1 = customer.cleaned_data['password']
-                if User.objects.filter(email=email).exists():
-                    messages.info(request,'Email already taken')
-                    return render(request,'h_owners/create.html.html')
-                elif company_name=='admin':
-                    messages.info(request,'Sorry Company Name Not Allowed ')
-                    return render(request,'h_owners/create.html.html')
-                else:
-                    reg = User.objects.create_user(username=name, last_name=company_name, email=email)
-                    reg.set_password(pass1)
-                    reg.save()
-                    return redirect('/hotel-owner/create/')
+            #customer = CustomerRegistration(request.POST)
+            #if customer.is_valid():
+            # return HttpResponse("tt")
+
+            name = request.POST['username']
+            company_name = request.POST['hotel_name']
+            email = request.POST['email']
+            pass1 = request.POST['password']
+            if User.objects.filter(email=email).exists():
+                messages.info(request,'Email already taken')
+                return render(request,'h_owners/create.html')
+            elif company_name=='admin':
+                
+                messages.info(request,'Sorry Company Name Not Allowed ')
+                return render(request,'h_owners/create.html')
             else:
-                return render(request,'h_owners/create.html',{'form':customer})
+                reg = User.objects.create_user(username=name, last_name=company_name, email=email)
+                reg.set_password(pass1)
+                reg.save()
+                return redirect('/hotel-owner')
         else:
             customer = CustomerRegistration()
         return render(request,'h_owners/create.html',{'form':customer})
@@ -119,11 +120,7 @@ def remove_customer(request,id):
         if request.method == "POST":
             cu = User.objects.get(pk=id)
             cu.delete()
-            return redirect('/dashboard')
-        else:
-            cu=User.objects.get(pk=id)
-        customer = User.objects.get(pk=id)
-        return render(request,'admins/confirm_delete.html',{'customer':customer})
+            return redirect('/hotel-owner')
     else:
         return redirect('/')
 
