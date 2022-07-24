@@ -7,32 +7,37 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">
-                        <b>Hotel Owner's details</b>
-                        </h4>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label text-right font-weight-bold">Client ID: </label>
-                            <label class="col-lg-3 col-form-label">{{customer.id}}</label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label text-right">Name: </label>
-                            <label class="col-lg-3 col-form-label">{{customer.username}}</label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label text-right">Hotel: </label>
-                            <label class="col-lg-3 col-form-label">{{customer.last_name}}</label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label text-right">Country: </label>
-                            <label class="col-lg-3 col-form-label">India</label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label text-right">Address: </label>
-                            <label class="col-lg-3 col-form-label">-</label>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label text-right">Email ID</label>
-                            <label class="col-lg-3 col-form-label">{{ customer.email }}</label>
+                        <h4 class="card-title">Hotel Owner's details</h4>
+                        <p class="card-description">Details of the Hotel owner is updated on {DATE}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <address>
+                                    <h4 class="fw-bold">Owner ID: </h4>
+                                    {{customer.id}}
+                                </address>
+                                <address>
+                                    <h4 class="fw-bold">Onwer Name: </h4>
+                                    {{customer.username}}
+                                </address>
+                                <address>
+                                    <h4 class="fw-bold">Hotel Name: </h4>
+                                    {{customer.last_name}}
+                                </address>
+                                <address>
+                                    <h4 class="fw-bold">Country origin: </h4>
+                                    India
+                                </address>
+                                <address>
+                                    <h4 class="fw-bold">Address line: </h4>
+                                     --- 
+                                </address>
+                                <address>
+                                    <h4 class="fw-bold">Email ID: </h4>
+                                    {{ customer.email }}
+                                </address>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
                         </div>
                     </div>
                 </div>

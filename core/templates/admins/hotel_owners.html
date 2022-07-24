@@ -13,7 +13,7 @@
             <a href="{% url 'hotel-owner.create' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Customer</a>
           </h4>
           {% if customer %}
-          <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id='table1'>
+          <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id=''>
             <tr class="text-center bg-gradient-secondary">
                 <th>Sr/No.</th>
                 <th>Customer Name</th>
@@ -26,7 +26,7 @@
                 <td>{{ i.username }}</td>
                 <td>{{ i.last_name }}</td>
                 <td>
-                  <a class="btn btn-info btn-xs ml-2" href="{% url 'hotel-owner.show' i.id %}"><i class="mdi mdi-eye"></i></a>
+                  <a class="btn btn-primary btn-xs ml-2" href="{% url 'hotel-owner.show' i.id %}"><i class="mdi mdi-eye"></i></a>
                   <a class="btn btn-success btn-xs ml-2" href="{% url 'hotel-owner.update' i.id %}"><i class="mdi mdi-pencil"></i></a>
                   <form action="{% url 'hotel-owner.delete' i.id %}" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
                     {% csrf_token %}

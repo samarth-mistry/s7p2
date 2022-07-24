@@ -8,8 +8,6 @@ from django.contrib.auth import login, logout, authenticate
 from .forms import *
 from .encrypt_util import *
 
-# Create your views here.
-
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -20,7 +18,7 @@ def dashboard(request):
         return render(request,'admins/dashboard.html',{'customer':customer})
     else:
         return redirect('/')
-
+    
 def logins(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
@@ -149,3 +147,9 @@ def hotelOwner(request):
         return render(request,'admins/hotel_owners.html',{'customer':customer})
     else:
         return redirect('/')
+
+def tableMenu(request):
+    return render(request,'others/table_menus.html',{'range': range(10)})
+
+def tableOrderList(request):
+    return render(request,'others/table_order_list.html',{'range': range(10)})

@@ -13,4 +13,7 @@ urlpatterns = [
     path('hotel-owner/delete/<int:id>/',views.remove_customer,name='hotel-owner.delete'),
     path('hotel-owner/show/<int:id>/',views.view_customer,name='hotel-owner.show'),
     path('hotel-owner',views.hotelOwner,name='hotel-owner'),
+    
+    path('table-menu',views.tableMenu,name='table-menu'),
+    path('table-order-list',views.tableOrderList,name='table-order-list'),
 ]
