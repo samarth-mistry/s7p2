@@ -39,12 +39,12 @@
 <div class="content-wrapper">
   <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
-      <div class="card">
+      <div class="card card-outline card-primary">
         <div class="card-body">
           <h4 class="card-title">
             <b>List of Hotel Owners</b> 
-            <a href="{% url 'super_admin_register' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Super-admin</a>
-            <a href="{% url 'user-register' %}" class="btn btn-primary" style="float: right;">Add customer</a>
+            <!-- <a href="{% url 'super_admin_register' %}" class="btn btn-primary" style="float: right;">Add Superadmin</a> -->
+            <a href="{% url 'user-register' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Customer</a>
           </h4>
           {% if customer %}
           <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id='table1'>
