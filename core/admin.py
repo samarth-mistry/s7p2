@@ -7,9 +7,9 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ('id','name','hotel_name','email','password')
 
 @admin.register(Table)
-class Table(admin.ModelAdmin):
-    list_display = ('table_number', 'table_capacity')
+class Hotel_table(admin.ModelAdmin):
+    list_display = ('table_name', 'description', 'hotel_id', 'owner_id', 'menu_id')
 
 @admin.register(Menu)
-class Menu(admin.ModelAdmin):
-    list_display = ('menu_id','food_item','item_ingredients','food_description')
+class Food_item(admin.ModelAdmin):
+    list_display = ('food_id', 'food_name', 'description', 'category', 'status', 'hotel_id', 'owner_id')
