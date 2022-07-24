@@ -27,13 +27,11 @@ def logins(request):
             if value == '1':
                 user = User.objects.get(email=username)
                 # user = auth.authenticate(email=username , password=password)
-                return HttpResponse(user)
                 auth.authenticate(user)
                 if user is not None:
-                    return HttpResponse(password == user.password)
-                    if password == user.password:
-                        # auth.login(request,user)
-                        return render(request,'h_owners/dashboard.html')
+                    tables = Table.objects.all()
+                    menu = Menu.objects.all()
+                    return render(request,'h_owners/dashboard.html',{'tables':tables, 'user': user, 'menu':menu})
             elif value =='2':
                 pass
             elif value == '3':
