@@ -6,9 +6,11 @@
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="card-title">Hotel Owner's details</h4>
                         <p class="card-description">Details of the Hotel owner is updated on {DATE}</p>
+                    </div>
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <address>
@@ -39,6 +41,9 @@
                             <div class="col-md-6">
                             </div>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'hotel-owner' %}" class="btn btn-block btn-warning font-weight-bold ml-2">Back</a>
                     </div>
                 </div>
             </div>

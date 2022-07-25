@@ -9,8 +9,6 @@ from .forms import *
 from .encrypt_util import *
 from .models import *
 
-
-
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -27,10 +25,7 @@ def hotelDashboard(request):
         tables = Table.objects.all()
         menu = Menu.objects.all()
         return render(request,'h_owners/dashboard.html',{'tables':tables, 'user': request.user, 'menu':menu})
-        return HttpResponse("dh1")
-
     else:
-        return HttpResponse("d3d    3h")
         return redirect('/')
     
 def logins(request):
@@ -41,7 +36,6 @@ def logins(request):
             value = request.POST.get('user_role')
             if value == '1':
                 user = User.objects.get(email=username)
-                #user = auth.authenticate(password=password)
                 if user is not None and user.check_password(password):
                     login(request,user)
                     return redirect('/hotel-dashboard')
@@ -168,7 +162,9 @@ def hotelOwner(request):
 
 #-------------------------HOTEL TABLE----------------------
 def hotelTable(request):
-    pass
+    tables = Table.objects.all()
+    menu = Menu.objects.all()
+    return render(request,'h_owners/h_tables/index.html',{'tables':tables, 'user': request.user, 'menu':menu})
 
 def hotelTableCreate(request):
     if request.user.is_authenticated:
@@ -178,9 +174,9 @@ def hotelTableCreate(request):
             data=Table(table_name=table_name, description=description,hotel_id=request.user.last_name,owner_id=request.user.id,menu_id='NULL')
             data.save()
             messages.info(request,'Table Added')
-            return redirect('hotel-dashboard')
-
-        return render(request,'h_owners/h_tables/create.html')
+            return redirect('hotel-table')
+        else:
+            return render(request,'h_owners/h_tables/create.html')
     else:
         return redirect('/')
 
@@ -195,7 +191,7 @@ def hotelTableUpdate(request,id):
                 messages.info(request,'Table Updated')
             else:
                 messages.info(request,'Change Denied')
-            return redirect('/hotel-dashboard')
+            return redirect('/hotel-table')
         pi = Table.objects.get(pk=id)
         return render(request,'h_owners/h_tables/edit.html',{'data':pi})
     else:
@@ -206,7 +202,7 @@ def hotelTableDelete(request,id):
         if request.method == 'POST':
             cu = Table.objects.get(pk=id)
             cu.delete()
-            return redirect('/hotel-dashboard')
+            return redirect('/hotel-table')
     else:
         return redirect('/')
 

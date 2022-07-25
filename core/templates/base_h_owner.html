@@ -107,79 +107,57 @@
       <div class="container-fluid page-body-wrapper pt-0">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="{% url 'hotel-dashboard' %}">
                 <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">Hotel Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'hotel-dashboard' %}">
-                  <i class="mdi mdi-grid-large menu-icon"></i>
-                  <span class="menu-title">Food Item</span>
-                </a>
-              </li>
-            <!--<li class="nav-item nav-category">Subscribers</li>
+              <a class="nav-link" href="{% url 'hotel-table' %}">
+                <i class="mdi mdi-chair-school menu-icon"></i>
+                <span class="menu-title">Hotel Tables</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'food-item' %}">
+                <i class="mdi mdi-food menu-icon"></i>
+                <span class="menu-title">Food Items</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="mdi mdi-chart-areaspline menu-icon"></i>
+                <span class="menu-title">Analytics</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="mdi mdi-cash-usd menu-icon"></i>
+                <span class="menu-title">Earnings</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">
+                <i class="mdi mdi-file-export menu-icon"></i>
+                <span class="menu-title">Export Data</span>
+              </a>
+            </li>
+            <li class="nav-item nav-category">others</li>
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="menu-icon mdi mdi-floor-plan"></i>
-                <span class="menu-title">Manage</span>
+                <i class="menu-icon mdi mdi-help"></i>
+                <span class="menu-title">Help & Supports</span>
                 <i class="menu-arrow"></i>
               </a>
-              <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-basic">
+              <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'hotel-owner.create' %} active{% else %} {% endif %}" href="{% url 'hotel-owner' %}">Hotels</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{% url 'hotel-owner' %}">Owners</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="#">Subscription period</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Contact Us</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">FAQs & User Manual</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Subscription period</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="">Terms & Conditions</a></li>
                 </ul>
               </div>
-            </li>
-            <li class="nav-item nav-category">Analytics</li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-                <i class="menu-icon mdi mdi-chart-line"></i>
-                <span class="menu-title">Charts</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="charts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">ChartJs</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                <i class="menu-icon mdi mdi-table"></i>
-                <span class="menu-title">Tables</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="tables">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="#">Basic table</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item nav-category">User mangement</li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">Manage Users</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href=""> Hotel Owners </a></li>
-                  <li class="nav-item"> <a class="nav-link" href=""> Hotel Tables </a></li>
-                  <li class="nav-item"> <a class="nav-link" href=""> Administrators </a></li>
-                </ul>
-              </div>
-            </li>-->
-            <li class="nav-item nav-category">help & developer support</li>
-            <li class="nav-item">
-              <a class="nav-link" href=""><!--http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html-->
-                <i class="menu-icon mdi mdi-file-document"></i>
-                <span class="menu-title">Contact</span>
-              </a>
             </li>
           </ul>
         </nav>

@@ -1,77 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<div class="main-panel">
-  <div class="content-wrapper">
-      <div class="row">
-          <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                  <div class="card-body">
-                      <h4 class="card-title"><b>Hotel Owner's details</b></h4>
-                      <div class="row">
-                        {% for message in messages %}
-                        <p class="text-center alert alert-info">{{ message }}</p>
-                        {% endfor %}
-                      </div>
-                      <form class="form-sample" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Full Name:</label>
-                              <div class="col-lg-9">
-                                <input type="text" name='name' class="form-control" value="{{ data.username }}">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Restaurant Name:</label>
-                              <div class="col-sm-9">
-                                <input type="text" name ='hotel_name' class="form-control" value="{{ data.last_name}}">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Email ID:</label>
-                              <div class="col-sm-9">
-                                <input type="text" name='emailid' class="form-control" value="{{ data.email}}" readonly>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Password:</label>
-                              <div class="col-sm-9">
-                                <input type="text" name='password' class="form-control">
-                                <span class="text-danger">Keep password field null for not updating password.</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="mt-3">
-                          <button type="submit" class="btn btn-block btn-primary font-weight-medium auth-form-btn">Save</button>
-                          <a href="{% url 'hotel-owner' %}" class="btn btn-block btn-secondary font-weight-bold ml-2">Back</a>
-                        </div>
-                      </form>
-                  </div>
-              </div>
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+      <div class="card-body">
+          <h4 class="card-title"><b>Hotel Owner's details</b></h4>
+          <div class="row">
+            {% for message in messages %}
+            <p class="text-center alert alert-info">{{ message }}</p>
+            {% endfor %}
           </div>
+          <form class="form-sample" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Full Name:</label>
+                  <div class="col-lg-9">
+                    <input type="text" name='name' class="form-control" value="{{ data.username }}">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Restaurant Name:</label>
+                  <div class="col-sm-9">
+                    <input type="text" name ='hotel_name' class="form-control" value="{{ data.last_name}}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Email ID:</label>
+                  <div class="col-sm-9">
+                    <input type="text" name='emailid' class="form-control" value="{{ data.email}}" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Password:</label>
+                  <div class="col-sm-9">
+                    <input type="text" name='password' class="form-control">
+                    <span class="text-danger">Keep password field null for not updating password.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-block btn-primary font-weight-medium auth-form-btn">Save</button>
+              <a href="{% url 'hotel-owner' %}" class="btn btn-block btn-warning font-weight-bold ml-2">Back</a>
+            </div>
+          </form>
       </div>
   </div>
 </div>
-
-<!---<form method="POST">
-  {% csrf_token %}
-  {{form.as_p}}
-  <input type="Submit" class='btn btn-success' name="" value="Update">
-  <a href="{% url 'dashboard' %}" class="btn btn-success">Return</a>
-</form>-->
-<br>
-
-
 {% endblock %}

@@ -1,61 +1,36 @@
-{% extends 'base1.html' %}
+{% extends 'base_h_owner.html' %}
 {% load static %}
 {% block content %}
-
-<div class="main-panel">
-  <div class="content-wrapper">
-      <div class="row">
-          <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                  <div class="card-body">
-                      <h4 class="card-title"><b>Add Table</b></h4>
-                      <form class="form-sample" method="POST" action="{% url 'hotel-table.create' %}">
-                        {% csrf_token %}
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Table Name:</label>
-                              <div class="col-lg-9">
-                                <input type="text" class="form-control" name="tablename" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Description:</label>
-                              <div class="col-sm-9">
-                                <input type="text" class="form-control" name="description" required>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!--<div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Email ID:</label>
-                              <div class="col-sm-9">
-                                <input type="email" class="form-control" name="email" required>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label">Password:</label>
-                              <div class="col-sm-9">
-                                <input type="password" class="form-control" name="password" required>
-                              </div>
-                            </div>
-                          </div>
-                        </div>-->
-                        <div class="mt-3">
-                          <button type="submit" class="btn btn-block btn-primary auth-form-btn">Save</button>
-                          <a href="{% url 'hotel-dashboard' %}" class="btn btn-block btn-secondary font-weight-bold ml-2">Back</a>
-                        </div>
-                      </form>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"><b>Add Table</b></h4>
+            <form class="form-sample" method="POST" action="{% url 'hotel-table.create' %}">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Table Name:</label>
+                    <div class="col-lg-9">
+                      <input type="text" class="form-control" name="tablename" required>
+                    </div>
                   </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Description:</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="description" required>
+                    </div>
+                  </div>
+                </div>
               </div>
-          </div>
-      </div>
-  </div>
+              <div class="mt-3">
+                <button type="submit" class="btn btn-block btn-primary auth-form-btn">Save</button>
+                <a href="{% url 'hotel-dashboard' %}" class="btn btn-block btn-warning font-weight-bold ml-2">Back</a>
+              </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

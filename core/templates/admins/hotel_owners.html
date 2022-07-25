@@ -1,46 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="main-panel">
-<div class="content-wrapper">
-  <div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
-      <div class="card card-outline card-primary">
-        <div class="card-body">
-          <h4 class="card-title">
-            <b>List of Hotel Owners</b> 
-            <!-- <a href="{% url 'super_admin_register' %}" class="btn btn-primary" style="float: right;">Add Superadmin</a> -->
-            <a href="{% url 'hotel-owner.create' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Customer</a>
-          </h4>
-          {% if customer %}
-          <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id=''>
-            <tr class="text-center bg-gradient-secondary">
-                <th>Sr/No.</th>
-                <th>Customer Name</th>
-                <th class="text-white">Restaurant Name</th>
-                <th class="text-white">Actions</th>
-            </tr>
-            {% for i in customer %}
-              <tr class="text-center">
-                <td>{{forloop.counter}}</td>
-                <td>{{ i.username }}</td>
-                <td>{{ i.last_name }}</td>
-                <td>
-                  <a class="btn btn-primary btn-xs ml-2" href="{% url 'hotel-owner.show' i.id %}"><i class="mdi mdi-eye"></i></a>
-                  <a class="btn btn-success btn-xs ml-2" href="{% url 'hotel-owner.update' i.id %}"><i class="mdi mdi-pencil"></i></a>
-                  <form action="{% url 'hotel-owner.delete' i.id %}" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-xs" title="Delete"><i class="mdi mdi-delete"></i></button>
-                  </form>
-                </td>
-              </tr>
-            {%endfor%}
-          </table>
-          {% else %}
-          <h4 class = 'text-center alert alert-warning'>No records to show</h4>
-          {% endif %}
-        </div>
-      </div>
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card card-outline card-primary">
+    <div class="card-header">
+      <h4 class="card-title">
+        <b>List of Hotel Owners</b> 
+        <a href="{% url 'hotel-owner.create' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Customer</a>
+      </h4>
+    </div>
+    <div class="card-body">
+      {% if customer %}
+      <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id=''>
+        <tr class="text-center bg-gradient-secondary">
+            <th>Sr/No.</th>
+            <th>Customer Name</th>
+            <th class="text-white">Restaurant Name</th>
+            <th class="text-white">Actions</th>
+        </tr>
+        {% for i in customer %}
+          <tr class="text-center">
+            <td>{{forloop.counter}}</td>
+            <td>{{ i.username }}</td>
+            <td>{{ i.last_name }}</td>
+            <td>
+              <a class="btn btn-primary btn-xs ml-2" href="{% url 'hotel-owner.show' i.id %}"><i class="mdi mdi-eye"></i></a>
+              <a class="btn btn-success btn-xs ml-2" href="{% url 'hotel-owner.update' i.id %}"><i class="mdi mdi-pencil"></i></a>
+              <form action="{% url 'hotel-owner.delete' i.id %}" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-xs" title="Delete"><i class="mdi mdi-delete"></i></button>
+              </form>
+            </td>
+          </tr>
+        {%endfor%}
+      </table>
+      {% else %}
+      <h4 class = 'text-center alert alert-warning'>No records to show</h4>
+      {% endif %}
     </div>
   </div>
 </div>
