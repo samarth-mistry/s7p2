@@ -7,6 +7,8 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import login, logout, authenticate
 from .forms import *
 from .encrypt_util import *
+from .models import *
+
 
 def logout_view(request):
     logout(request)
@@ -135,7 +137,10 @@ def update_customer(request,id):
             if request.POST['emailid']==temp:
                 name=request.POST['name']
                 hotel=request.POST['hotel_name']
-                User.objects.filter(id=pi.id).update(username=name,last_name=hotel)
+                if request.POST['password']=='':
+                    User.objects.filter(id=pi.id).update(username=name,last_name=hotel)
+                else:
+                    User.objects.filter(id=pi.id).update(username=name,last_name=hotel,password=request.POST['password'])
                 return redirect('/hotel-owner')
             else:
                 messages.info(request,"Can't Change Email")
