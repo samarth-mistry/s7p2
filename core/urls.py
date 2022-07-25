@@ -30,4 +30,6 @@ urlpatterns = [
     
     path('table-menu',views.tableMenu,name='table-menu'),
     path('table-order-list',views.tableOrderList,name='table-order-list'),
+    path('table-generate-bill',views.tableGenerateBill,name='table-generate-bill'),
+    path('table-payment',views.tablePayment,name='table-payment'),
 ]

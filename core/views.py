@@ -206,11 +206,11 @@ def createOrder(request):
 def addItemToOrder(request):
     pass
 
-def generateBill(request):
-    pass
+def tableGenerateBill(request):
+    return render(request,'others/generate_bill.html',{'range': range(10)})
 
-def createPayment(request):
-    pass
+def tablePayment(request):
+    return render(request,'others/payment.html',{'range': range(10)})
 
 def returnThankYou(request):
     pass

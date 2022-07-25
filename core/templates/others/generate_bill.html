@@ -9,23 +9,21 @@
         <th class="text-white">Item Name</th>
         <th class="text-white">Quantity</th>
         <th class="text-white">Status</th>
-        <th class="text-white">Actions</th>
+        <th class="text-white">Amount</th>
       </tr>
       {% for i in range %}
         <tr class="text-center">
           <td>{{forloop.counter}}</td>
           <td>Food Item {{forloop.counter}}</td>
           <td>1x</td>
-          <td><span class="badge badge-primary">Cooking</span></td>
-          <td>
-            <a class="btn btn-success btn-xs ml-2" href=""><i class="mdi mdi-pencil"></i></a>
-            <form action="" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-danger btn-xs" title="Delete"><i class="mdi mdi-delete"></i></button>
-            </form>
-          </td>
+          <td><span class="badge badge-success">Served</span></td>
+          <td>₹299</td>
         </tr>
       {%endfor%}
+      <tr class="text-center text-white bg-secondary">
+        <td colspan="4" class="fw-bold">Grand total (Total Payable Amount):</td>
+        <td class="fw-bold">₹1500</td>
+      </tr>
     </table>
   </div>
 </div>
