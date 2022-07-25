@@ -18,6 +18,17 @@ def dashboard(request):
         return render(request,'admins/dashboard.html',{'customer':customer})
     else:
         return redirect('/')
+
+def hotelDashboard(request):
+    if request.user.is_authenticated:
+        tables = Table.objects.all()
+        menu = Menu.objects.all()
+        return render(request,'h_owners/dashboard.html',{'tables':tables, 'user': request.user, 'menu':menu})
+        return HttpResponse("dh1")
+
+    else:
+        return HttpResponse("d3d    3h")
+        return redirect('/')
     
 def logins(request):
     if not request.user.is_authenticated:
@@ -148,8 +159,59 @@ def hotelOwner(request):
     else:
         return redirect('/')
 
+#-------------------------HOTEL TABLE----------------------
+def hotelTable(request):
+    pass
+
+def hotelTableCreate(request):
+    pass
+
+def hotelTableUpdate(request):
+    pass
+
+def hotelTableDelete(request):
+    pass
+
+def hotelTableShow(request):
+    pass
+
+#------------------------Table Food item-----------------------
+
+def foodItem(request):
+    pass
+
+def foodItemCreate(request):
+    pass
+
+def foodItemUpdate(request):
+    pass
+
+def foodItemDelete(request):
+    pass
+
+def foodItemShow(request):
+    pass
+
+#-----------------------------End user https------------------
+
 def tableMenu(request):
     return render(request,'others/table_menus.html',{'range': range(10)})
 
 def tableOrderList(request):
     return render(request,'others/table_order_list.html',{'range': range(10)})
+
+def createOrder(request):
+    pass
+
+def addItemToOrder(request):
+    pass
+
+def generateBill(request):
+    pass
+
+def createPayment(request):
+    pass
+
+def returnThankYou(request):
+    pass
+
