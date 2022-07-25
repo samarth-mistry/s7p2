@@ -10,6 +10,7 @@ from .encrypt_util import *
 from .models import *
 
 
+
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -40,12 +41,13 @@ def logins(request):
             value = request.POST.get('user_role')
             if value == '1':
                 user = User.objects.get(email=username)
-                # user = auth.authenticate(email=username , password=password)
-                auth.authenticate(user)
-                if user is not None:
-                    tables = Table.objects.all()
-                    menu = Menu.objects.all()
-                    return render(request,'h_owners/dashboard.html',{'tables':tables, 'user': user, 'menu':menu})
+                #user = auth.authenticate(password=password)
+                if user is not None and user.check_password(password):
+                    login(request,user)
+                    return redirect('/hotel-dashboard')
+                else:
+                    messages.info(request,'Invalid username or password!')
+                    return render(request,'login.html')
             elif value =='2':
                 pass
             elif value == '3':
@@ -169,16 +171,53 @@ def hotelTable(request):
     pass
 
 def hotelTableCreate(request):
-    pass
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            table_name=request.POST['tablename']
+            description=request.POST['description']
+            data=Table(table_name=table_name, description=description,hotel_id=request.user.last_name,owner_id=request.user.id,menu_id='NULL')
+            data.save()
+            messages.info(request,'Table Added')
+            return redirect('hotel-dashboard')
 
-def hotelTableUpdate(request):
-    pass
+        return render(request,'h_owners/h_tables/create.html')
+    else:
+        return redirect('/')
 
-def hotelTableDelete(request):
-    pass
+def hotelTableUpdate(request,id):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            table_name=request.POST['tablename']
+            description=request.POST['description']
+            table=Table.objects.filter(pk=id)
+            if table is not None:
+                Table.objects.filter(pk=id).update(table_name=table_name,description=description)
+                messages.info(request,'Table Updated')
+            else:
+                messages.info(request,'Change Denied')
+            return redirect('/hotel-dashboard')
+        pi = Table.objects.get(pk=id)
+        return render(request,'h_owners/h_tables/edit.html',{'data':pi})
+    else:
+        return redirect('/')
 
-def hotelTableShow(request):
-    pass
+def hotelTableDelete(request,id):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            cu = Table.objects.get(pk=id)
+            cu.delete()
+            return redirect('/hotel-dashboard')
+    else:
+        return redirect('/')
+
+
+def hotelTableShow(request,id):
+    if request.user.is_authenticated:
+        table = Table.objects.get(pk=id)
+        owner=User.objects.get(pk=table.owner_id)
+        return render(request,'h_owners/h_tables/show.html',{'table':table,'owner':owner})
+    else:
+        return redirect('/')
 
 #------------------------Table Food item-----------------------
 
