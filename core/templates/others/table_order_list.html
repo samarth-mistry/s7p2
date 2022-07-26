@@ -18,10 +18,10 @@
           <td>1x</td>
           <td><span class="badge badge-primary">Cooking</span></td>
           <td>
-            <a class="btn btn-success btn-xs ml-2" href=""><i class="mdi mdi-pencil"></i></a>
+            <a class="btn btn-success btn-xs ml-2" href="" title="Edit Order"><i class="mdi mdi-pencil"></i></a>
             <form action="" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger btn-xs" title="Delete"><i class="mdi mdi-delete"></i></button>
+              <button type="submit" class="btn btn-danger btn-xs" title="Cancel Order"><i class="mdi mdi-block-helper"></i></button>
             </form>
           </td>
         </tr>

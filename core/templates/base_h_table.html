@@ -24,16 +24,16 @@
                   <div class="row mb-3">
                     <ul class="nav nav-tabs nav-fill">
                       <li class="nav-item">
-                        <a href="{% url 'table-menu' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-menu' %} active{% else %} {% endif %}" aria-current="page">Menu Items</a>
+                        <a href="{% url 'table-menu' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-menu' %} active{% else %} {% endif %}" aria-current="page">1. Menu Items</a>
                       </li>
                       <li class="nav-item">
-                        <a href="{% url 'table-order-list' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-order-list' %} active{% else %} {% endif %}">View Selected Order</a>
+                        <a href="{% url 'table-order-list' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-order-list' %} active{% else %} {% endif %}">2. View Selected Order</a>
                       </li>
                       <li class="nav-item">
-                        <a href="{% url 'table-generate-bill' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-generate-bill' %} active{% else %} {% endif %}">Generate Bill</a>
+                        <a href="{% url 'table-generate-bill' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-generate-bill' %} active{% else %} {% endif %}">3. Generate Bill</a>
                       </li>
                       <li class="nav-item">
-                        <a href="{% url 'table-payment' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-payment' %} active{% else %} {% endif %}">Payment</a>
+                        <a href="{% url 'table-payment' %}" class="text-primary fw-bold nav-link {% if request.resolver_match.url_name == 'table-payment' %} active{% else %} {% endif %}">4. Payment</a>
                       </li>
                     </ul>
                   </div>
