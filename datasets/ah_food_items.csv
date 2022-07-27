@@ -1,0 +1,11 @@
+,name,category_id,hotel_id,description,image_name,price
+0,"BUTTER,WITH SALT",1,1,"DESCRIPTION: Butter,with salt",lockscreen-bg.jpg,717
+1,"BUTTER,WHIPPED,W/ SALT",1,1,"DESCRIPTION: Butter,whipped,w/ salt",lockscreen-bg.jpg,718
+2,"BUTTER OIL,ANHYDROUS",1,1,"DESCRIPTION: Butter oil,anhydrous",lockscreen-bg.jpg,876
+3,"CHEESE,BLUE",1,1,"DESCRIPTION: Cheese,blue",lockscreen-bg.jpg,353
+4,"CHEESE,BRICK",1,1,"DESCRIPTION: Cheese,brick",lockscreen-bg.jpg,371
+5,"CHEESE,BRIE",1,1,"DESCRIPTION: Cheese,brie",lockscreen-bg.jpg,334
+6,"CHEESE,CAMEMBERT",1,1,"DESCRIPTION: Cheese,camembert",lockscreen-bg.jpg,300
+7,"CHEESE,CARAWAY",1,1,"DESCRIPTION: Cheese,caraway",lockscreen-bg.jpg,376
+8,"CHEESE,CHEDDAR",1,1,"DESCRIPTION: Cheese,cheddar",lockscreen-bg.jpg,404
+9,"CHEESE,CHESHIRE",1,1,"DESCRIPTION: Cheese,cheshire",lockscreen-bg.jpg,387
