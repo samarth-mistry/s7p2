@@ -14,7 +14,8 @@
         <a href="{% url 'hotel-table.create' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Table</a>
       </h4>
       {% if tables %}
-      <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id='table1'>
+      <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id='dt1'>
+        <thead>
         <tr class="text-center bg-gradient-secondary">
             <th>Sr/No.</th>
             <th>Table Name</th>
@@ -22,6 +23,8 @@
             <th class="text-white">Hotel Name</th>
             <th class="text-white">Actions</th>
         </tr>
+        </thead>
+        <tbody>
         {% for i in tables %}
           <tr class="text-center">
             <td>{{ forloop.counter }}</td>
@@ -38,6 +41,7 @@
             </td>
           </tr>
         {%endfor%}
+        </tbody>
       </table>
       {% else %}
       <h4 class = 'text-center alert alert-warning'>No records to show</h4>
@@ -45,6 +49,14 @@
     </div>
   </div>
 </div>
-
+<script>
+  $(document).ready(function() {
+      $('#dt1').DataTable({     
+        "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+          "iDisplayLength": 3
+         } 
+      );
+  } );
+  </script>
 {% endblock %}
   
