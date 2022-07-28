@@ -222,19 +222,66 @@ def hotelTableShow(request,id):
 #------------------------Food item-----------------------
 
 def foodItem(request):
-    pass
+    items = FoodItem.objects.all()
+    return render(request,'h_owners/food_items/index.html',{'user': request.user, 'food_items':items})
 
 def foodItemCreate(request):
-    pass
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            data = FoodItem(
+                name = request.POST['name'],
+                image = 'pizza.jpeg',
+                status = request.POST['status'],
+                price = request.POST['price'],
+                description = request.POST['description'],
+                hotel_id = request.user.id)
+            data.save()
+            messages.info(request,'Item Added')
+            return redirect('food-item')
+        else:
+            return render(request,'h_owners/food_items/create.html')
+    else:
+        return redirect('/')
 
-def foodItemUpdate(request):
-    pass
+def foodItemUpdate(request,id):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            item = FoodItem.objects.filter(pk=id)
+            if item is not None:
+                FoodItem.objects.filter(pk=id).update(
+                    name = request.POST['name'],
+                    image = 'pizza.jpeg',
+                    status = request.POST['status'],
+                    price = request.POST['price'],
+                    description = request.POST['description'],
+                    hotel_id = request.user.id)
 
-def foodItemDelete(request):
-    pass
+                messages.info(request,'Item Updated')
+            else:
+                messages.info(request,'Changes Denied!')
 
-def foodItemShow(request):
-    pass
+            return redirect('/food-item')
+
+        pi = FoodItem.objects.get(pk=id)
+        return render(request,'h_owners/food_items/edit.html',{'data':pi})
+    else:
+        return redirect('/')
+
+def foodItemDelete(request,id):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            cu = FoodItem.objects.get(pk=id)
+            cu.delete()
+            return redirect('/food-item')
+    else:
+        return redirect('/')
+
+def foodItemShow(request,id):
+    if request.user.is_authenticated:
+        item = FoodItem.objects.get(pk=id)
+        return render(request,'h_owners/food_items/show.html',{'item':item})
+    else:
+        return redirect('/')
 
 #-----------------------------End user https------------------
 
