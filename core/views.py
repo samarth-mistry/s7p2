@@ -219,6 +219,16 @@ def hotelTableShow(request,id):
     else:
         return redirect('/')
 
+def hotelTableData(request):
+    scandata = query_custom_scan_by_args(**request.query_params)
+    serializers = TaskSerializerScan(scandata['items'], many=True)
+    response = {
+            'draw': scandata['draw'],
+            'recordsTotal': scandata['total'],
+            'recordsFiltered': scandata['total'],
+            'data': serializers.data,
+       }
+    return Response(response)
 #------------------------Food item-----------------------
 
 def foodItem(request):
@@ -306,3 +316,32 @@ def tablePayment(request):
 def returnThankYou(request):
     pass
 
+
+def query_custom_scan_by_args(**kwargs):
+    draw = int(kwargs.get('draw')[0])
+    length = int(kwargs.get('length')[0])
+    start = int(kwargs.get('start')[0])
+    search_value = kwargs.get('search[value]')[0]
+    order_column = kwargs.get('order[0][column]')[0]
+    order = kwargs.get('order[0][dir]')[0]
+ 
+    order_column = SCAN_ORDER_COLUMN_CHOICES[order_column]
+    if order == 'desc':
+        order_column = '-' + order_column
+ 
+    queryset = HotelTable.objects.all()
+ 
+    if search_value:
+        queryset = queryset.filter(Q(name=search_value) |
+                               Q(description=search_value) |
+                               Q(hotel_id=search_value))
+ 
+    total = queryset.count()
+    count = queryset.count()
+    queryset = queryset.order_by(order_column)[start:start + length]
+    return {
+        'items': queryset,
+        'count': count,
+        'total': total,
+        'draw': draw
+    }

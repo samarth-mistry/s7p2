@@ -19,6 +19,7 @@ urlpatterns = [
     path('hotel-table/update/<int:id>',views.hotelTableUpdate,name='hotel-table.update'),
     path('hotel-table/delete/<int:id>',views.hotelTableDelete,name='hotel-table.delete'),
     path('hotel-table/show/<int:id>',views.hotelTableShow,name='hotel-table.show'),
+    path('hotel-table/data',views.hotelTableData,name='hotel-table.data'),
     path('hotel-table',views.hotelTable,name='hotel-table'),
 
     path('food-item/create',views.foodItemCreate,name='food-item.create'),
