@@ -26,24 +26,7 @@
             <th>Actions</th>
         </tr>
         </thead>
-        <tbody>
-        {% for i in tables %}
-          <tr class="text-center">
-            <td>{{ forloop.counter }}</td>
-            <td>{{ i.table_name }}</td>
-            <td>{{ i.description }}</td>
-            <td>{{ i.hotel_id }}</td>
-            <td>
-              <a class="btn btn-clean btn-xs ml-2" style="height:35px;" href="{% url 'hotel-table.update' i.id %}"><i class="mdi mdi-pencil text-success"></i></a>
-              <a class="btn btn-clean btn-xs ml-2" href="{% url 'hotel-table.show' i.id %}"><i class="mdi mdi-eye"></i></a>
-              <form action="{% url 'hotel-table.delete' i.id %}" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-clean" title="Delete"><i class="mdi mdi-delete text-danger"></i></button>
-              </form>
-            </td>
-          </tr>
-        {%endfor%}
-        </tbody>
+        
       </table>
       {% else %}
       <h4 class = 'text-center alert alert-warning'>No records to show</h4>
@@ -63,36 +46,20 @@
       // $('.dataTables_length label').addClass('col-md-12')
       // $('.dataTables_length label .form-control').addClass('col-md-2')
 
-      var dTable = $('#dt1').DataTable({
-        dom: 'lBfrtip',
-        "serverSide": true,
+      $('#dt1').DataTable({
+        processing: true,
+        serverSide: true,
         "ajax": { "url": "{% url 'hotel-table.data' %}" },
-    
         "columns": [
-            { "data": "name" },
+            { "data": "id" },
+            { "data": "table_name" },
             { "data": "description" },
             { "data": "hotel_id" },
-            {
-                "data": null,
-                defaultContent: '',
-                render: function (data, type, row) {
-                    let name = data["firstname"] + " " + data["middlename"] + " " + data["lastname"] + " " + data["suffix"]
-                    name = name.trim();
-    
-                    return name;
-                }
-            },
-            { "data": "timein_string" },
+            { "data": "actions" }
         ],
-        buttons: [
-            {
-                extend: 'excelHtml5',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4]
-                }
-            },
-        ],
-        "lengthMenu": [[10, 25, 50, 100, 100000000], [10, 25, 50, 100, "All"]],
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        searching: true,
+        paging:true,
         order: [[0, 'asc']],
         responsive: true
       });

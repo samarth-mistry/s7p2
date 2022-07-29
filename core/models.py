@@ -14,6 +14,19 @@ class HotelTable(models.Model):
     hotel_id = models.IntegerField()
     status = models.IntegerField(null=True)
 
+    # def get_initial_queryset(self):
+	#     qs = super(HotelTable, self).get_initial_queryset()
+	#     return qs.filter(manager__isnull=False)
+
+    def get_data(self):
+        return {
+            'id':self.id,
+            'table_name':self.table_name,
+            'description':self.description,
+            'hotel_id':self.hotel_id,
+            'actions':'18'
+        }
+
 class FoodCategory(models.Model):  
     name = models.CharField(max_length=70)
     hotel_id = models.IntegerField()
