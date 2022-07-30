@@ -127,14 +127,21 @@
             </a>
             <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-basic1">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'hotel-table.create' %} active{% else %} {% endif %}" href="{% url 'hotel-table' %}">Hotel Tables</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}">Food Items</a></li>
+                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'hotel-table.create' %} active{% else %} {% endif %}" href="{% url 'hotel-table' %}"><i class="mdi mdi-chair-school"></i>Hotel Tables</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}"><i class="mdi mdi-glass-tulip"></i>Food Items</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}"><i class="mdi mdi-currency-inr"></i>Other Pricing</a></li>
               </ul>
             </div>
             <li class="nav-item">
               <a class="nav-link" href="">
                 <i class="mdi mdi-glass-tulip menu-icon"></i>
                 <span class="menu-title">Order Mangement</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'table-menu' %}">
+                <i class="mdi mdi-book-open-page-variant menu-icon"></i>
+                <span class="menu-title">View Menu</span>
               </a>
             </li>
           </li>

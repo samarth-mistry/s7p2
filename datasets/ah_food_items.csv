@@ -1,11 +1,10 @@
-,name,category_id,hotel_id,description,image_name,price
-0,"BUTTER,WITH SALT",1,1,"DESCRIPTION: Butter,with salt",lockscreen-bg.jpg,717
-1,"BUTTER,WHIPPED,W/ SALT",1,1,"DESCRIPTION: Butter,whipped,w/ salt",lockscreen-bg.jpg,718
-2,"BUTTER OIL,ANHYDROUS",1,1,"DESCRIPTION: Butter oil,anhydrous",lockscreen-bg.jpg,876
-3,"CHEESE,BLUE",1,1,"DESCRIPTION: Cheese,blue",lockscreen-bg.jpg,353
-4,"CHEESE,BRICK",1,1,"DESCRIPTION: Cheese,brick",lockscreen-bg.jpg,371
-5,"CHEESE,BRIE",1,1,"DESCRIPTION: Cheese,brie",lockscreen-bg.jpg,334
-6,"CHEESE,CAMEMBERT",1,1,"DESCRIPTION: Cheese,camembert",lockscreen-bg.jpg,300
-7,"CHEESE,CARAWAY",1,1,"DESCRIPTION: Cheese,caraway",lockscreen-bg.jpg,376
-8,"CHEESE,CHEDDAR",1,1,"DESCRIPTION: Cheese,cheddar",lockscreen-bg.jpg,404
-9,"CHEESE,CHESHIRE",1,1,"DESCRIPTION: Cheese,cheshire",lockscreen-bg.jpg,387
+0,"BUTTER,WITH SALT",1,1,"DESCRIPTION: Butter,with salt",cake.jpeg,717,available
+1,"BUTTER,WHIPPED,W/ SALT",1,1,"DESCRIPTION: Butter,whipped,w/ salt",cake.jpeg,718,available
+2,"BUTTER OIL,ANHYDROUS",1,1,"DESCRIPTION: Butter oil,anhydrous",cake.jpeg,876,available
+3,"CHEESE,BLUE",1,1,"DESCRIPTION: Cheese,blue",cake.jpeg,353,available
+4,"CHEESE,BRICK",1,1,"DESCRIPTION: Cheese,brick",cake.jpeg,371,available
+5,"CHEESE,BRIE",1,1,"DESCRIPTION: Cheese,brie",cake.jpeg,334,available
+6,"CHEESE,CAMEMBERT",1,1,"DESCRIPTION: Cheese,camembert",cake.jpeg,300,available
+7,"CHEESE,CARAWAY",1,1,"DESCRIPTION: Cheese,caraway",cake.jpeg,376,available
+8,"CHEESE,CHEDDAR",1,1,"DESCRIPTION: Cheese,cheddar",cake.jpeg,404,available
+9,"CHEESE,CHESHIRE",1,1,"DESCRIPTION: Cheese,cheshire",cake.jpeg,387,available

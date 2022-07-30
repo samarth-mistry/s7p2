@@ -40,6 +40,32 @@
   </div>
 </div>
 <div class="row">
+  {% for i in items %}
+  <div class="col-md-3  mb-3">
+    <div class="card bg-gradient-secondary" style="max-width: 18rem;">
+      <div class="card-body text-center">
+        <img class="img-fluid rounded d-block" src="{% static 'food_images/'|add:i.image %}">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ i.name }} <br><b class="text-primary">₹{{i.price}}</b> </h5>
+        <p class="card-text">{{i.description}}</p>
+        <a href="#" class="btn btn-primary">Order</a>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary">1x</button>
+          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" id="mul{{forloop.counter}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu bg-outline-primary" aria-labelledby="mul{{forloop.counter}}">
+            <a class="dropdown-item" href="#">1x</a>
+            <a class="dropdown-item" href="#">2x</a>
+            <a class="dropdown-item" href="#">5x</a>
+            <a class="dropdown-item" href="#">10x</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<!-- <div class="row">
   {% for i in range %}
   <div class="col-md-3  mb-3">
     <div class="card bg-gradient-secondary" style="max-width: 18rem;">
@@ -64,5 +90,5 @@
     </div>
   </div>
   {% endfor %}
-</div>
+</div> -->
 {% endblock %}

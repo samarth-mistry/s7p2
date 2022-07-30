@@ -318,7 +318,8 @@ def foodItemShow(request,id):
 #-----------------------------End user https------------------
 
 def tableMenu(request):
-    return render(request,'others/table_menus.html',{'range': range(10)})
+    items = FoodItem.objects.all()
+    return render(request,'others/table_menus.html',{'range': range(10),'items':items})
 
 def tableOrderList(request):
     return render(request,'others/table_order_list.html',{'range': range(10)})
