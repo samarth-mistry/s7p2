@@ -1,0 +1,101 @@
+id,table_name,description,hotel_id,status
+32,ae5914d4-6080-4144-8634-98ca22b215de,"1706  Sheepshead Bay Rd, Brooklyn, NY",1,available
+33,81a2bad2-5bdc-49ed-8bb6-9dc3f9798732,"55 East 54th Street, Manhattan, NY",1,available
+34,b4bcb3a5-e2f7-4069-8c3b-21f47f051a63,"30  West 26th, Manhattan, NY",1,available
+35,a1054682-ff93-4b07-8f99-daa2a7b0daaf,"360  3rd Ave, Manhattan, NY",1,available
+36,1dd1f4e5-3e2c-4522-89e4-b3f4fc802436,"64 Lafayette AVe, Brooklyn, NY",1,available
+37,bb879307-bcb8-4c71-87b5-3121735f9cb0,"579 Myrtle Avenue, Brooklyn, NY",1,available
+38,f528526d-0b72-4de0-89e5-41affda749be,"247-77 Jamaica Avenue, Queens, NY",1,available
+39,166a026e-6b3f-42c1-87f7-24fcc157da9b,"382-384 forest ave, Staten Island, NY",1,available
+40,13f1415b-8954-4904-8b69-9f43042d976c,"1045 flushing avenue, Brooklyn, NY",1,available
+41,72a31e73-a051-4e9e-827f-d86e3b1a6447,"98-05  101 ave , Queens, NY",1,available
+42,78afc7a0-6b0e-4627-800e-970d3beb3c69,"7517 -19 amboy roaf, Staten Island, NY",1,available
+43,4b6c019b-bd38-4a5b-8fd1-dd732db447be,"157 Duane St., Manhattan, NY",1,available
+44,e29a049c-1bf8-4bad-8270-c79612587677,"34-10  30th Ave, Queens, NY",1,available
+45,d36bfd7b-7a20-40be-84d4-3b3b68f8ba4c,"517  Court Street, Brooklyn, NY",1,available
+46,f33b6bf6-a5b6-4aa2-8797-783ce3e721c8,"168 5th Avenue, Brooklyn, NY",1,available
+47,fcc10f83-bc2a-4257-82d0-7db0636ecbff,"51-53 Christopher, Manhattan, NY",1,available
+48,d8ea40fb-19a5-4ee8-86aa-7e8f3f3f4d40,"133 Mulberry Street, Manhattan, NY",1,available
+49,8b9cb009-a20b-46c6-8ddb-d2dfe52a31bd,"3501 Ditmara, Queens, NY",1,available
+50,9b518439-6a48-4ba3-8413-510a65fb14fa,"10018  4TH AVENUE, Brooklyn, NY",1,available
+51,2dc3eae5-5766-42b5-8f1f-5e6b2bacde67,"790 Grand Street, Brooklyn, NY",1,available
+52,10f015b2-2dfb-4d51-88a8-3d14b6243127,"3401  30th ave, Queens, NY",1,available
+53,0bbc2e49-122b-4324-88a8-9e823ba53ae2,"103 Waverly Place, Manhattan, NY",1,available
+54,8ad08283-22e5-4da9-8c5e-5fe161589b5b,"7222 Main Street, Queens, NY",1,available
+55,191206f9-9ec6-42aa-8f4f-30482450db8a,"138  Smith Street, Brooklyn, NY",1,available
+56,12a9a95f-4158-4018-8da7-95b8383cd755,"246 West 4th Street, Manhattan, NY",1,available
+57,39829652-73fd-46ef-89ea-e9e729aae1c7,"196 Elizabeth Street, Manhattan, NY",1,available
+58,a27504fb-f9cd-4466-85fb-b3f3caff0b13,"949  Columbus avenue, Manhattan, NY",1,available
+59,e653c1b3-d89f-4aba-8635-5291ad8bac06,"70 West 36th , Manhattan, NY",1,available
+60,7f8f6c21-e7c1-4d0e-88ed-bde19b4e7a28,"507 Columbus Ave, Manhattan, NY",1,available
+61,2030a961-d41f-4056-8718-fb26467841ea,"4701 111th Street, Queens, NY",1,available
+62,7e2a27a5-9a28-4430-8554-a7e2abaae449,"336 State Street, Brooklyn, NY",1,available
+63,ccad47b7-8b93-41f4-89e3-71262ae4813f,"36-20  ditmars blvd, Queens, NY",1,available
+64,7fa6a471-3316-4e40-895e-4bf1a6ef0ba1,"204 Grand street, Brooklyn, NY",1,available
+65,f77edb6a-a22f-4622-8670-93c0ec5af414,"446C Dean Street , Brooklyn, NY",1,available
+66,e52c7f45-2711-4a48-8dac-b4a5c8182f68,"168  Driggs ave, Brooklyn, NY",1,available
+67,62eb30d1-0cdf-4bec-85d2-a1b7be90f60f,"37B West 26th St., Manhattan, NY",1,available
+68,7715ca2a-4fa8-4e29-8dbb-380aa8c19bb5,"1343  2nd Avenue , Manhattan, NY",1,available
+69,8d63b5ee-1168-4a76-828a-295d61dcf284,"7414 5th Ave, Brooklyn, NY",1,available
+70,1237a74a-81b3-40ba-8ad2-c90e2f23c07c,"1118 Cortelyou Road, Brooklyn, NY",1,available
+71,c0192f9b-c7c2-4bcd-8b8e-22660a5d2107,"206 Spring st, Manhattan, NY",1,available
+72,5120b7f4-27e3-4a7b-8396-c65e12e35140,"168 West 4th Street, Manhattan, NY",1,available
+73,3dc74786-130d-4a32-88ce-8513b96d8d87,"132 West 58th, Manhattan, NY",1,available
+74,d6f93760-5968-4d02-8e4d-3dc358aac8df,"733 Fulton Street, Brooklyn, NY",1,available
+75,b0a42d64-5f55-40e8-8706-d875d2500a6c,"947 Columbus avenue, Manhattan, NY",1,available
+76,1ab7758a-91ed-4755-8b3e-057aa6aadbfc,"3401 30th ave, Queens, NY",1,available
+77,b2261c6b-42a1-4c0e-828c-1424610e9182,"1 John St, Brooklyn, NY",1,available
+78,5057cfdb-beb3-4d96-82f6-80b8cfe05f87,"33-15 33-15 Ditmars Boulevard, Queens, NY",1,available
+79,3202f6c5-406e-467d-8381-8bec110dafaf,"13 Doyers Street, Manhattan, NY",1,available
+80,836ddbf6-9016-488c-88f6-99f7f3b44b16,"1372 Broadway, Manhattan, NY",1,available
+81,cd3bab9f-b02a-4ceb-8347-2b5cb70ba5a8,"129-131 MacDougal, Manhattan, NY",2,available
+82,9c770d46-be37-4849-8261-fce0f1f6143b,"406 Prospect Place, Brooklyn, NY",2,available
+83,32adc8ea-22d3-4497-83e1-1ee75b424a34,"43 East 7th St, Manhattan, NY",2,available
+84,81c387fe-5b1c-44cc-8904-d0a71b59f792,"14 Bedford Avenue, Brooklyn, NY",2,available
+85,45961945-131e-4824-8bf2-ac7b2bf08fa3,"558 BROADWAY, Manhattan, NY",2,available
+86,4d00374a-a2f0-485b-8e92-86e234759210,"917 Manor Road, Staten Island, NY",2,available
+87,8086403f-60aa-40e1-8f8a-a4bfd26f741a,"628 10th Avenue, Manhattan, NY",2,available
+88,f96fd064-557a-4b2c-88ca-d809c755fc75,"9402 4th Avenue , Brooklyn, NY",2,available
+89,38a08d07-1b16-4ee0-8532-d8119a70f00f,"168 West 4th street, Manhattan, NY",2,available
+90,9e28b2c9-8eb3-41c2-856a-833414a0e8b7,"1765  Crosby Avenue , Bronx, NY",2,available
+91,9f4f0334-1a45-4cd7-8234-39556d7d8f51,"136-138 West Fordham Rd , Bronx, NY",2,available
+92,0f22fe4c-e7f3-46cf-8eb4-c5e5bedb289e,"7205 Austin Street , Queens, NY",2,available
+93,75dbfca5-e71b-47cd-867d-730cef89e968,"3401 30th ave, Queens, NY",2,available
+94,fb800e9d-f7eb-4a6f-82aa-3b5d5050cc0a,"511  Amsterdam Ave, Manhattan, NY",2,available
+95,42a59388-60f1-44f9-8fe9-962485de5be0,"525 Grand st, Brooklyn, NY",2,available
+96,073e5636-2786-455c-898f-e304b43a2d1b,"40-02 Bell BLVD , Queens, NY",2,available
+97,f07e19dd-3096-4a16-8546-698b9f19b955,"85 2nd AVENUE, Manhattan, NY",2,available
+98,49187aee-37c8-42de-8583-94564f357aba,"46 west 46th street, Manhattan, NY",2,available
+99,e1992d9e-1c66-4f67-8e56-a74ce3377561,"6819  3rd Ave, Brooklyn, NY",2,available
+100,c4b3155b-31a0-4e95-846f-fce09f245437,"577 Lorimer Street, Brooklyn, NY",2,available
+101,c98d4c63-931e-4771-890b-5d125ec4d426,"29-10 Broadway, Queens, NY",2,available
+102,207db896-6535-44f9-87df-084789684351,"654 Amsterdam Ave, Manhattan, NY",2,available
+103,73cbed58-0737-4285-8a73-d734ef249501,"150 nassau street, Manhattan, NY",2,available
+104,67e2e6f6-1c5a-4f25-8072-9d7766b9a175,"57 Murray Street , Manhattan, NY",2,available
+105,5c10e0eb-fff7-4035-8799-31dac5baaf93,"40-56  Junction Blvd , Queens, NY",2,available
+106,47119f16-4e52-4f5e-830d-3151749d2adb,"141 Mulberry Street, Manhattan, NY",2,available
+107,edf27174-70f5-4770-862a-a98eeefdadb2,"119  23 Street , Manhattan, NY",2,available
+108,33c98c02-fda5-4366-8b3a-2f8a4845e37d,"90 baxter street, Manhattan, NY",2,available
+109,4541e955-e017-45af-8ba6-7cf453f42a3c,"931 Manhattan ave, Brooklyn, NY",2,available
+110,cdf9fbf2-8750-47f4-89cb-c3a648c73eac,"5 Mott Street, Manhattan, NY",2,available
+111,c6e3e61b-4838-490c-8ad7-ec08957418af,"21  Waverly Place, Manhattan, NY",2,available
+112,a4bd6aae-ddfb-4063-8f6a-e5ac5fe4b85a,"336 3rd Avenue, Manhattan, NY",2,available
+113,1df25fa2-37a9-44fe-84f9-5cfdbcec93bf,"181 Smith Street, Brooklyn, NY",2,available
+114,34da3600-7ac2-47a1-8657-5d3202c33f92,"228 Front st, Manhattan, NY",2,available
+115,e18dce8b-3137-41fd-8f79-c5ff2c18f864,"171  Ave U, Brooklyn, NY",2,available
+116,e276a8bb-1162-4344-899f-0e544a345e1e,"1701  Foster Corp, Brooklyn, NY",2,available
+117,3e812038-7c1b-425c-87b8-1e3e793891ad,"12 West 23rd street , Manhattan, NY",2,available
+118,5f5eeb87-4553-41ae-8570-cdd8f724ba96,"96 Orchard, Manhattan, NY",2,available
+119,1ae73128-92f1-4965-8a47-4c16e87defc1,"201 East Tenth street, Manhattan, NY",2,available
+120,e620e6f5-bef2-4ad4-814d-b167cac51e08,"28  Greenwich Avenue, Manhattan, NY",2,available
+121,0cf22c93-ca86-4c59-8bac-86bbc7e2872d,"35-11 35th avenue, Queens, NY",2,available
+122,15fce19f-3fb4-404c-8eeb-1729c496b48b,"886  Amsterdam Ave, Manhattan, NY",2,available
+123,b6c57887-880d-43bc-88a4-b72412672da4,"170 West 4 street, Manhattan, NY",2,available
+124,b04f0aa9-0c08-4fcf-8f5e-50857b19fdc0,"168 Driggs ave , Brooklyn, NY",2,available
+125,0bbad9e9-e799-4472-8e06-15c4f74f703d,"230  West 4th Street, Manhattan, NY",2,available
+126,27936909-34ed-4e7f-8aa9-a6b3ffd68103,"402 East 140th Street, Bronx, NY",2,available
+127,ff69a008-0905-40b2-8e9d-e2f197525021,"239 East 53rd Street, Manhattan, NY",2,available
+128,d425d8ec-7fb3-4f5a-846b-a0dda07b8240,"158-22  Crossbay Blvd, Queens, NY",2,available
+129,c04fea2f-df17-4873-8012-3910a01bada6,"609  vanderbilt ave, Brooklyn, NY",2,available
+130,eaa3afb2-3538-43ad-83b0-604df65114e2,"10  10 downing street, Manhattan, NY",2,available
+131,3ec0bca8-17b8-404c-88a3-ed238708f450,"69-46  myrtle ave, Queens, NY",2,available

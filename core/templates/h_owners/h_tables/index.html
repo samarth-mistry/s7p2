@@ -1,6 +1,8 @@
 {% extends 'base_h_owner.html' %}
 {% load static %}
 {% block content %}
+<!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" /> -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.css">
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-header">
@@ -9,24 +11,46 @@
         <p class="text-center alert alert-info">{{ message }}</p>
         {% endfor %}
       </div>
-      <h4 class="card-title mx-auto my-auto">
-        <b>List of Hotel Tables</b> 
-      </h4>
+      <h4 class="mx-auto fw-bold">List of Hotel Tables</h4>
       <a href="{% url 'hotel-table.create' %}" class="btn btn-primary mb-3 mx-2" style="float: right;">Add Table</a>
     </div>
     <div class="card-body">
       {% if tables %}
-      <table class="table rounded mx-auto table-responsive table-striped align-items-center table-bordered" id='dt1'>
+      <table class="table mx-auto table-responsive table-striped align-items-center table-bordered" id='dt1' style="border-color: black;">
         <thead>
-        <tr class="text-center fw-bold">
-            <th>Sr/No.</th>
-            <th>Table Name</th>
-            <th>Description</th>
-            <th>Hotel Name</th>
-            <th>Actions</th>
-        </tr>
+          <tr class="table-filter-dropdown">
+            <th></th>
+            <th id="table_name"></th>
+            <th></th>
+            <th id="hotel_name"></th>
+            <th></th>
+          </tr>
+          <tr class="text-center fw-bold">
+              <th>Sr/No.</th>
+              <th>Table Name</th>
+              <th>Description</th>
+              <th>Hotel Name</th>
+              <th>Actions</th>
+          </tr>
         </thead>
-        
+        <tbody>
+          {% for i in tables %}
+            <tr class="text-center">
+              <td>{{ forloop.counter }}</td>
+              <td>{{ i.table_name }}</td>
+              <td>{{ i.description }}</td>
+              <td>{{ i.hotel_id }}</td>
+              <td>
+                <a class="btn btn-primary btn-xs ml-2" href="{% url 'hotel-table.update' i.id %}"><i class="mdi mdi-pencil"></i></a>
+                <a class="btn btn-success btn-xs ml-2" href="{% url 'hotel-table.show' i.id %}"><i class="mdi mdi-eye"></i></a>
+                <form action="{% url 'hotel-table.delete' i.id %}" method="post" onsubmit="return confirm('Are you sure want to delete ?');" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger btn-xs" title="Delete"><i class="mdi mdi-delete"></i></button>
+                </form>
+              </td>
+            </tr>
+          {%endfor%}
+          </tbody>
       </table>
       {% else %}
       <h4 class = 'text-center alert alert-warning'>No records to show</h4>
@@ -34,35 +58,56 @@
     </div>
   </div>
 </div>
+<!-- <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.min.js"></script>
 <script>
   $(document).ready(function() {
-      // $('#dt1').DataTable({     
-      //   "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-      //     "iDisplayLength": 10
-      //    } 
-      // );
+    var h_table = $('#dt1').DataTable({     
+      "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "iDisplayLength": 10
+        } 
+    );
+    yadcf.init(h_table, [
+        {
+          column_number: 3,
+          filter_type: 'multi_select',
+          filter_container_id: 'hotel_name',
+          select_type: 'select2',
+          // static data can be declared here, otherwise it can be pulled via Ajax (see below)
+          // data: [{"value": 2, "label": "The Beatles"}]
+        },
+        {
+          column_number: 1,
+          filter_type: 'multi_select',
+          filter_container_id: 'table_name',
+          select_type: 'select2',
+        }
+      ]
+    );
+     
+    $('.yadcf-filter-reset-button').addClass('btn btn-outline-danger d-flex mx-auto mt-2')
+    $('.yadcf-filter-reset-button').addClass('d-none')
+    // $('.dataTables_length').addClass('col-md-6')
+    // $('.dataTables_length label').addClass('col-md-12')
+    // $('.dataTables_length label .form-control').addClass('col-md-2')
 
-      // $('.dataTables_length').addClass('col-md-6')
-      // $('.dataTables_length label').addClass('col-md-12')
-      // $('.dataTables_length label .form-control').addClass('col-md-2')
-
-      $('#dt1').DataTable({
-        processing: true,
-        serverSide: true,
-        "ajax": "/api-data/hotel-table/?format=datatables",
-        "columns": [
-            { "data": "id" },
-            { "data": "table_name" },
-            { "data": "description" },
-            { "data": "hotel_id" },
-            { "data": "actions" }
-        ],
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-        searching: true,
-        paging:true,
-        order: [[0, 'asc']],
-        responsive: true
-      });
+    // $('#dt1').DataTable({
+    //   processing: true,
+    //   serverSide: true,
+    //   "ajax": "/api-data/hotel-table/?format=datatables",
+    //   "columns": [
+    //       { "data": "id" },
+    //       { "data": "table_name" },
+    //       { "data": "description" },
+    //       { "data": "hotel_id" },
+    //       { "data": "actions" }
+    //   ],
+    //   "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+    //   searching: true,
+    //   paging:true,
+    //   order: [[0, 'asc']],
+    //   responsive: true
+    // });
   } );
   </script>
 {% endblock %}

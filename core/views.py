@@ -226,7 +226,7 @@ def hotelTableDelete(request,id):
 def hotelTableShow(request,id):
     if request.user.is_authenticated:
         table = HotelTable.objects.get(pk=id)
-        owner=User.objects.get(pk=table.owner_id)
+        owner=User.objects.get(pk=table.hotel_id)
         return render(request,'h_owners/h_tables/show.html',{'table':table,'owner':owner})
     else:
         return redirect('/')
