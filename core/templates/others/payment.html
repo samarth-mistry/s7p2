@@ -2,11 +2,16 @@
 {% load static %}
 {% block content %}
 <div class="row">
-  <div class="col-lg-12">
-    <img class="img-fluid rounded" src="{% static 'core/images/faces/sample-qr.jpg' %}" width="200" height="200">
-    <span class="fw-bold text-primary h2">₹1500</span><br>
-    <span>UPI/G pay</span>
-    <p>Scan the QR for Payment of ₹1500</p>
+  <div class="col-lg-12 text-center">
+    <center><img class="img-fluid rounded" src="{% static 'core/images/faces/sample-qr.jpg' %}" width="200" height="200"></center>
+    <div class="row my-3 text-center">
+      <span class="fw-bold text-primary h2">Net Amount: ₹{{amt}}</span><br>
+    </div>
+    <p>{{transaction_id}}</p>
+    <p>Scan the QR for Payment</p>
+    <div class="row my-3 mx-3">
+      <a href="{% url 'payment-done' %}" class="col-sm-2 btn btn-info">Done!<a>
+    </div>
   </div>
 </div>
 {% endblock %}

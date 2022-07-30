@@ -57,7 +57,7 @@ class Payment(models.Model):
     qr_code_data = models.CharField(max_length=70,null=True,blank=True)
     _from = models.CharField(max_length=30,null=True)
     _to = models.CharField(max_length=30,null=True)
-    order_id = models.IntegerField()
+    order_id = models.CharField(max_length=70)
     h_table_id = models.IntegerField()
     hotel_id = models.IntegerField()
     discount_amt = models.IntegerField(null=True,blank=True)

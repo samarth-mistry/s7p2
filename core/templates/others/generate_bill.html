@@ -6,23 +6,25 @@
     <table class="table mx-auto table-responsive table-striped align-items-center table-bordered">
       <tr class="text-center bg-secondary">
         <th class="text-white">Sr/No.</th>
+        <th class="text-white">Order Number</th>
         <th class="text-white">Item Name</th>
         <th class="text-white">Quantity</th>
         <th class="text-white">Status</th>
         <th class="text-white">Amount</th>
       </tr>
-      {% for i in range %}
+      {% for i in orders %}
         <tr class="text-center">
           <td>{{forloop.counter}}</td>
-          <td>Food Item {{forloop.counter}}</td>
-          <td>1x</td>
-          <td><span class="badge badge-success">Served</span></td>
-          <td>₹299</td>
+          <td>{{i.number}}</td>
+          <td>{{i.item_id}}</td>
+          <td>{{i.quantity}}x</td>
+          <td><span class="badge badge-success">{{i.status}}</span></td>
+          <td>₹{{i.rate}}</td>
         </tr>
       {%endfor%}
-      <tr class="text-center text-white bg-secondary">
-        <td colspan="4" class="fw-bold">Grand total (Total Payable Amount):</td>
-        <td class="fw-bold">₹1500</td>
+      <tr class="text-center">
+        <td colspan="5" class="fw-bold">Grand total (Total Payable Amount):</td>
+        <td class="fw-bold"><h3>₹{{amt}}</h3></td>
       </tr>
     </table>
   </div>

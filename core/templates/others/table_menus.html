@@ -1,6 +1,7 @@
 {% extends 'base_h_table.html' %}
 {% load static %}
 {% block content %}
+
 <div class="row mb-3 justify-content-center">
   <div class="btn-group col-md-2">
     <button type="button" class="btn btn-outline-primary fw-bold" id="categoryDP" data-bs-toggle="dropdown">Category</button>
@@ -43,13 +44,13 @@
   {% for i in items %}
   <div class="col-md-3  mb-3">
     <div class="card bg-gradient-secondary" style="max-width: 18rem;">
-      <div class="card-body text-center">
-        <img class="img-fluid rounded d-block" src="{% static 'food_images/'|add:i.image %}">
+      <div class="card-body">
+        <center><img class="img-fluid rounded d-block" src="{% static 'food_images/'|add:i.image %}"></center>
       </div>
       <div class="card-body">
         <h5 class="card-title"><b class="item-name">{{ i.name }}</b><br><b class="text-primary">₹{{i.price}}</b> </h5>
         <p class="card-text">{{i.description}}</p>
-        <button type="button" class="btn btn-primary order-btn" data-food_id="{{i.id}}">Order</button>
+        <button type="button" class="btn btn-primary order-btn" data-rate="{{i.price}}" data-food_id="{{i.id}}" data-item_name="{{i.name}}">Order</button>
         <select class="quantity-btn btn btn-outline-primary">
           <option value="1">1x</option>
           <option value="2">2x</option>
@@ -64,15 +65,32 @@
 {% endblock %}
 {% block scripts %}
 <script>
+  var uuid = '{{uuid}}'
   $('.order-btn').click(function(e){
+    var that = $(this)
     $.ajax({
-        url: '/place-order/'+$(this).data('food_id')+'/'+$(this).parent().find('.quantity-btn').val(),
-        beforeSend: function(){$(".loading-image").show();},
-        complete: function(){$(".loading-image").hide();},
-        success: function(response){
-            if(response)
-              alert("Order placed for: "+response.item_name)
+      url: '/place-order/'+uuid+'/'+$(this).data('food_id')+'/'+$(this).parent().find('.quantity-btn').val(),
+      beforeSend: function(){$(".loading-image").show();},
+      complete: function(){$(".loading-image").hide();},
+      success: function(response){
+        if(response.status){
+          nm = that.data('item_name')
+          qun = that.parent().find('.quantity-btn').val()
+          amt = parseInt(that.data('rate'))*parseInt(qun)
+          html = "<b>Item:</b> "+nm+"<br><b>Quantity:</b> "+qun+"<br><b>Amount:</b> "+amt
+
+          that.removeClass('btn-primary').addClass('btn-success').html("Ordered! "+qun+"x")
+
+          $('.toast-body').html(html)
+          $('.toast-title').html("Order Placed!")
+          $('.toast').removeClass('bg-gradient-danger').addClass('bg-gradient-success').toast('show')
+        } else {
+          html = response.error.message
+          $('.toast-body').html(html)
+          $('.toast-title').html("Order Not Placed")
+          $('.toast').removeClass('bg-gradient-success').addClass('bg-gradient-danger').toast('show')
         }
+      }
     })
   })
 </script>

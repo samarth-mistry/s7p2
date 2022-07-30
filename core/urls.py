@@ -37,6 +37,7 @@ urlpatterns = [
     path('table-order-list',views.tableOrderList,name='table-order-list'),
     path('table-generate-bill',views.tableGenerateBill,name='table-generate-bill'),
     path('table-payment',views.tablePayment,name='table-payment'),
+    path('payment-done',views.returnThankYou,name='payment-done'),
 
-    path('place-order/<int:food_id>/<int:qun>',views.placeOrder,name='place-order'),
+    path('place-order/<str:uuid>/<int:food_id>/<int:qun>',views.placeOrderAPI,name='place-order'),
 ]

@@ -20,6 +20,7 @@ from rest_framework_datatables.django_filters.filterset import DatatablesFilterS
 from rest_framework_datatables.django_filters.backends import DatatablesFilterBackend
 
 from .serializers import *
+import uuid
 
 def logout_view(request):
     logout(request)
@@ -321,27 +322,96 @@ def foodItemShow(request,id):
 #-----------------------------End user https------------------
 
 def tableMenu(request):
+    if 'order_uuid' in request.session:
+        order_uuid = request.session['order_uuid']
+    else:
+        order_uuid = 'order-'+str(uuid.uuid1())
+        request.session['order_uuid'] = order_uuid
+    
     items = FoodItem.objects.all()
-    return render(request,'others/table_menus.html',{'range': range(10),'items':items})
+    return render(request,'others/table_menus.html',{'uuid': order_uuid,'items':items})
 
 def tableOrderList(request):
-    return render(request,'others/table_order_list.html',{'range': range(10)})
-
-def createOrder(request):
-    pass
-
-def addItemToOrder(request):
-    pass
+    order_uuid = request.session['order_uuid']
+    orders = FoodOrder.objects.filter(number=order_uuid)
+    return render(request,'others/table_order_list.html',{'orders': orders})
 
 def tableGenerateBill(request):
-    return render(request,'others/generate_bill.html',{'range': range(10)})
+    order_uuid = request.session['order_uuid']
+    orders = FoodOrder.objects.filter(number=order_uuid)
+    amt=0
+    for i in orders:
+        amt +=i.rate
+        
+    return render(request,'others/generate_bill.html',{'orders': orders,"amt":amt})
 
 def tablePayment(request):
-    return render(request,'others/payment.html',{'range': range(10)})
+    if 'transaction_uuid' in request.session:
+        transaction_uuid = request.session['transaction_uuid']
+    else:
+        transaction_uuid = 'pym-gw-'+str(uuid.uuid1())
+        request.session['transaction_uuid'] = transaction_uuid
+
+
+    order_uuid = request.session['order_uuid']
+    orders = FoodOrder.objects.filter(number=order_uuid)
+    amt=0
+    for i in orders:
+        amt +=i.rate
+
+    data = Payment(
+                transaction_id = transaction_uuid,
+                qr_code_data = transaction_uuid,
+                _from = "0",
+                _to = "0",
+                order_id = order_uuid,
+                h_table_id = 1,
+                hotel_id = 1,
+                discount_amt = "0",
+                tax_amt = "18",
+                net_amt = amt,
+                status = "paid",
+                method = "UPI",
+                ratings = 5,
+                feedback = None,
+                description = None)
+    data.save()
+
+    return render(request,'others/payment.html',{'transaction_id': transaction_uuid,"amt":amt})
 
 def returnThankYou(request):
-    pass
+    del request.session['order_uuid']
+    del request.session['transaction_uuid']
+    return render(request,'others/thank_you.html')
 
+def placeOrderAPI(request,uuid,food_id,qun):
+
+    item = FoodItem.objects.get(pk=food_id)
+    data = FoodOrder(
+                number = uuid,
+                item_id = food_id,
+                h_table_id = "2",
+                hotel_id = "1",
+                quantity = qun,
+                status = "placed",
+                rate = item.price*qun,
+                description = None)
+    data.save()
+
+    if(True):
+        json = {
+            "status": True
+        }
+    else:
+        json = {
+            "status": False,
+            "error": {
+                "message": "Something went wrong!",
+                "error_code": 502
+            }
+        }
+
+    return JsonResponse(json)
 #-------------------------------------------------------------
 
 def get_album_options():
@@ -357,6 +427,3 @@ class HotelTableViewSet(viewsets.ModelViewSet):
 
     class Meta:
         datatables_extra_json = ('get_options', )
-
-def placeOrder(request,food_id,qun):
-    return JsonResponse({"message":"1","item_name":"Cake 999"})
