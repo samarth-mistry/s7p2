@@ -1,7 +1,12 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'hotel-table', views.HotelTableViewSet)
 
 urlpatterns = [
+    path('api-data/', include(router.urls)),
     path('dashboard', views.dashboard, name='dashboard'),
     path('logout', views.logout_view, name='logout'),
     path('', views.logins, name='login'),
@@ -19,7 +24,7 @@ urlpatterns = [
     path('hotel-table/update/<int:id>',views.hotelTableUpdate,name='hotel-table.update'),
     path('hotel-table/delete/<int:id>',views.hotelTableDelete,name='hotel-table.delete'),
     path('hotel-table/show/<int:id>',views.hotelTableShow,name='hotel-table.show'),
-    path('hotel-table/data',views.hotelTableData,name='hotel-table.data'),
+    path('hotel-table/data1',views.hotelTableData,name='hotel-table.data'),
     path('hotel-table',views.hotelTable,name='hotel-table'),
 
     path('food-item/create',views.foodItemCreate,name='food-item.create'),

@@ -9,6 +9,18 @@ from .forms import *
 from .encrypt_util import *
 from .models import *
 
+from rest_framework import viewsets, status
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from rest_framework_datatables import pagination as dt_pagination
+from rest_framework_datatables.django_filters.filters import GlobalFilter
+from rest_framework_datatables.django_filters.filterset import DatatablesFilterSet
+from rest_framework_datatables.django_filters.backends import DatatablesFilterBackend
+
+from .serializers import *
+
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -325,3 +337,19 @@ def tablePayment(request):
 
 def returnThankYou(request):
     pass
+
+#-------------------------------------------------------------
+
+def get_album_options():
+    return "options", {
+        "table": [{'label': obj.table_name, 'value': obj.pk} for obj in HotelTable.objects.all()]
+    }
+class HotelTableViewSet(viewsets.ModelViewSet):
+    queryset = HotelTable.objects.all()
+    serializer_class = HotelTableSerializer
+
+    def get_options(self):
+        return get_album_options()
+
+    class Meta:
+        datatables_extra_json = ('get_options', )

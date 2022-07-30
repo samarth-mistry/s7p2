@@ -49,7 +49,7 @@
       $('#dt1').DataTable({
         processing: true,
         serverSide: true,
-        "ajax": { "url": "{% url 'hotel-table.data' %}" },
+        "ajax": "/api-data/hotel-table/?format=datatables",
         "columns": [
             { "data": "id" },
             { "data": "table_name" },
