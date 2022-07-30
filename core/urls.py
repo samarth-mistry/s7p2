@@ -37,4 +37,6 @@ urlpatterns = [
     path('table-order-list',views.tableOrderList,name='table-order-list'),
     path('table-generate-bill',views.tableGenerateBill,name='table-generate-bill'),
     path('table-payment',views.tablePayment,name='table-payment'),
+
+    path('place-order/<int:food_id>/<int:qun>',views.placeOrder,name='place-order'),
 ]

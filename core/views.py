@@ -76,7 +76,10 @@ def logins(request):
         else:
             return render(request,'login.html')
     else:
-        return redirect('/dashboard')
+        if request.user.is_superuser:
+            return redirect('/dashboard')
+        else:
+            return redirect('/hotel-dashboard')
         
 def customer_register(request):
     if request.user.is_authenticated:
@@ -354,3 +357,6 @@ class HotelTableViewSet(viewsets.ModelViewSet):
 
     class Meta:
         datatables_extra_json = ('get_options', )
+
+def placeOrder(request,food_id,qun):
+    return JsonResponse({"message":"1","item_name":"Cake 999"})
