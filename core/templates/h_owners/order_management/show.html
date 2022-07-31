@@ -1,0 +1,41 @@
+{% extends 'base_h_owner.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Table details</h4>
+            <p class="card-description">Details of the Table is updated on {DATE}</p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <address>
+                        <h4 class="fw-bold">Item Name: </h4>
+                        {{item.name}}
+                    </address>
+                    <address>
+                        <h4 class="fw-bold">Price: </h4>
+                        {{item.price}}
+                    </address>
+                    <address>
+                        <h4 class="fw-bold">Description: </h4>
+                        {{item.description}}
+                    </address>
+                    <address>
+                        <h4 class="fw-bold">Status: </h4>
+                        {{ item.status }}
+                    </address>
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'food_images/'|add:item.image %}" alt="{{item.image}}" class="rounded"><br>
+                    <a href=""><i class="mdi mdi-pencil"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'food-item' %}" class="btn btn-block btn-warning font-weight-bold ml-2">Back</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
