@@ -1,9 +1,250 @@
-1,"BUTTER,WHIPPED,W/ SALT",1,1,"DESCRIPTION: Butter,whipped,w/ salt",cake.jpeg,718,available
-2,"BUTTER OIL,ANHYDROUS",1,1,"DESCRIPTION: Butter oil,anhydrous",cake.jpeg,876,available
-3,"CHEESE,BLUE",1,1,"DESCRIPTION: Cheese,blue",cake.jpeg,353,available
-4,"CHEESE,BRICK",1,1,"DESCRIPTION: Cheese,brick",cake.jpeg,371,available
-5,"CHEESE,BRIE",1,1,"DESCRIPTION: Cheese,brie",cake.jpeg,334,available
-6,"CHEESE,CAMEMBERT",1,1,"DESCRIPTION: Cheese,camembert",cake.jpeg,300,available
-7,"CHEESE,CARAWAY",1,1,"DESCRIPTION: Cheese,caraway",cake.jpeg,376,available
-8,"CHEESE,CHEDDAR",1,1,"DESCRIPTION: Cheese,cheddar",cake.jpeg,404,available
-9,"CHEESE,CHESHIRE",1,1,"DESCRIPTION: Cheese,cheshire",cake.jpeg,387,available
+1,Balu shahi,pizza.jpeg,"Maida flour, yogurt, oil, sugar",7,available,2,250,2022-06-04 08:09:01,2021-03-20 08:09:01
+2,Boondi,pizza.jpeg,"Gram flour, ghee, sugar",4,available,2,350,2022-05-17 10:32:50,2021-01-28 10:32:50
+3,Gajar ka halwa,pizza.jpeg,"Carrots, milk, sugar, ghee, cashews, raisins",7,available,2,395,2022-04-04 06:11:34,2021-07-06 06:11:34
+4,Ghevar,pizza.jpeg,"Flour, ghee, kewra, milk, clarified butter, sugar, almonds, pistachio, saffron, green cardamom",5,available,2,111,2022-10-07 10:02:22,2022-06-11 10:02:22
+5,Gulab jamun,pizza.jpeg,"Milk powder, plain flour, baking powder, ghee, milk, sugar, water, rose water",1,available,3,370,2022-12-25 01:19:33,2021-08-04 01:19:33
+6,Imarti,pizza.jpeg,"Sugar syrup, lentil flour",3,available,2,286,2022-01-06 07:12:56,2022-12-17 07:12:56
+7,Jalebi,pizza.jpeg,"Maida, corn flour, baking soda, vinegar, curd, water, turmeric, saffron, cardamom",2,available,2,310,2022-09-06 03:33:39,2022-08-12 03:33:39
+8,Kaju katli,pizza.jpeg,"Cashews, ghee, cardamom, sugar",1,available,5,240,2022-01-05 22:31:04,2022-03-07 22:31:04
+9,Kalakand,pizza.jpeg,"Milk, cottage cheese, sugar",5,available,2,110,2022-10-13 15:34:27,2022-05-03 15:34:27
+10,Kheer,pizza.jpeg,"Milk, rice, sugar, dried fruits",5,available,1,485,2021-06-22 15:02:47,2022-08-13 15:02:47
+11,Laddu,pizza.jpeg,"Gram flour, ghee, sugar",2,available,5,318,2021-01-24 16:14:05,2022-08-10 16:14:05
+12,Lassi,pizza.jpeg,"Yogurt, milk, nuts, sugar",2,available,4,76,2021-09-21 13:23:03,2021-08-24 13:23:03
+13,Nankhatai,pizza.jpeg,"Refined flour, besan, ghee, powdered sugar, yoghurt, green cardamom",3,available,2,393,2022-11-05 17:49:14,2022-03-11 17:49:14
+14,Petha,pizza.jpeg,"Firm white pumpkin, sugar, kitchen lime, alum powder",2,available,1,187,2021-02-13 19:33:42,2021-03-05 19:33:42
+15,Phirni,pizza.jpeg,"Rice, sugar, nuts",5,available,5,364,2021-08-23 00:06:01,2021-12-24 00:06:01
+16,Rabri,pizza.jpeg,"Condensed milk, sugar, spices, nuts",5,available,2,102,2021-05-23 19:02:25,2022-03-05 19:02:25
+17,Sheera,pizza.jpeg,"Semolina, ghee, nuts, milk",3,available,2,230,2022-07-07 14:35:13,2022-12-30 14:35:13
+18,Singori,pizza.jpeg,"Khoa, coconut, molu leaf",6,available,5,497,2022-01-06 12:37:03,2022-10-01 12:37:03
+19,Sohan halwa,pizza.jpeg,"Corn flour, ghee, dry fruits",4,available,5,268,2022-02-01 01:08:52,2021-08-03 01:08:52
+20,Sohan papdi,pizza.jpeg,"Gram flour, ghee, sugar, milk, cardamom",3,available,2,417,2021-06-29 13:10:02,2021-09-09 13:10:02
+21,Chhena jalebi,pizza.jpeg,"Chhena, sugar, ghee",5,available,3,155,2022-08-07 02:45:27,2021-02-18 02:45:27
+22,Chhena kheeri,pizza.jpeg,"Chhena, sugar, milk",6,available,2,459,2022-10-26 11:34:35,2021-10-01 11:34:35
+23,Chhena poda,pizza.jpeg,"Sugar, chenna cheese",2,available,2,337,2021-07-14 17:04:24,2022-09-29 17:04:24
+24,Cham cham,pizza.jpeg,"Flour, cream, sugar, saffron, lemon juice, coconut flakes",3,available,4,107,2022-10-28 19:43:39,2021-03-01 19:43:39
+25,Kheer sagar,pizza.jpeg,"Chenna, condensed milk, sugar, saffron, cardamom",2,available,4,363,2022-12-29 23:33:22,2022-10-25 23:33:22
+26,Ledikeni,pizza.jpeg,"Chhena, sugar, ghee",2,available,3,254,2021-05-03 06:30:34,2021-01-04 06:30:34
+27,Lyangcha,pizza.jpeg,"Flour, fried milk power, sugar syrup",4,available,2,133,2021-06-07 09:16:26,2022-12-17 09:16:26
+28,Malapua,pizza.jpeg,"Yoghurt, refined flour, ghee, fennel seeds",3,available,3,487,2022-06-05 21:49:13,2022-09-08 21:49:13
+29,Mihidana,pizza.jpeg,"Besan flour, sugar, ghee",1,available,2,410,2022-04-21 21:59:27,2021-09-25 21:59:27
+30,Misti doi,pizza.jpeg,"Milk, jaggery",5,available,5,96,2021-04-28 18:14:28,2021-07-21 18:14:28
+31,Pantua,pizza.jpeg,"Chhena, sugar, ghee, flour",2,available,5,366,2021-11-28 19:18:47,2021-12-29 19:18:47
+32,Pithe,pizza.jpeg,"Rice flour, wheat flour",5,available,1,112,2021-10-10 14:24:11,2022-11-14 14:24:11
+33,Rasabali,pizza.jpeg,"Chenna, sweetened milk",2,available,3,338,2021-09-14 14:50:18,2021-08-09 14:50:18
+34,Ras malai,pizza.jpeg,"Chhena, reduced milk, pistachio",4,available,4,67,2022-11-30 21:03:24,2022-06-21 21:03:24
+35,Rasgulla,pizza.jpeg,"Chhena, sugar, cardamom",3,available,2,203,2022-05-09 07:01:56,2021-06-17 07:01:56
+36,Sandesh,pizza.jpeg,"Milk, sugar, saffron, cardamom",5,available,5,387,2022-02-22 08:07:53,2022-08-07 08:07:53
+37,Adhirasam,pizza.jpeg,"Rice flour, jaggery, ghee, vegetable oil, elachi",6,available,3,202,2021-03-24 15:55:46,2021-02-08 15:55:46
+38,Ariselu,pizza.jpeg,"Rice flour, jaggery, ghee",4,available,5,81,2021-04-17 06:06:23,2021-10-26 06:06:23
+39,Bandar laddu,pizza.jpeg,"Besan, jaggery, cardamom powder, ghee, cashews and raisins, jaggery syrup, sugar",7,available,5,141,2022-02-28 15:43:48,2022-08-11 15:43:48
+40,Chikki,pizza.jpeg,"Peanuts, jaggery",7,available,1,298,2022-09-28 04:18:50,2021-11-05 04:18:50
+41,Dharwad pedha,pizza.jpeg,"Milk, Sugar, Dharwadi buffalo milk",1,available,4,310,2021-05-19 16:57:22,2022-03-03 16:57:22
+42,Double ka meetha,pizza.jpeg,"Loaf bread, milk",3,available,5,398,2021-05-11 22:38:17,2022-09-22 22:38:17
+43,Gavvalu,pizza.jpeg,"Rice flour, sugar, salt, ghee, semolina",7,available,1,417,2022-01-06 00:56:56,2021-11-25 00:56:56
+44,Kakinada khaja,pizza.jpeg,"Wheat flour, sugar",3,available,5,447,2022-07-24 02:38:41,2022-01-24 02:38:41
+45,Kuzhi paniyaram,pizza.jpeg,"Black lentils, rice",4,available,3,402,2021-01-26 10:03:32,2022-07-03 10:03:32
+46,Mysore pak,pizza.jpeg,"Besan flour, semolina, mung bean, jaggery, coconut, skimmed milk powder, sugar, ghee",6,available,4,126,2022-07-19 22:38:20,2022-06-11 22:38:20
+47,Obbattu holige,pizza.jpeg,"Maida flour, turmeric, coconut, chickpeas, jaggery, ghee, cardamom",4,available,5,210,2021-01-15 21:18:48,2021-09-12 21:18:48
+48,Palathalikalu,pizza.jpeg,"Rice flour, milk",2,available,3,206,2021-10-04 08:57:49,2021-10-18 08:57:49
+49,Poornalu,pizza.jpeg,"Chana dal, jaggery",3,available,4,98,2022-03-26 22:54:18,2021-06-21 22:54:18
+50,Pongal,pizza.jpeg,"Rice, jaggery, cashews, ghee",2,available,5,437,2021-07-29 21:19:15,2022-11-23 21:19:15
+51,Pootharekulu,pizza.jpeg,"Rice flour, powdered sugar, ghee",4,available,5,448,2021-10-30 18:52:03,2021-01-13 18:52:03
+52,Qubani ka meetha,pizza.jpeg,"Apricots, sugar syrup",1,available,1,345,2021-10-23 16:30:57,2021-02-18 16:30:57
+53,Sheer korma,pizza.jpeg,"Vermicelli pudding, milk",5,available,5,355,2022-01-21 16:43:30,2022-06-01 16:43:30
+54,Unni Appam,pizza.jpeg,"Rice flour, banana, jaggery, coconut",4,available,4,352,2022-01-22 09:38:09,2021-05-18 09:38:09
+55,Kajjikaya,pizza.jpeg,"Rice flour, jaggery, coconut",5,available,3,472,2022-10-19 16:21:52,2022-04-01 16:21:52
+56,Anarsa,pizza.jpeg,"Rice flour, jaggery, khus-khus seeds",2,available,3,91,2021-09-02 14:18:42,2022-11-09 14:18:42
+57,Basundi,pizza.jpeg,"Sugar, milk, nuts",1,available,4,458,2021-03-27 08:56:48,2022-08-10 08:56:48
+58,Dhondas,pizza.jpeg,"Cucumber, rava",4,available,2,186,2022-12-24 02:07:25,2021-06-25 02:07:25
+59,Doodhpak,pizza.jpeg,"Milk, rice, sugar, dry fruits",3,available,1,457,2022-11-05 22:38:58,2021-12-10 22:38:58
+60,Mahim halwa,pizza.jpeg,"Semolina, sugar",1,available,1,171,2021-02-01 22:17:33,2021-05-16 22:17:33
+61,Modak,pizza.jpeg,"Rice flour, coconut, jaggery",1,available,3,214,2022-08-13 03:20:53,2022-11-21 03:20:53
+62,Shankarpali,pizza.jpeg,"Sugar, ghee, maida flour, semolina",2,available,4,237,2021-03-08 00:09:05,2022-07-28 00:09:05
+63,Shrikhand,pizza.jpeg,"Curd, sugar, saffron, cardamom",5,available,2,455,2022-09-20 08:39:02,2022-02-14 08:39:02
+64,Sutar feni,pizza.jpeg,"Maida, sugar, ghee",6,available,1,381,2022-12-13 22:29:37,2021-06-28 22:29:37
+65,Maach Jhol,pizza.jpeg,"Fish, potol, tomato, chillies, ginger, garlic",5,available,3,186,2021-11-27 06:36:19,2022-12-13 06:36:19
+66,Pork Bharta,pizza.jpeg,"Boiled pork, onions, chillies, ginger and garlic",1,available,3,444,2022-05-14 21:21:31,2022-06-15 21:21:31
+67,Chak Hao Kheer,pizza.jpeg,"Rice, milk, sugar, cardamom",2,available,1,165,2021-01-04 02:28:42,2021-11-09 02:28:42
+68,Galho,pizza.jpeg,"Rice, axone, salt, water, chillies, pork",6,available,5,435,2022-11-11 05:39:30,2022-02-14 05:39:30
+69,Aloo gobi,pizza.jpeg,"Cauliflower, potato, garam masala, turmeric, curry leaves",1,available,5,461,2021-04-06 20:32:09,2021-03-11 20:32:09
+70,Aloo tikki,pizza.jpeg,"Rice flour, potato, bread crumbs, garam masala, salt",3,available,1,294,2021-03-02 13:53:29,2022-06-27 13:53:29
+71,Aloo matar,pizza.jpeg,"Potato, peas, chillies, ginger, garam masala, garlic",3,available,2,241,2022-10-12 11:45:32,2021-08-12 11:45:32
+72,Aloo methi,pizza.jpeg,"Potato, fenugreek leaves, chillies, salt, oil",5,available,2,167,2021-10-05 16:47:24,2021-04-08 16:47:24
+73,Aloo shimla mirch,pizza.jpeg,"Potato, shimla mirch, garam masala, amchur powder, salt",1,available,5,234,2021-09-04 14:42:44,2022-08-03 14:42:44
+74,Bhatura,pizza.jpeg,"Chole, rava, yogurt, plain flour, baking soda",7,available,1,148,2022-05-04 03:01:01,2021-11-30 03:01:01
+75,Bhindi masala,pizza.jpeg,"Ladies finger, garam masala, kasuri methi, tomatoes, chili powder",5,available,4,355,2022-11-09 00:12:24,2022-07-07 00:12:24
+76,Biryani,pizza.jpeg,"Chicken thighs, basmati rice, star anise, sweet, green chillies",3,available,5,402,2021-05-07 14:48:09,2021-06-20 14:48:09
+77,Butter chicken,pizza.jpeg,"Chicken, greek yogurt, cream, garam masala powder, cashew nuts, butter",2,available,5,139,2021-07-17 08:43:45,2021-11-11 08:43:45
+78,Chana masala,pizza.jpeg,"Chickpeas, tomato paste, garam masala, ginger, red onion, avocado oil",6,available,5,375,2021-02-09 01:10:57,2022-04-15 01:10:57
+79,Chapati,pizza.jpeg,"Whole wheat flour, olive oil, hot water, all purpose flour",6,available,4,101,2021-09-29 08:33:09,2022-07-07 08:33:09
+80,Chicken razala,pizza.jpeg,"Chicken, dahi, sesame seeds, garam masala powder, cashew nuts, saffron",3,available,2,217,2021-02-21 06:50:49,2021-11-03 06:50:49
+81,Chicken Tikka masala,pizza.jpeg,"Naan bread, tomato sauce, skinless chicken breasts, heavy cream, garam masala",5,available,1,422,2022-06-08 23:27:35,2022-12-18 23:27:35
+82,Chicken Tikka,pizza.jpeg,"Chicken, whole wheat bread, rice flour, garam masala powder, whole egg",5,available,1,115,2022-09-18 06:10:51,2021-05-19 06:10:51
+83,Chole bhature,pizza.jpeg,"Chole, bhatura, garam masala, bay leaf, cinnamon stick",6,available,1,179,2022-04-28 02:41:14,2021-11-14 02:41:14
+84,Daal baati churma,pizza.jpeg,"Moong dal, masoor dal, chana dal, wheat flour, almond",1,available,2,103,2022-02-26 07:55:36,2022-07-12 07:55:36
+85,Daal puri,pizza.jpeg,"Moong dal, garam masala powder, garlic, green chilli, all purpose flour",5,available,3,409,2022-05-05 16:01:41,2021-06-05 16:01:41
+86,Dal makhani,pizza.jpeg,"Red kidney beans, urad dal, cream, garam masala, chili powder",3,available,1,314,2022-01-15 16:17:28,2021-09-17 16:17:28
+87,Dal tadka,pizza.jpeg,"Pigeon peas, garam masala, ginger, red onion, kasuri methi",4,available,2,163,2021-02-22 18:53:34,2022-10-06 18:53:34
+88,Dum aloo,pizza.jpeg,"Baby potatoes, garam masala, cashew nuts, kasuri methi, tomatoes",1,available,4,382,2021-11-08 17:37:54,2021-10-18 17:37:54
+89,Poha,pizza.jpeg,"Beaten rice flakes, potato, curry leaves, green chilies, lemon juice",7,available,5,130,2022-10-22 18:08:03,2021-12-03 18:08:03
+90,Fara,pizza.jpeg,"Chana dal, whole wheat flour, arhar dal, white urad dal, garam masala powder",5,available,5,236,2022-04-04 18:12:12,2021-07-19 18:12:12
+91,Kachori,pizza.jpeg,"Moong dal, rava, garam masala, dough, fennel seeds",4,available,1,460,2021-06-21 05:14:38,2022-09-24 05:14:38
+92,Kadai paneer,pizza.jpeg,"Cottage cheese, bell peppers, gravy, garam masala, cashew nuts",1,available,4,208,2022-10-03 15:42:45,2022-10-09 15:42:45
+93,Kadhi pakoda,pizza.jpeg,"Besan, garam masala powder, gram flour, ginger, curry leaves",4,available,2,297,2022-08-05 02:50:38,2022-03-10 02:50:38
+94,Karela bharta,pizza.jpeg,"Bitter gourd, fennel, garam masala powder, chili powder, amchur powder",6,available,5,169,2022-06-16 01:27:46,2022-02-19 01:27:46
+95,Khichdi,pizza.jpeg,"Moong dal, green peas, ginger, tomato, green chili",6,available,4,224,2021-08-10 19:46:35,2021-06-30 19:46:35
+96,Kofta,pizza.jpeg,"Paneer, potato, cream, corn flour, garam masala",7,available,1,290,2022-03-02 01:28:25,2021-02-24 01:28:25
+97,Kulfi falooda,pizza.jpeg,"Rose syrup, falooda sev, mixed nuts, saffron, sugar",7,available,5,55,2021-04-14 09:46:36,2022-07-16 09:46:36
+98,Lauki ke kofte,pizza.jpeg,"Bottle gourd, garam masala powder, gram flour, ginger, chillies",3,available,5,302,2021-08-01 14:59:35,2021-06-13 14:59:35
+99,Lauki ki subji,pizza.jpeg,"Bottle gourd, coconut oil, garam masala, ginger, green chillies",7,available,4,281,2021-04-24 18:39:15,2021-06-16 18:39:15
+100,Litti chokha,pizza.jpeg,"Wheat flour, roasted gram flour, tomato, nigella seeds, chilli",1,available,1,378,2022-10-01 19:44:02,2022-01-23 19:44:02
+101,Makki di roti sarson da saag,pizza.jpeg,"Palak, makki atta, mustard green, garam masala, ginger",3,available,2,490,2021-08-29 04:42:37,2022-09-10 04:42:37
+102,Misi roti,pizza.jpeg,"Whole wheat flour, chickpea flour, green chilies",3,available,4,138,2021-07-13 11:26:53,2022-07-20 11:26:53
+103,Mushroom do pyaza,pizza.jpeg,"Mushroom, malai, garam masala, ginger, capsicum",2,available,3,346,2022-06-09 14:27:31,2021-08-08 14:27:31
+104,Mushroom matar,pizza.jpeg,"Canned coconut milk, frozen green peas, wild mushrooms, garam masala, tomatoes",6,available,1,156,2022-12-19 05:35:57,2021-12-05 05:35:57
+105,Naan,pizza.jpeg,"Whole wheat flour, honey, butter, garlic",1,available,4,419,2022-03-26 03:04:26,2022-04-06 03:04:26
+106,Navrattan korma,pizza.jpeg,"Green beans, potatoes, khus khus, low fat, garam masala powder",5,available,5,303,2021-01-25 23:21:26,2022-04-05 23:21:26
+107,Palak paneer,pizza.jpeg,"Cottage cheese, palak, cream, garam masala, butter",2,available,1,432,2021-07-27 14:42:37,2022-05-12 14:42:37
+108,Paneer butter masala,pizza.jpeg,"Paneer, whipping cream, garam masala, cashew nuts, butter",1,available,1,422,2022-11-15 14:58:36,2021-10-07 14:58:36
+109,Paneer tikka masala,pizza.jpeg,"Paneer, greek yogurt, tandoori masala, cream, bell pepper",7,available,4,464,2021-08-18 13:01:28,2021-12-05 13:01:28
+110,Pani puri,pizza.jpeg,"Kala chana, mashed potato, boondi, sev, lemon",1,available,2,347,2022-01-20 09:33:22,2021-02-07 09:33:22
+111,Panjeeri,pizza.jpeg,"Whole wheat flour, musk melon seeds, poppy seeds, edible gum, semolina",2,available,2,306,2022-06-21 13:38:06,2022-12-10 13:38:06
+112,Papad,pizza.jpeg,"Urad dal, sev, lemon juice, chopped tomatoes",2,available,4,478,2021-10-22 01:06:55,2022-12-13 01:06:55
+113,Paratha,pizza.jpeg,"Wheat flour, butter, potato, coriander",1,available,5,138,2021-06-16 12:07:44,2021-07-24 12:07:44
+114,Pattor,pizza.jpeg,"Arbi ke patte, sesame seeds, gur, bengal gram flour, imli",4,available,3,232,2022-03-02 05:43:59,2021-01-10 05:43:59
+115,Pindi chana,pizza.jpeg,"Fennel, tea bags, tomato, kasuri methi, cinnamon",2,available,2,331,2022-06-10 17:40:43,2022-11-06 17:40:43
+116,Rajma chaval,pizza.jpeg,"Red kidney beans, garam masala powder, ginger, tomato, mustard oil",5,available,4,162,2021-07-13 07:45:01,2022-12-04 07:45:01
+117,Rongi,pizza.jpeg,"Garam masala powder, tomato, kasuri methi, cinnamon, mustard oil",6,available,1,70,2021-07-19 17:17:08,2021-11-13 17:17:08
+118,Samosa,pizza.jpeg,"Potatoes, green peas, garam masala, ginger, dough",7,available,1,362,2022-09-25 07:36:53,2021-10-01 07:36:53
+119,Sattu ki roti,pizza.jpeg,"Sattu, atta, dough, filling, mustard oil",6,available,1,149,2022-06-03 19:16:47,2021-11-19 19:16:47
+120,Shahi paneer,pizza.jpeg,"Cottage cheese, malai, garam masala, ginger, tomato",4,available,3,376,2022-03-07 00:32:30,2022-07-28 00:32:30
+121,Shahi tukra,pizza.jpeg,"Rose water, milk, white bread slices, saffron, almonds",5,available,1,250,2021-02-03 09:55:33,2022-06-26 09:55:33
+122,Vegetable jalfrezi,pizza.jpeg,"Baby corn, french beans, garam masala, ginger, carrot",3,available,4,423,2021-09-28 05:32:47,2022-09-12 05:32:47
+123,Tandoori Chicken,pizza.jpeg,"Greek yogurt, garam masala, kasuri methi, marinade, mustard oil",6,available,3,411,2021-10-08 07:19:41,2022-12-28 07:19:41
+124,Tandoori Fish Tikka,pizza.jpeg,"Chickpea flour, biryani masala powder, yogurt, fish fillets, green bell pepper",1,available,4,278,2022-02-21 01:06:09,2022-06-04 01:06:09
+125,Attu,pizza.jpeg,"Whole wheat flour, arhar dal, ginger, kala jeera, green chilli",4,available,3,117,2021-04-25 20:24:57,2022-08-04 20:24:57
+126,Avial,pizza.jpeg,"Raw banana, elephant foot yam, long beans, tindora, urad dal",2,available,2,194,2021-12-24 21:07:09,2021-07-22 21:07:09
+127,Bisi bele bath,pizza.jpeg,"Split pigeon peas, chana dal, urad dal, green peas, french beans",4,available,1,104,2022-01-27 07:49:18,2022-07-30 07:49:18
+128,Currivepillai sadam,pizza.jpeg,"Chana dal, urad dal, fresh coconut, sesame seeds, curry leaves",2,available,4,326,2022-09-13 15:14:43,2022-06-19 15:14:43
+129,Dosa,pizza.jpeg,"Chana dal, urad dal, whole urad dal, blend rice, rock salt",3,available,3,83,2022-04-05 07:53:52,2022-08-24 07:53:52
+130,Idiappam,pizza.jpeg,"Rice flour, hot water, grated coconut",4,available,1,424,2021-08-24 07:55:32,2022-06-29 07:55:32
+131,Idli,pizza.jpeg,"Split urad dal, urad dal, idli rice, thick poha, rock salt",2,available,2,424,2022-06-28 06:48:57,2021-07-02 06:48:57
+132,Kanji,pizza.jpeg,"Carrot, yellow mustard, red chilli, black salt",7,available,2,274,2021-02-05 00:21:08,2021-03-17 00:21:08
+133,Kaara kozhambu,pizza.jpeg,"Sesame oil, drumstick, tamarind paste, sambar powder, tomato",4,available,4,200,2022-02-09 13:23:23,2022-06-04 13:23:23
+134,Keerai kootu,pizza.jpeg,"Moong dal, chana dal, spinach, urad dal, coconut oil",3,available,3,174,2022-10-07 08:40:16,2021-05-29 08:40:16
+135,Keerai masiyal,pizza.jpeg,"Urad dal, curry leaves, sugar, mustard seeds, spinach",2,available,2,100,2022-07-08 20:09:38,2021-01-30 20:09:38
+136,Keerai sadam,pizza.jpeg,"Greens, tomato, mustard seeds, fenugreek seeds",1,available,1,257,2022-04-23 00:06:32,2022-11-01 00:06:32
+137,Keerai poriyal,pizza.jpeg,"Amaranth leaves, split urad dal, mustard seeds, grated coconut, red chili",5,available,2,67,2022-09-09 08:13:01,2022-05-29 08:13:01
+138,Beef Fry,pizza.jpeg,"Beef, coconut, garam masala, curry leaves, green chilies, chili powder",7,available,2,372,2021-08-28 09:33:51,2021-02-24 09:33:51
+139,Kootu,pizza.jpeg,"Chana dal, urad dal, potato, beans, peas",4,available,3,466,2022-06-23 08:59:26,2022-07-25 08:59:26
+140,Kos kootu,pizza.jpeg,"Moong dal, chana dal, cabbage, tamarind, curry leaves",7,available,1,125,2022-11-02 15:12:35,2021-02-09 15:12:35
+141,Koshambri,pizza.jpeg,"Moong dal, cucumber, curry leaves, green chili, lemon juice",6,available,1,288,2022-04-07 16:49:33,2022-08-15 16:49:33
+142,Kothamali sadam,pizza.jpeg,"Chana dal, urad dal, gooseberry, raw rice, curry leaves",2,available,2,334,2022-11-18 06:27:04,2021-12-03 06:27:04
+143,Kuzhakkattai,pizza.jpeg,"Sesame oil, raw rice, jaggery, grated coconut",4,available,4,84,2021-04-08 21:05:01,2021-05-04 21:05:01
+144,Kuzhambu,pizza.jpeg,"Pearl onions, urad dal, drumsticks, tomato, curry leaves",2,available,4,349,2021-12-05 03:47:05,2021-06-29 03:47:05
+145,Masala Dosa,pizza.jpeg,"Chana dal, urad dal, potatoes, idli rice, thick poha",1,available,5,359,2021-05-15 19:35:36,2021-02-22 19:35:36
+146,Pachadi,pizza.jpeg,"Coconut oil, cucumber, curd, curry leaves, mustard seeds",6,available,1,373,2021-08-19 09:01:21,2021-12-26 09:01:21
+147,Paniyaram,pizza.jpeg,"Yogurt, ginger, curry leaves, baking soda, green chilli",3,available,5,354,2021-06-15 21:18:53,2021-12-13 21:18:53
+148,Papadum,pizza.jpeg,"Lentils, black pepper, vegetable oil",3,available,4,152,2022-08-21 14:34:14,2021-08-23 14:34:14
+149,Paravannam,pizza.jpeg,"Raw rice, jaggery, milk",5,available,2,473,2021-05-22 21:14:02,2021-07-27 21:14:02
+150,Payasam,pizza.jpeg,"Rice, cashew nuts, milk, raisins, sugar",2,available,4,56,2021-03-19 00:09:59,2021-04-11 00:09:59
+151,Paruppu sadam,pizza.jpeg,"Arhar dal, sambar powder, tomato, curry leaves, fennel seeds",6,available,3,223,2022-11-29 01:31:32,2021-11-19 01:31:32
+152,Pesarattu,pizza.jpeg,"Green moong beans, rice flour",3,available,3,215,2021-09-10 22:09:32,2021-11-29 22:09:32
+153,Poriyal,pizza.jpeg,"Chana dal, urad dal, beans, coconut, mustard",6,available,4,362,2022-03-14 06:11:37,2022-07-28 06:11:37
+154,Puli sadam,pizza.jpeg,"Urad dal, lemon, tamarind, cooked rice, curry leaves",4,available,4,303,2022-02-21 09:50:49,2021-10-06 09:50:49
+155,Rasam,pizza.jpeg,"Tomato, curry leaves, garlic, mustard seeds, hot water",2,available,1,345,2021-10-09 22:11:39,2021-06-19 22:11:39
+156,Puttu,pizza.jpeg,"Brown rice flour, sugar, grated coconut",5,available,5,65,2022-10-04 03:17:54,2021-05-11 03:17:54
+157,Sambar,pizza.jpeg,"Pigeon peas, eggplant, drumsticks, sambar powder, tamarind",4,available,4,212,2022-04-23 18:44:28,2022-04-18 18:44:28
+158,Sandige,pizza.jpeg,"Thin rice flakes, black sesame seeds, curry leaves",7,available,3,211,2021-11-16 01:51:34,2022-05-01 01:51:34
+159,Sevai,pizza.jpeg,"Sevai, parboiled rice, steamer",1,available,1,186,2022-01-11 15:38:28,2021-04-13 15:38:28
+160,Thayir sadam,pizza.jpeg,"Urad dal, curd, sesame oil, ginger, curry leaves, mustard seeds",2,available,1,446,2021-07-30 07:26:45,2022-12-13 07:26:45
+161,Theeyal,pizza.jpeg,"Coconut, whole red beans, masala, sesame oil, tamarind",1,available,1,286,2021-01-01 06:51:22,2021-03-19 06:51:22
+162,Uttapam,pizza.jpeg,"Chana dal, urad dal, thick poha, tomato, butter",3,available,1,242,2022-12-01 09:05:40,2021-09-30 09:05:40
+163,Vada,pizza.jpeg,"Urad dal, ginger, curry leaves, green chilies, black pepper",1,available,3,384,2021-05-17 05:37:36,2021-05-01 05:37:36
+164,Chicken Varuval,pizza.jpeg,"Meat curry powder, chicken chunks, ginger, tomato, cinnamon",1,available,1,55,2022-11-22 15:17:26,2021-06-24 15:17:26
+165,Upma,pizza.jpeg,"Chana dal, urad dal, ginger, curry leaves, sugar",2,available,1,265,2021-11-15 00:55:47,2022-05-08 00:55:47
+166,Amti,pizza.jpeg,"Kala masala, arhar dal, curry leaves, mustard seeds, hot water",1,available,1,195,2021-03-17 18:43:33,2021-11-02 18:43:33
+167,Zunka,pizza.jpeg,"Gram flour, mustard, garlic, turmeric, red chilli",2,available,2,417,2021-04-15 10:27:20,2022-09-25 10:27:20
+168,Kolim Jawla,pizza.jpeg,"Baingan, fish, coconut oil, fresh coconut, ginger",3,available,5,157,2022-11-14 14:51:58,2022-06-09 14:51:58
+169,Saath,pizza.jpeg,"Urad dal, potatoes, wheat flour, sooji",6,available,2,130,2022-10-02 05:20:19,2021-08-04 05:20:19
+170,Bajri no rotlo,pizza.jpeg,"Wheat flour, pearl millet flour, hot water",2,available,5,136,2022-08-13 13:03:02,2022-01-21 13:03:02
+171,Coconut vadi,pizza.jpeg,"Condensed milk, mawa, desiccated coconut, almonds, cashews",4,available,4,207,2021-08-24 17:28:54,2022-02-21 17:28:54
+172,Bhakri,pizza.jpeg,"Jowar flour, sesame seeds",2,available,2,142,2022-01-04 17:37:53,2021-02-04 17:37:53
+173,Bombil fry,pizza.jpeg,"Bombay duck, malvani masala, rice flour, bombay rava, green chilies",7,available,4,296,2022-11-23 20:51:32,2022-08-05 20:51:32
+174,Chakali,pizza.jpeg,"Rice flour, sesame, plain flour, turmeric, red chilli",3,available,3,432,2022-02-26 09:14:13,2022-06-06 09:14:13
+175,Chevdo,pizza.jpeg,"Citric acid, fry, raisins, sugar, chana daal",6,available,3,299,2021-03-14 04:46:16,2021-02-26 04:46:16
+176,Chorafali,pizza.jpeg,"Urad dal, bengal gram flour, dried mango, baking soda, black salt",7,available,2,152,2022-03-01 18:11:32,2022-07-08 18:11:32
+177,Copra paak,pizza.jpeg,"Condensed milk, nestle cream, coconut ice, red food coloring, desiccated coconut",6,available,4,152,2022-01-26 14:21:11,2022-01-09 14:21:11
+178,Daal Dhokli,pizza.jpeg,"Whole wheat flour, dal, kokum, gur, bengal gram flour",5,available,1,481,2021-06-12 14:47:36,2022-02-14 14:47:36
+179,Kutchi dabeli,pizza.jpeg,"Pav, aloo, peanut, pomegranate, star anise",7,available,2,417,2022-03-25 18:23:59,2021-03-02 18:23:59
+180,Dahi vada,pizza.jpeg,"Urad dal, bhuna chana, garam masala, dates, tamarind",6,available,2,430,2021-08-16 13:45:08,2021-04-08 13:45:08
+181,Dalithoy,pizza.jpeg,"Arhar dal, coconut oil, curry leaves, mustard seeds, red chilli",7,available,5,100,2021-03-01 07:18:14,2021-06-15 07:18:14
+182,Dhokla,pizza.jpeg,"Rava, coconut, gram flour, mustard, sesame",7,available,2,272,2021-03-04 00:45:28,2022-05-19 00:45:28
+183,Dudhi halwa,pizza.jpeg,"Bottle gourd, green, raisins, sugar, clarified butter",4,available,4,415,2022-08-11 10:31:39,2021-12-13 10:31:39
+184,Gatta curry,pizza.jpeg,"Yogurt, besan, sauce, garam masala powder, gram flour",1,available,5,173,2021-08-28 01:40:39,2022-05-11 01:40:39
+185,Gud papdi,pizza.jpeg,"Wheat flour, jaggery, clarified butter, sliced almonds",4,available,5,240,2021-12-05 22:23:34,2021-02-21 22:23:34
+186,Ghooghra,pizza.jpeg,"Dry fruits, semolina, all purpose flour",7,available,1,134,2022-01-05 12:16:50,2021-07-17 12:16:50
+187,Handwo,pizza.jpeg,"Bottle gourd, chana dal, cabbage, urad dal, toor dal",2,available,2,309,2022-06-21 23:45:32,2022-01-12 23:45:32
+188,Halvasan,pizza.jpeg,"Whole wheat rava, chia seed, lemon, edible gum, litre milk",2,available,2,67,2021-06-29 14:56:46,2022-04-10 14:56:46
+189,Jeera Aloo,pizza.jpeg,"Green chilies, lemon juice, chili powder, boiled potatoes",7,available,2,340,2021-02-11 09:02:59,2022-01-02 09:02:59
+190,Kansar,pizza.jpeg,"Wheat flour, cashews, rapeseed oil",7,available,2,273,2022-04-13 21:24:53,2021-03-16 21:24:53
+191,Keri no ras,pizza.jpeg,"Mango, sugar",7,available,4,424,2022-01-12 15:50:18,2022-06-27 15:50:18
+192,Khakhra,pizza.jpeg,"Whole wheat flour, low fat, bengal gram flour",5,available,1,53,2022-04-04 07:36:10,2021-06-07 07:36:10
+193,Khandvi,pizza.jpeg,"Green chili paste, white sesame seeds, gram flour, curry leaves, green chili",2,available,1,235,2021-10-24 22:27:22,2022-01-14 22:27:22
+194,Kombdi vade,pizza.jpeg,"Rice flour, urad dal, wheat flour, gram flour, turmeric",1,available,2,495,2022-10-10 20:07:43,2022-05-30 20:07:43
+195,Laapsi,pizza.jpeg,"Cinnamon, jaggery, clarified butter, dry roasted",6,available,4,476,2022-09-29 19:49:44,2021-01-18 19:49:44
+196,Koshimbir,pizza.jpeg,"Cucumber, carrot, tomatoes, cilantro",3,available,2,473,2021-12-06 09:29:03,2021-06-18 09:29:03
+197,Methi na Gota,pizza.jpeg,"Rava, gram flour, lemon juice, turmeric, fenugreek leaves",6,available,3,169,2022-07-07 12:34:37,2021-10-22 12:34:37
+198,Mohanthal,pizza.jpeg,"Rose water, pistachio, badam, bengal gram flour, saffron",7,available,3,377,2022-10-09 17:24:30,2021-06-05 17:24:30
+199,Muthiya,pizza.jpeg,"Bottle gourd, whole wheat flour, rava, sesame seeds, bengal gram flour",1,available,1,431,2021-12-03 16:08:20,2021-08-02 16:08:20
+200,Patra,pizza.jpeg,"Arbi ke patte, sesame seeds, gur, bengal gram flour, imli",7,available,3,253,2021-03-02 09:47:11,2021-10-06 09:47:11
+201,Pav Bhaji,pizza.jpeg,"Pav bhaji masala, gobi, potatoes, green peas, dinner rolls",7,available,5,187,2022-11-25 22:46:19,2022-07-17 22:46:19
+202,Puri Bhaji,pizza.jpeg,"Aloo, urad dal, mustard, ginger, curry leaves",1,available,5,201,2021-01-25 02:52:58,2022-01-10 02:52:58
+203,Sabudana Khichadi,pizza.jpeg,"Raw peanuts, sabudana, lemon, avocado oil, curry leaves, green chili",6,available,3,313,2022-06-05 05:50:07,2021-05-02 05:50:07
+204,Sev khamani,pizza.jpeg,"Khaman, pomegranate, sev, powdered sugar, garlic",5,available,5,52,2021-11-16 03:10:51,2022-03-01 03:10:51
+205,Sev tameta,pizza.jpeg,"Sev, ginger, tomato, sugar",5,available,4,460,2021-12-02 02:42:06,2022-11-28 02:42:06
+206,Namakpara,pizza.jpeg,"Wheat flour, baking soda, all purpose flour, black pepper, sunflower oil",3,available,2,485,2022-01-16 16:45:02,2022-06-11 16:45:02
+207,Sukhdi,pizza.jpeg,"Whole wheat flour, gur, clarified butter",2,available,2,297,2022-05-23 00:37:18,2021-03-17 00:37:18
+208,Surnoli,pizza.jpeg,"Rice flakes, yogurt, raw rice, jaggery, grated coconut",7,available,4,84,2021-11-04 08:21:05,2022-04-12 08:21:05
+209,Thalipeeth,pizza.jpeg,"Whole wheat flour, rice flour, pearl millet flour, sorghum flour, sesame seeds",4,available,5,99,2022-06-05 19:39:45,2021-05-01 19:39:45
+210,Undhiyu,pizza.jpeg,"Sweet potato, surti papdi, baby potatoes, valor papdi, green peas",2,available,5,194,2022-06-04 12:53:06,2021-04-11 12:53:06
+211,Veg Kolhapuri,pizza.jpeg,"Gobi, potato, beans, khus khus, coconut",1,available,5,486,2022-08-17 05:13:22,2022-01-09 05:13:22
+212,Vindaloo,pizza.jpeg,"Chicken, coconut oil, wine vinegar, ginger, green, cinnamon",7,available,3,156,2021-11-07 17:24:22,2021-05-29 17:24:22
+213,Lilva Kachori,pizza.jpeg,"Green garlic chutney, fresh green peas, ginger, lemon juice, plain flour",6,available,2,331,2021-07-02 12:36:04,2022-02-14 12:36:04
+214,Mag Dhokli,pizza.jpeg,"Moong beans, jaggery, red chillies, oil, salt",1,available,3,130,2022-07-06 19:38:15,2022-07-21 19:38:15
+215,Khichu,pizza.jpeg,"Rice flour, sesame seeds, baking soda, peanut oil",6,available,5,488,2022-04-17 13:33:01,2021-03-15 13:33:01
+216,Thepla,pizza.jpeg,"Chickpea flour, methi leaves, jowar flour, wheat flour",3,available,1,153,2021-04-04 06:26:59,2021-01-28 06:26:59
+217,Farsi Puri,pizza.jpeg,"Semolina, clarified butter, oil, white flour, black pepper",6,available,4,208,2022-11-27 00:39:20,2021-06-02 00:39:20
+218,Khaman,pizza.jpeg,"Yogurt, fresh coconut, sesame seeds, semolina, gram flour",2,available,2,358,2022-03-25 07:06:57,2021-06-10 07:06:57
+219,Turiya Patra Vatana sabji,pizza.jpeg,"Ridge gourd, baking soda, sugar, grated coconut, peas",2,available,1,263,2021-11-25 16:38:17,2021-05-03 16:38:17
+220,Churma Ladoo,pizza.jpeg,"Whole wheat flour, khus khus, sesame seeds, dry coconut, gur",4,available,2,263,2022-10-17 17:41:47,2021-05-13 17:41:47
+221,Cheera Doi,pizza.jpeg,"Rice, mango, curd",4,available,3,430,2022-06-11 03:39:45,2021-01-09 03:39:45
+222,Gheela Pitha,pizza.jpeg,"Sticky rice, rice flour, jaggery, orange rind",3,available,1,367,2021-11-13 09:43:20,2021-06-03 09:43:20
+223,Khar,pizza.jpeg,"Raw papaya, panch phoran masala, nigella seeds, mustard oil, fennel seeds",6,available,3,495,2022-12-22 16:10:28,2021-07-02 16:10:28
+224,Kumol Sawul,pizza.jpeg,"Rice, eggs, carrot, beetroot",6,available,3,342,2021-08-26 05:22:50,2022-06-19 05:22:50
+225,Luchi,pizza.jpeg,"Maida, vegetable oil",1,available,1,192,2022-05-20 22:58:02,2022-07-12 22:58:02
+226,Alu Pitika,pizza.jpeg,"Potatoes, mustard oil, fish, green chillies",5,available,4,145,2022-09-09 01:26:08,2021-12-23 01:26:08
+227,Masor tenga,pizza.jpeg,"Ridge gourd, fish, lemon, tomatoes, mustard oil",7,available,2,458,2022-01-27 06:51:34,2021-06-11 06:51:34
+228,Bengena Pitika,pizza.jpeg,"Brinjal, onions, salt, sesame seeds, coriander",1,available,3,107,2021-06-03 02:26:02,2021-02-15 02:26:02
+229,Bilahi Maas,pizza.jpeg,"Potatoes, garam masala, tomatoes, mustard oil, bay leaf",1,available,4,430,2021-07-26 10:56:32,2022-04-27 10:56:32
+230,Black rice,pizza.jpeg,"Forbidden black rice, chicken, olive oil, slivered almonds, garlic powder",6,available,3,296,2022-10-21 09:53:19,2022-09-20 09:53:19
+231,Bora Sawul,pizza.jpeg,"Biryani masala, mixed vegetables, yellow moong daal, whole red, mustard seeds",7,available,5,436,2022-10-10 19:25:35,2022-02-19 19:25:35
+232,Brown Rice,pizza.jpeg,"Brown rice, soy sauce, olive oil",6,available,1,84,2021-12-14 07:53:45,2021-06-06 07:53:45
+233,Chingri malai curry,pizza.jpeg,"Coconut milk, lobster, fresh green chilli, ginger, red onion",5,available,4,398,2021-07-11 03:39:16,2022-09-15 03:39:16
+234,Goja,pizza.jpeg,"Baking soda, clarified butter, oil, all purpose flour",5,available,4,401,2021-04-22 17:03:15,2021-03-29 17:03:15
+235,Hando Guri,pizza.jpeg,"Jaggery, raisins",4,available,3,277,2022-04-30 22:40:14,2021-12-05 22:40:14
+236,Haq Maas,pizza.jpeg,"Lamb, garam masala powder, curd, turmeric, bay leaf",3,available,3,491,2022-01-27 10:16:45,2021-03-13 10:16:45
+237,Chingri Bhape,pizza.jpeg,"Coconut, prawns, curd, mustard seed, green chili",7,available,3,369,2021-04-10 20:18:51,2022-02-25 20:18:51
+238,Kabiraji,pizza.jpeg,"Fish fillet, besan, lemon, mint, ginger",3,available,3,140,2022-04-27 23:22:17,2021-05-09 23:22:17
+239,Khorisa,pizza.jpeg,"Fermented bamboo shoot, potato, ginger, green, mustard oil",3,available,2,304,2022-04-03 20:40:42,2022-11-02 20:40:42
+240,Koldil Chicken,pizza.jpeg,"Banana flower, chicken, green chili, mustard oil, lemon juice",3,available,3,134,2022-07-20 17:13:13,2021-12-04 17:13:13
+241,Konir Dom,pizza.jpeg,"Aloo, tomatoes, mustard oil, bay leaf, cinnamon stick",5,available,2,114,2021-04-07 19:53:24,2022-12-24 19:53:24
+242,Koldil Duck,pizza.jpeg,"Rice flour, mutton, banana, gram flour, olive oil, baking powder",1,available,3,98,2022-06-19 06:53:48,2021-11-02 06:53:48
+243,Masor Koni,pizza.jpeg,"Fish roe, pumpkin flowers, mustard oil, turmeric, tomato",3,available,3,429,2021-05-12 14:58:47,2021-10-02 14:58:47
+244,Mishti Chholar Dal,pizza.jpeg,"Chana dal, fresh coconut, ginger, cinnamon, raisins",1,available,3,441,2021-01-10 15:21:43,2022-04-15 15:21:43
+245,Pakhala,pizza.jpeg,"Curd, cooked rice, curry leaves, dry chilli",1,available,2,279,2022-02-10 09:18:26,2022-04-02 09:18:26
+246,Pani Pitha,pizza.jpeg,"Tea leaves, white sesame seeds, dry coconut, soaked rice",1,available,4,345,2022-07-27 16:39:48,2021-07-01 16:39:48
+247,Payokh,pizza.jpeg,"Basmati rice, rose water, sugar, clarified butter, cardamom pods",1,available,5,449,2022-08-08 13:04:06,2021-07-23 13:04:06
+248,Prawn malai curry,pizza.jpeg,"Coconut milk, prawns, garlic, turmeric, sugar",1,available,4,203,2022-06-18 00:07:18,2021-10-23 00:07:18
+249,Red Rice,pizza.jpeg,"Red pepper, red onion, butter, watercress, olive oil",6,available,5,219,2021-01-16 09:49:05,2022-04-13 09:49:05
+250,Shukto,pizza.jpeg,"Green beans, bitter gourd, ridge gourd, banana, brinjal",6,available,4,284,2022-12-03 18:42:28,2022-04-20 18:42:28
