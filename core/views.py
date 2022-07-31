@@ -351,15 +351,15 @@ def tableGenerateBill(request):
     return render(request,'others/generate_bill.html',{'orders': orders,"amt":amt})
 
 def tablePayment(request):
+    stamp = datetime.now()
+    stamp = stamp.strftime('%d/%m/%Y')
+    qr_code_data = 'http://127.0.0.1:8000/qr/data-url/transaction_uuid/'+stamp
     if 'transaction_uuid' in request.session:
         transaction_uuid = request.session['transaction_uuid']
         transaction_id = transaction_uuid
     else:
         transaction_uuid = 'pym-gw-'+str(uuid.uuid1())
         request.session['transaction_uuid'] = transaction_uuid
-        stamp = datetime.now()
-        stamp = stamp.strftime('%d/%m/%Y')
-        qr_code_data = 'http://127.0.0.1:8000/qr/data-url/transaction_uuid/'+stamp
         transaction_id=transaction_uuid
         QrCode.objects.create(url=qr_code_data,transaction_id=transaction_id)
 
@@ -439,3 +439,53 @@ class HotelTableViewSet(viewsets.ModelViewSet):
 
     class Meta:
         datatables_extra_json = ('get_options', )
+
+
+def orderManagementIndex(request):
+    raw_orders = FoodOrder.objects.all().order_by('-id')
+    _marked = []
+    orders=[]
+    net_amt=0
+    for i in raw_orders:
+        if i.number not in _marked:
+            orders.append(i)
+            _marked.append(i.number)
+
+    cnt=0
+    for order in orders:
+        for r in raw_orders:
+            if r.number == order.number:
+                net_amt += r.rate
+                order.rate = net_amt
+            else:
+                net_amt=r.rate
+
+        cnt+=1
+            
+    return render(request,'h_owners/order_management/index.html',{'orders': orders})
+
+def orderManagementAnalyticMode(request):
+    # orders = FoodOrder.objects.all().order_by('-id')
+    raw_orders = FoodOrder.objects.all().order_by('-id')
+    _marked = []
+    orders=[]
+    net_amt=0
+    for i in raw_orders:
+        if i.number not in _marked:
+            orders.append(i)
+            _marked.append(i.number)
+
+    cnt=0
+    for order in orders:
+        for r in raw_orders:
+            if r.number == order.number:
+                net_amt += r.rate
+                order.rate = net_amt
+            else:
+                net_amt=r.rate
+
+        cnt+=1
+
+    marked=[]
+    color = 'pink'
+    return render(request,'h_owners/order_management/analytic_mode.html',{'raw_orders': raw_orders,'orders':orders,'marked':marked,'color':color})

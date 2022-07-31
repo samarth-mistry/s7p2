@@ -40,4 +40,7 @@ urlpatterns = [
     path('payment-done',views.returnThankYou,name='payment-done'),
 
     path('place-order/<str:uuid>/<int:food_id>/<int:qun>',views.placeOrderAPI,name='place-order'),
+
+    path('order-management',views.orderManagementIndex,name='order-management'),
+    path('order-management/analytic-mode',views.orderManagementAnalyticMode,name='order-management.analytic-mode'),
 ]
