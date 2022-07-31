@@ -34,13 +34,15 @@ def logout_view(request):
 
 def dashboard(request):
     if request.user.is_authenticated:
-        customer = User.objects.all().exclude(is_superuser = True)
-        return render(request,'admins/dashboard.html',{'customer':customer})
+        if request.user.is_superuser:
+            return render(request,'admins/dashboard.html')
+        else:
+            return redirect('/hotel-dashboard')
     else:
         return redirect('/')
 
 def hotelDashboard(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and not request.user.is_superuser:
         return render(request,'h_owners/dashboard.html')
     else:
         return redirect('/')

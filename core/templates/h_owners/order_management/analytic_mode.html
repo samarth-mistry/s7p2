@@ -81,12 +81,14 @@
 {% block scripts %}
 <script>
   $(document).ready(function() {
-    var h_table = $('#dt1').DataTable({     
+    var order_ids=[], flag=0, info_color=false,color='bg-warning'
+    var h_table = $('#dt1').DataTable({  
+      drawCallback: function( settings ) {refreshGUI();},  
       "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
       "iDisplayLength": 10,
       "columnDefs": [
-        { "searchable": false, "targets": [1,4,9] },
-        { "sortable": false, "targets": [1,4,9] },
+        { "searchable": false, "targets": [4,9] },
+        { "sortable": false, "targets": [4,9] },
       ],
     });
     yadcf.init(h_table, [
@@ -130,18 +132,17 @@
     );     
     $('.yadcf-filter-reset-button').addClass('d-none')
 
-
-    var order_ids=[], flag=0, info_color=false,color='bg-warning';
-    $('#dt1 tbody tr').each( function(){
-      num = $(this).find('td:eq(1)').text()
-      if(flag != num){
-        flag = num
-        altColor() 
-      }
-      $(this).addClass(color)
-      order_ids.push(num);
-    });
-
+    function refreshGUI(){
+      $('#dt1 tbody tr').each( function(){
+        num = $(this).find('td:eq(1)').text()
+        if(flag != num){
+          flag = num
+          altColor() 
+        }
+        console.log("Adding: "+color)
+        $(this).addClass(color)
+      });
+    }
     function altColor(){
       if(info_color){
         info_color = false
@@ -150,6 +151,7 @@
         info_color = true
         color = 'bg-info'
       }
+      console.log("ALT-info: "+info_color)
     }
   });
   </script>
