@@ -21,6 +21,15 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs5/1.12.1/dataTables.bootstrap5.min.css" integrity="sha512-DYpTY0Ub8eZR1nPIgYG0eNVCWim5dFXr834XUOfrVw/5NNRUrPMl8mpNyHvt+CUjG3TyfV898AYXg9eOS+ekmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="shortcut icon" href="{% static 'core/images/logo.png' %}" />
+  <style>
+    #load{
+      width:100%;
+      height:100%;
+      position:fixed;
+      z-index:9999;
+      background:url("{% static 'core/images/dashboard/loading-min.gif' %}") no-repeat center center rgba(0,0,0,0.25)
+  }
+  </style>
 </head>
 <body>
   <script src="{% static 'core/vendors/js/vendor.bundle.base.js' %}"></script>
@@ -40,8 +49,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs5/1.12.1/dataTables.bootstrap5.min.js" integrity="sha512-nfoMMJ2SPcUdaoGdaRVA1XZpBVyDGhKQ/DCedW2k93MTRphPVXgaDoYV1M/AJQLCiw/cl2Nbf9pbISGqIEQRmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{% static 'core/vendors/select2/select2.min.js'%}"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.min.js"></script>
+  <script>
+    document.onreadystatechange = function () {
+      var state = document.readyState
+      if (state == 'interactive') {
+          // document.getElementById('container-scroller').style.visibility="hidden";
+      } else if (state == 'complete') {
+          setTimeout(function(){
+            document.getElementById('load').style.visibility="hidden";
+            // document.getElementById('container-scroller').style.visibility="visible";
+          },1000);
+      }
+    }
+  </script>
   {% block scripts %}
   {% endblock %}
+  <div id="load"></div>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 d-flex align-items-top flex-row pt-2">
@@ -127,7 +150,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'table-menu' %}">
+              <a class="nav-link" target="_blank" href="{% url 'table-menu' %}">
                 <i class="mdi mdi-book-open-page-variant menu-icon"></i>
                 <span class="menu-title">View Menu</span>
               </a>

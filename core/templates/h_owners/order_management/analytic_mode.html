@@ -1,21 +1,33 @@
 {% extends 'base_h_owner.html' %}
 {% load static %}
 {% block content %}
+<link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 <div class="col-lg-12 grid-margin stretch-card">
-  <div class="card bg-gradient-secondary">
+  <div class="card" style="background-color: rgb(190, 196, 194);">
     <div class="row">
       {% for message in messages %}
       <p class="text-center alert alert-info">{{ message }}</p>
       {% endfor %}
     </div>
     <div class="card-header">
-      <h4 class="mx-auto my-3 fw-bold">ANALYTICAL MODE ENABLED
-        <a href="{% url 'order-management' %}" class="btn btn-dark mb-3 mx-2" style="float: right;"></i>Back</a>
-      </h4>
+      <h4 class="fw-bold">ANALYTICAL MODE ENABLED</h4>
+      <a href="{% url 'order-management' %}" class="btn btn-dark mb-3 mx-2" style="float: right;"></i>Back</a>
+    </div>
+    <div class="row">
+      <div class="mx-2 my-2 span5 col-md-6" id="sandbox-container">
+        <div class="input-daterange input-group" id="datepicker">
+          <span class="input-group-addon">Date range from &nbsp;&nbsp;</span>
+          <input type="text" class="rounded input-sm form-control" id="filter_start_date">
+          <span class="input-group-addon">&nbsp;&nbsp; to &nbsp;&nbsp;</span>
+          <input type="text" class="rounded input-sm form-control" id="filter_end_date">
+          <button type="button" class="mx-2 rounded btn-sm btn-outline-primary fw-bold" id="filter_commit">></button>
+          <button type="button" class="mx-2 rounded btn-sm btn-outline-danger fw-bold" id="filter_clear">x</button>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       {% if raw_orders %}
-      <table class="table mx-auto table-responsive table-bordered border-dark table-hover" id='dt1'>
+      <table class="table mx-auto table-responsive table-bordered border-dark table-hover" id='dt1' style="width: 100%;">
         <thead>
           <tr class="table-filter-dropdown">
             <th></th>
@@ -57,7 +69,7 @@
             <td class="fw-bold">{{ i.rate }}</td>
             <td>{{ i.description }}</td>
             <td class="fw-bold text-secondary">{{ i.status|title }}</td>
-            <td>{% firstof i.created_at|date:"d M, Y" "-" %}</td>
+            <td>{% firstof i.created_at|date:"d-M-Y" "-" %}</td>
             <td>{% firstof i.created_at|date:"D" "-" %}</td>
             <td>{% firstof i.created_at|date:"H:m" "-" %}</td>
             <td>
@@ -79,24 +91,42 @@
 </div>
 {% endblock %}
 {% block scripts %}
+<script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/jquery-dateformat.min.js"></script>
 <script>
   $(document).ready(function() {
-    var order_ids=[], flag=0, info_color=false,color='bg-warning'
+    var newdate = new Date()
+    newdate.setDate(newdate.getDate() - 7);     //7 days back
+    var order_ids=[], flag=0, info_color=false,color='bg-warning';
+    
+    $('#filter_start_date').datepicker({
+      format: "dd-M-yyyy",
+    }).datepicker("setDate",new Date(newdate));
+
+    $('#filter_end_date').datepicker({
+      format: "dd-M-yyyy",
+      todayHighlight: true,
+    }).datepicker("setDate",'now');
+
     var h_table = $('#dt1').DataTable({  
       drawCallback: function( settings ) {refreshGUI();},  
       "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
       "iDisplayLength": 10,
+      scrollX: true,
+      scrollY: '800px',
+      scrollCollapse: true,
       "columnDefs": [
         { "searchable": false, "targets": [4,9] },
         { "sortable": false, "targets": [4,9] },
       ],
     });
+
     yadcf.init(h_table, [
         {
           column_number: 1,
           filter_type: 'multi_select',
           filter_container_id: 'order_number',
-          select_type: 'select2',
+          select_type: 'select2'
         },
         {
           column_number: 2,
@@ -130,6 +160,7 @@
         }
       ]
     );     
+   
     $('.yadcf-filter-reset-button').addClass('d-none')
 
     function refreshGUI(){
@@ -139,10 +170,10 @@
           flag = num
           altColor() 
         }
-        console.log("Adding: "+color)
         $(this).addClass(color)
       });
     }
+    
     function altColor(){
       if(info_color){
         info_color = false
@@ -151,8 +182,38 @@
         info_color = true
         color = 'bg-info'
       }
-      console.log("ALT-info: "+info_color)
     }
+
+    $('#filter_commit').click(function(e){
+      applyDateFilter()
+    })
+
+    $('#filter_clear').click(function(e){
+      $('#filter_start_date').val("")
+      $('#filter_end_date').val("")
+      var start = new Date($('#filter_start_date').val())
+      var end = new Date($('#filter_end_date').val())
+      var values = [];
+      for(var d = start; d <= new Date(end); d.setDate(d.getDate() + 1)) {
+        temp =d.getDate()+'-'+d.toLocaleString('default', { month: 'short' })+'-'+d.getFullYear()
+        values.push(temp)
+      }
+      h_table.column(8).search(values.join('|'), true, false);
+      h_table.table().draw();
+    })
+
+    function applyDateFilter(){
+      var start = new Date($('#filter_start_date').val())
+      var end = new Date($('#filter_end_date').val())
+      var values = [];
+      for(var d = start; d <= new Date(end); d.setDate(d.getDate() + 1)) {
+        temp =d.getDate()+'-'+d.toLocaleString('default', { month: 'short' })+'-'+d.getFullYear()
+        values.push(temp)
+      }
+      h_table.column(8).search(values.join('|'), true, false);
+      h_table.table().draw();
+    }
+    applyDateFilter()
   });
   </script>
 {% endblock %}

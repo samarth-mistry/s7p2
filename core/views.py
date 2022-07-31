@@ -22,6 +22,10 @@ from rest_framework_datatables.django_filters.backends import DatatablesFilterBa
 from .serializers import *
 import uuid
 from datetime import date, datetime
+from rolepermissions.roles import assign_role
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+
 
 def auth1(request):
     # return HttpResponse(request.user.is_authenticated)
@@ -106,6 +110,7 @@ def customer_register(request):
                 reg = User.objects.create_user(username=name, last_name=company_name, email=email)
                 reg.set_password(pass1)
                 reg.save()
+                assign_role(reg, 'hotelowner')
                 return redirect('/hotel-owner')
         else:
             customer = CustomerRegistration()

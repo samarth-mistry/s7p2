@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+# from hotel_owners_module. import h_views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -43,4 +44,5 @@ urlpatterns = [
 
     path('order-management',views.orderManagementIndex,name='order-management'),
     path('order-management/analytic-mode',views.orderManagementAnalyticMode,name='order-management.analytic-mode'),
+
 ]

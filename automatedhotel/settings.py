@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rolepermissions',
     'core',
 ]
 
@@ -53,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'automatedhotel.urls'
+ROLEPERMISSIONS_MODULE = 'automatedhotel.roles'
 
 TEMPLATES = [
     {
