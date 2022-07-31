@@ -23,6 +23,11 @@ from .serializers import *
 import uuid
 from datetime import date, datetime
 
+def auth1(request):
+    # return HttpResponse(request.user.is_authenticated)
+    if not request.user.is_authenticated:
+        return redirect('/')
+
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -36,9 +41,7 @@ def dashboard(request):
 
 def hotelDashboard(request):
     if request.user.is_authenticated:
-        tables = HotelTable.objects.all()
-        menu = FoodItem.objects.all()
-        return render(request,'h_owners/dashboard.html',{'tables':tables, 'user': request.user, 'menu':menu})
+        return render(request,'h_owners/dashboard.html')
     else:
         return redirect('/')
     
@@ -172,15 +175,15 @@ def view_customer(request,id):
 
 def hotelOwner(request):
     if request.user.is_authenticated:
-        customer = User.objects.all().exclude(is_superuser = True)
+        customer = User.objects.all().exclude(is_superuser = True).order_by('-id')
         return render(request,'admins/hotel_owners.html',{'customer':customer})
     else:
         return redirect('/')
 
 #-------------------------HOTEL TABLE----------------------
 def hotelTable(request):
-    tables = HotelTable.objects.all()
-    menu = FoodItem.objects.all()
+    tables = HotelTable.objects.all().order_by('-id')
+    menu = FoodItem.objects.all().order_by('-id')
     return render(request,'h_owners/h_tables/index.html',{'tables':tables, 'user': request.user, 'menu':menu})
 
 def hotelTableCreate(request):
@@ -239,7 +242,7 @@ def hotelTableShow(request,id):
 def hotelTableData(request):
     # scandata = query_custom_scan_by_args(**request.query_params)
     # serializers = TaskSerializerScan(scandata['items'], many=True)
-    tables = HotelTable.objects.all()
+    tables = HotelTable.objects.all().order_by('-id')
     data = [table.get_data() for table in tables]
 
     return HttpResponse(data)
@@ -259,7 +262,8 @@ def hotelTableData(request):
 #------------------------Food item-----------------------
 
 def foodItem(request):
-    items = FoodItem.objects.all()
+    # return auth1(request)
+    items = FoodItem.objects.all().order_by('-id')
     return render(request,'h_owners/food_items/index.html',{'user': request.user, 'food_items':items})
 
 def foodItemCreate(request):

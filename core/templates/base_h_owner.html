@@ -18,6 +18,7 @@
   <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> -->
   <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> -->
   <!-- <link rel="stylesheet" href="{% static 'core/js/select.dataTables.min.css' %}"> -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs5/1.12.1/dataTables.bootstrap5.min.css" integrity="sha512-DYpTY0Ub8eZR1nPIgYG0eNVCWim5dFXr834XUOfrVw/5NNRUrPMl8mpNyHvt+CUjG3TyfV898AYXg9eOS+ekmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="shortcut icon" href="{% static 'core/images/logo.png' %}" />
 </head>
@@ -38,6 +39,7 @@
   <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs5/1.12.1/dataTables.bootstrap5.min.js" integrity="sha512-nfoMMJ2SPcUdaoGdaRVA1XZpBVyDGhKQ/DCedW2k93MTRphPVXgaDoYV1M/AJQLCiw/cl2Nbf9pbISGqIEQRmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{% static 'core/vendors/select2/select2.min.js'%}"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.min.js"></script>
   {% block scripts %}
   {% endblock %}
   <div class="container-scroller">
@@ -113,9 +115,9 @@
             </a>
             <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-basic1">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'hotel-table.create' %} active{% else %} {% endif %}" href="{% url 'hotel-table' %}"><i class="mdi mdi-chair-school"></i>Hotel Tables</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}"><i class="mdi mdi-glass-tulip"></i>Food Items</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}"><i class="mdi mdi-currency-inr"></i>Other Pricing</a></li>
+                <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'hotel-table.create' %} active{% else %} {% endif %}" href="{% url 'hotel-table' %}"><i class="mdi mdi-chair-school"></i> Hotel Tables</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}"><i class="mdi mdi-glass-tulip"></i> Food Items</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}"><i class="mdi mdi-currency-inr"></i> Other Pricing</a></li>
               </ul>
             </div>
             <li class="nav-item">
