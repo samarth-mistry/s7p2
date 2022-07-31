@@ -2,7 +2,16 @@ from rest_framework import serializers
 from .models import *
 
 class HotelTableSerializer(serializers.ModelSerializer):
-    pass
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = HotelTable
+        fields = (
+            'table_name', 'description', 'status'
+        )
+        # Specifying fields in datatables_always_serialize
+        # will also force them to always be serialized.
+        datatables_always_serialize = ('id',)
 
 # class ArtistSerializer(serializers.ModelSerializer):
 #     id = serializers.IntegerField(read_only=True)
