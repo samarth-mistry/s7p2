@@ -13,3 +13,6 @@ References:
 
 FrontEnd:
     http://preview.themeforest.net/item/adminto-responsive-admin-dashboard/full_screen_preview/15025393?_ga=2.191704362.128429117.1659192153-1206660649.1659192153
+
+Developer guide:
+    create a new DB and remigrate all table to repair schema
