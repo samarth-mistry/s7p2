@@ -21,6 +21,7 @@ from rest_framework_datatables.django_filters.backends import DatatablesFilterBa
 
 from .serializers import *
 import uuid
+from datetime import date, datetime
 
 def logout_view(request):
     logout(request)
@@ -49,7 +50,7 @@ def logins(request):
             value = request.POST.get('user_role')
             if value == '1':
                 user = User.objects.get(email=username)
-                if user is not None and user.check_password(password):
+                if user.password == password and user.is_superuser == False:
                     login(request,user)
                     return redirect('/hotel-dashboard')
                 else:
@@ -348,9 +349,15 @@ def tableGenerateBill(request):
 def tablePayment(request):
     if 'transaction_uuid' in request.session:
         transaction_uuid = request.session['transaction_uuid']
+        transaction_id = transaction_uuid
     else:
         transaction_uuid = 'pym-gw-'+str(uuid.uuid1())
         request.session['transaction_uuid'] = transaction_uuid
+        stamp = datetime.now()
+        stamp = stamp.strftime('%d/%m/%Y')
+        qr_code_data = 'http://127.0.0.1:8000/qr/data-url/transaction_uuid/'+stamp
+        transaction_id=transaction_uuid
+        QrCode.objects.create(url=qr_code_data,transaction_id=transaction_id)
 
 
     order_uuid = request.session['order_uuid']
@@ -361,7 +368,7 @@ def tablePayment(request):
 
     data = Payment(
                 transaction_id = transaction_uuid,
-                qr_code_data = transaction_uuid,
+                qr_code_data = qr_code_data,
                 _from = "0",
                 _to = "0",
                 order_id = order_uuid,
@@ -377,6 +384,7 @@ def tablePayment(request):
                 description = None)
     data.save()
 
+    qr_code = QrCode.objects.filter(transaction_id=transaction_id)
     return render(request,'others/payment.html',{'transaction_id': transaction_uuid,"amt":amt})
 
 def returnThankYou(request):
