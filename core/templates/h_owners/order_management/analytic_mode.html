@@ -91,7 +91,7 @@
 </div>
 {% endblock %}
 {% block scripts %}
-<script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="{% static 'core/js/datepicker.min.js' %}"></script>
 <script src="https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/jquery-dateformat.min.js"></script>
 <script>
   $(document).ready(function() {
@@ -191,15 +191,7 @@
     $('#filter_clear').click(function(e){
       $('#filter_start_date').val("")
       $('#filter_end_date').val("")
-      var start = new Date($('#filter_start_date').val())
-      var end = new Date($('#filter_end_date').val())
-      var values = [];
-      for(var d = start; d <= new Date(end); d.setDate(d.getDate() + 1)) {
-        temp =d.getDate()+'-'+d.toLocaleString('default', { month: 'short' })+'-'+d.getFullYear()
-        values.push(temp)
-      }
-      h_table.column(8).search(values.join('|'), true, false);
-      h_table.table().draw();
+      applyDateFilter()
     })
 
     function applyDateFilter(){
@@ -207,7 +199,7 @@
       var end = new Date($('#filter_end_date').val())
       var values = [];
       for(var d = start; d <= new Date(end); d.setDate(d.getDate() + 1)) {
-        temp =d.getDate()+'-'+d.toLocaleString('default', { month: 'short' })+'-'+d.getFullYear()
+        temp = d.getDate()+'-'+d.toLocaleString('default', { month: 'short' })+'-'+d.getFullYear()
         values.push(temp)
       }
       h_table.column(8).search(values.join('|'), true, false);

@@ -496,3 +496,7 @@ def orderManagementAnalyticMode(request):
     marked=[]
     color = 'pink'
     return render(request,'h_owners/order_management/analytic_mode.html',{'raw_orders': raw_orders,'orders':orders,'marked':marked,'color':color})
+
+
+def analyticsIndex(request):
+    return render(request,'h_owners/analytics/index.html')

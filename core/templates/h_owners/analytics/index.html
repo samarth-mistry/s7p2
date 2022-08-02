@@ -1,0 +1,134 @@
+{% extends 'base_h_owner.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title my-2 fw-bold">Analytics</h4>
+    </div>
+    <div class="card-body">
+      <div class="row mx-auto mt-3 px-auto my-auto py-3">
+        <div class="col-lg-9 my-auto">
+          <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          <h4 class="card-title text-white">Recent Week Sales <span style="float: right;"><i class="mdi mdi-arrow-right"></i></span></h4>
+          <canvas id="areaChartSales" width="100%" style="display: block;" class="chartjs-render-monitor bg-light rounded border"></canvas>
+        </div>
+        <div class="col-lg-3">
+          <div class="row">
+            <label class="col-lg-6 col-form-label text-center">From</label>
+            <label class="col-lg-6 col-form-label text-center">To</label>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <input type="text" class="rounded input-sm form-control" id="filter_start_date">
+            </div>
+            <div class="col-lg-6">
+              <input type="text" class="mb-2 rounded input-sm form-control" id="filter_end_date">
+            </div>
+          </div>
+          <div class="form-group row">
+            <button type="button" class="col-sm-2 rounded btn-sm btn-outline-primary fw-bold" id="filter_commit">></button>
+            <button type="button" class="col-sm-2 mx-3 rounded btn-sm btn-outline-danger fw-bold" id="filter_clear">x</button>
+          </div>
+          <div class="form-group row">
+            <select class="form-control" id="labels" multiple>
+              <option value="">OP1</option>
+              <option value="">OP1s</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/jquery-dateformat.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#labels").select2();
+
+    var newdate = new Date()
+    newdate.setDate(newdate.getDate() - 7);     //7 days back
+    $('#filter_start_date').datepicker({
+       format: "dd-M-yyyy",
+    }).datepicker("setDate",new Date(newdate));
+
+    $('#filter_end_date').datepicker({
+        format: "dd-M-yyyy",
+        todayHighlight: true,
+    }).datepicker("setDate",'now');
+
+    $.ajaxSetup({
+      data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+    $("#filter_commit").click(function(e){
+      var start = new Date($('#filter_start_date').val())
+      var end = new Date($('#filter_end_date').val())
+      start = start.getFullYear()+'-'+ ('0'+(start.getMonth()+1)).slice(-2)+'-'+('0' + start.getDate()).slice(-2)
+      end = end.getFullYear()+'-'+ ('0'+(end.getMonth()+1)).slice(-2)+'-'+('0' + end.getDate()).slice(-2)
+      console.log("filter_commit")
+      $.ajax({
+          type: 'POST',
+          // headers:{'X-CSRFToken': '{% csrf_token %}'},
+          url: "{% url 'api.get-multiareachart-data'  %}",
+          data: {start: start, end:end},
+          success: function(response) {
+            chartRefresh(response)
+          }
+      });
+    })
+  })
+
+  function callChartAPI(){
+    $.ajax({
+      url: '{% url "api.get-multiareachart-data" %}',
+      beforeSend: function(){$(".loading-image").show()},
+      complete: function(){$(".loading-image").hide()},
+      success: function(response){
+        chartRefresh(response)
+      }
+    })
+  }
+  callChartAPI()
+  
+  function chartRefresh(final_json){
+    var multiAreaData = final_json
+    var multiAreaOptions = {
+      plugins: {
+        filler: {
+          propagate: true
+        }
+      },
+      elements: {
+        point: {
+          radius: 0
+        }
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: true
+          }
+        }],
+        yAxes: [{
+          gridLines: {
+            display: true
+          }
+        }]
+      }
+    }
+
+    if ($("#areaChartSales").length) {
+      var multiAreaCanvas = $("#areaChartSales").get(0).getContext("2d");
+      var multiAreaChart = new Chart(multiAreaCanvas, {
+        type: 'line',
+        data: multiAreaData,
+        options: multiAreaOptions
+      });
+    }
+  }
+   
+</script>
+{% endblock %}
+  
