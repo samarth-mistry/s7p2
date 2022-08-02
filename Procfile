@@ -1,2 +1,1 @@
-release:python manage.py migrate
-web:gunicorn automated-hotel.wsgi
+web:gunicorn automated-hotel.wsgi --logs.txt
