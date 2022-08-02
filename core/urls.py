@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views
+from . import apis
 # from hotel_owners_module. import h_views
 from rest_framework import routers
 
@@ -45,4 +46,6 @@ urlpatterns = [
     path('order-management',views.orderManagementIndex,name='order-management'),
     path('order-management/analytic-mode',views.orderManagementAnalyticMode,name='order-management.analytic-mode'),
 
+    path('api/get-linechart-data',apis.getLineChartData,name='api.get-linechart-data'),
+    path('api/get-linechart-data/<str:start_>/<str:end_>)',apis.getLineChartData,kwargs={'start_': None,'end_': None}),
 ]

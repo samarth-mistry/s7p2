@@ -11,7 +11,7 @@
             <div class="card-body">
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
               <h4 class="card-title text-white">Daily Sale <span style="float: right;"><i class="mdi mdi-arrow-right"></i></span></h4>
-              <canvas id="lineChart" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
+              <canvas id="lineChartSales" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
             </div>
           </div>
         </div>
@@ -21,7 +21,7 @@
               <div class="card-body">
                 <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                 <h4 class="card-title">Delivery Monitoring <span style="float: right;"><i class="mdi mdi-arrow-right"></i></span></h4>
-                <canvas id="barChart" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
+                <canvas id="barChartSales" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
               </div>
             </div>
           </div><br>
@@ -70,5 +70,87 @@
     </div>
   </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+  function loadLineChart(){
+    console.log("loading lc")
+    $.ajax({
+      // url: '/place-order/'+uuid+'/'+$(this).data('food_id')+'/'+$(this).parent().find('.quantity-btn').val(),
+      url: '{% url "api.get-linechart-data" %}',
+      beforeSend: function(){$(".loading-image").show();},
+      complete: function(){$(".loading-image").hide();},
+      success: function(response){
+        console.log(response.lc_x)
+        jqLCloader(response.lc_x,response.lc_y)
+      }
+    })
+  }
+  loadLineChart()
+  
+  function jqLCloader(lc_x,lc_y){
+    console.log('jqLCloader'+lc_y)
+    var options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+      legend: {
+        display: false
+      },
+      elements: {
+        point: {
+          radius: 0
+        }
+      }
+
+    };
+    var data = {
+      labels: lc_y,
+      datasets: [{
+        label: 'Daily earning',
+        data: lc_x,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 3,
+        fill: false
+      }]
+    };
+    if ($("#lineChartSales").length) {
+      console.log("SALES")
+      var lineChartCanvas = $("#lineChartSales").get(0).getContext("2d");
+      var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: data,
+        options: options
+      });
+    }
+    if ($("#barChartSales").length) {
+      var barChartCanvas = $("#barChartSales").get(0).getContext("2d");
+      var barChart = new Chart(barChartCanvas, {
+        type: 'bar',
+        data: data,
+        options: options
+      });
+    }
+  }
+</script>
 {% endblock %}
   
