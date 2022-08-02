@@ -1,0 +1,3 @@
+"id","password","last_login","is_superuser","username","first_name","last_name","email","is_staff","is_active","date_joined"
+"1","test@123","2022-08-01 17:12:44.071082","0","Test-Hotel-Owner","H-","Owner","owner@test.com","0","1","2022-07-31 09:33:48.000000"
+"2","test@123","2022-08-01 17:16:09.402582","1","Test-Admin","{Super :-)}","Admin","admin@test.com","1","1","2022-08-01 22:44:24.000000"
