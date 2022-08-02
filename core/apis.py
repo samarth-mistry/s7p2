@@ -30,7 +30,7 @@ import pandas as pd
 
 def getLineChartData(request,start_="",end_=""):
     if start_=="" and end_=="":
-        dt_range = pd.date_range(start='2022-07-10', end='2022-08-10')
+        dt_range = pd.date_range(start='2022-04-10', end='2022-08-10')
     else:
         dt_range = pd.date_range(start=start_, end=end_)
     

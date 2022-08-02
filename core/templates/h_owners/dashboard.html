@@ -7,11 +7,11 @@
       <h4 class="card-title fw-bold">Last week summary!</h4>
       <div class="row mx-auto mt-3 px-auto my-auto py-3">
         <div class="col-lg-8 my-auto">
-          <div class="card bg-primary">
+          <div class="card bg-danger">
             <div class="card-body">
               <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-              <h4 class="card-title text-white">Daily Sale <span style="float: right;"><i class="mdi mdi-arrow-right"></i></span></h4>
-              <canvas id="lineChartSales" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
+              <h4 class="card-title text-white">Troubleshooting <span style="float: right;"><i class="mdi mdi-arrow-right"></i></span></h4>
+              <canvas id="areaChartSales" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
             </div>
           </div>
         </div>
@@ -48,11 +48,11 @@
             </div>
           </div><br>
           <div class="row">
-            <div class="card bg-danger">
+            <div class="card bg-primary">
               <div class="card-body">
                 <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                <h4 class="card-title text-white">Troubleshooting <span style="float: right;"><i class="mdi mdi-arrow-right"></i></span></h4>
-                <canvas id="areaChart" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
+                <h4 class="card-title text-white">Daily Sale <span style="float: right;"><i class="mdi mdi-arrow-right"></i></span></h4>
+                <canvas id="lineChartSales" width="676" height="337" style="display: block; height: 270px; width: 541px;" class="chartjs-render-monitor bg-light rounded"></canvas>
               </div>
             </div>
           </div>
@@ -74,22 +74,19 @@
 {% block scripts %}
 <script>
   function loadLineChart(){
-    console.log("loading lc")
     $.ajax({
       // url: '/place-order/'+uuid+'/'+$(this).data('food_id')+'/'+$(this).parent().find('.quantity-btn').val(),
       url: '{% url "api.get-linechart-data" %}',
       beforeSend: function(){$(".loading-image").show();},
       complete: function(){$(".loading-image").hide();},
       success: function(response){
-        console.log(response.lc_x)
-        jqLCloader(response.lc_x,response.lc_y)
+        chartRefresh(response.lc_x,response.lc_y)
       }
     })
   }
   loadLineChart()
   
-  function jqLCloader(lc_x,lc_y){
-    console.log('jqLCloader'+lc_y)
+  function chartRefresh(lc_x,lc_y){
     var options = {
       scales: {
         yAxes: [{
@@ -133,6 +130,84 @@
         fill: false
       }]
     };
+    var areaData = {
+      labels: lc_y,
+      datasets: [{
+        label: 'Sales: ',
+        data: lc_x,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1,
+        fill: true, // 3: no fill
+      }]
+    };
+    var multiAreaData = {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      datasets: [{
+          label: 'Facebook',
+          data: [8, 11, 13, 15, 12, 13, 16, 15, 13, 19, 11, 14],
+          borderColor: ['rgba(255, 99, 132, 0.5)'],
+          backgroundColor: ['rgba(255, 99, 132, 0.5)'],
+          borderWidth: 1,
+          fill: true
+        },
+        {
+          label: 'Twitter',
+          data: [7, 17, 12, 16, 14, 18, 16, 12, 15, 11, 13, 9],
+          borderColor: ['rgba(54, 162, 235, 0.5)'],
+          backgroundColor: ['rgba(54, 162, 235, 0.5)'],
+          borderWidth: 1,
+          fill: true
+        },
+        {
+          label: 'Linkedin',
+          data: [6, 14, 16, 20, 12, 18, 15, 12, 17, 19, 15, 11],
+          borderColor: ['rgba(255, 206, 86, 0.5)'],
+          backgroundColor: ['rgba(255, 206, 86, 0.5)'],
+          borderWidth: 1,
+          fill: true
+        }
+      ]
+    };
+    var multiAreaOptions = {
+      plugins: {
+        filler: {
+          propagate: true
+        }
+      },
+      elements: {
+        point: {
+          radius: 0
+        }
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: false
+          }
+        }],
+        yAxes: [{
+          gridLines: {
+            display: false
+          }
+        }]
+      }
+    }
+    
     if ($("#lineChartSales").length) {
       console.log("SALES")
       var lineChartCanvas = $("#lineChartSales").get(0).getContext("2d");
@@ -148,6 +223,14 @@
         type: 'bar',
         data: data,
         options: options
+      });
+    }
+    if ($("#areaChartSales").length) {
+      var multiAreaCanvas = $("#areaChartSales").get(0).getContext("2d");
+      var multiAreaChart = new Chart(multiAreaCanvas, {
+        type: 'line',
+        data: multiAreaData,
+        options: multiAreaOptions
       });
     }
   }
