@@ -23,16 +23,24 @@
   <link rel="stylesheet" href="{% static 'core/css/vertical-layout-light/style.css'%}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{% static 'core/images/logo.png'%}" />
+  <style>
+    .content-wrapper {
+      background-image: url(/static/core/bg/bg-1.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
 </head>
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="content-wrapper d-flex align-items-center auth px-0" style="background-color: #bdbfbe;">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5 rounded"  style="background-color: #ffffff;">
               <div class="brand-logo text-center">
-                <img src="{% static 'core/images/logo.png'%}" class="rounded" alt="logo" class="img-thumbnail">
+                <a href="/"><img src="{% static 'core/images/logo.png'%}" class="rounded" alt="logo" class="img-thumbnail"></a>
               </div>
               <h4 class="text-center">Hello! Greetings of the day!</h4>
               <h6 class="fw-light text-center">Please Sign in to continue.</h6>

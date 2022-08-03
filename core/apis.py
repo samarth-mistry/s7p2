@@ -28,6 +28,7 @@ from django.contrib.auth.decorators import login_required
 import pandas as pd
 from random import randrange
 
+alt_color = 0
 
 def getLineChartData(request,start_="",end_=""):
     if request.method == "POST":
@@ -35,7 +36,7 @@ def getLineChartData(request,start_="",end_=""):
         end = request.POST['end']
     else:
         start = '2021-04-10'
-        end = '2022-12-31'
+        end = '2022-06-30'
     
     orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
     data = orders
@@ -58,7 +59,7 @@ def getMultiAreaChartData(request,start_="",end_=""):
         end = request.POST['end']
         item_ids = request.POST.getlist('item_ids[]')
     else:
-        start = '2021-04-10'
+        start = '2022-04-10'
         end = '2022-12-31'
         item_ids = ["1","12","9"]
     
@@ -75,9 +76,9 @@ def getMultiAreaChartData(request,start_="",end_=""):
             if item_id == orders["item_id"][data_row]:
                 x_data_list.append(str(orders["rate"][data_row]))
             else:
-                x_data_list.append(0)
+                x_data_list.append(-10)
 
-        color = 'rgba({a},{b},{c},{d})'.format(a=randrange(0,170),b=randrange(0,170),c=randrange(0,170),d=randrange(10,100,10)/100)
+        color = generate_new_color()
         ds_dict = {
             "label": itemObj.name,
             "data": x_data_list,
@@ -94,3 +95,88 @@ def getMultiAreaChartData(request,start_="",end_=""):
     }
 
     return JsonResponse(final_json)
+
+def getBarChartData(request,start_="",end_=""):
+    if request.method == "POST":
+        start = request.POST['start']
+        end = request.POST['end']
+        item_ids = request.POST.getlist('item_ids[]')
+    else:
+        start = '2022-04-10'
+        end = '2022-06-10'
+        item_ids = ["1","4","9","7"]
+    
+    orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
+    data = orders
+    data['created_at'] = pd.to_datetime(data['created_at']).dt.strftime("%d %b %y")
+
+    # return HttpResponse(len(orders))
+    datasets=[]
+
+    for item_id in item_ids:
+        x_data_list = []
+        itemObj = FoodItem.objects.get(pk=item_id)
+        for data_row in orders.index:
+            if item_id == orders["item_id"][data_row]:
+                x_data_list.append(str(orders["rate"][data_row]))
+            else:
+                x_data_list.append(-10)
+
+        color = generate_new_color()
+        ds_dict = {
+            "label": itemObj.name,
+            "data": x_data_list,
+            "backgroundColor": color,
+            "borderColor": color,
+            "borderWidth": 1,
+            "fill": False
+        }
+        datasets.append(ds_dict)
+
+    # if request.method == "POST":
+    #     start = request.POST['start']
+    #     end = request.POST['end']
+    # else:
+    #     start = '2022-05-01'
+    #     end = '2022-07-01'
+    
+    # orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
+    # orders['created_at'] = pd.to_datetime(orders['created_at']).dt.strftime("%d-%b")
+
+    # c1 = generate_new_color()
+    # c2 = generate_new_color()
+    # datasets = [{
+    #     "label": 'Dataset',
+    #     "data": list(orders['rate']),
+    #     "backgroundColor": c1,
+    #     "borderColor": c1,
+    #     "borderWidth": 1,
+    #     "fill": False
+    # },
+    # {
+    #     "label": 'DS2',
+    #     "data": list(orders['rate']),
+    #     "backgroundColor": c2,
+    #     "borderColor": c2,
+    #     "borderWidth": 1,
+    #     "fill": False
+    # }]
+
+    final_json = {
+        "labels": list(orders['created_at']),
+        "datasets": datasets
+    }
+
+    return JsonResponse(final_json)
+
+def generate_new_color():
+    return 'rgba({a},{b},{c},{d})'.format(a=randrange(0,255),b=randrange(0,255),c=randrange(0,255),d=randrange(10,100,10)/100)\
+
+def generate_alt_color():
+    global alt_color
+    if  alt_color == 1:
+        alt_color = 0
+        return 'rgba({a},{b},{c},{d})'.format(a=randrange(0,40),b=randrange(0,40),c=randrange(0,40),d=randrange(10,100,10)/100)
+    else:
+        alt_color = 1
+        return 'rgba({a},{b},{c},{d})'.format(a=randrange(180,255),b=randrange(180,220),c=randrange(0,50),d=randrange(10,100,10)/100)

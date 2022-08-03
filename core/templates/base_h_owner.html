@@ -157,12 +157,12 @@
             </a>
             <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-analy">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' %}"><i class="mdi mdi-chart-areaspline"></i>&nbsp;&nbsp;Area Chart</a></li>
-                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-line"></i> &nbsp;&nbsp;Line Chart</a></li>
-                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-arc"></i>&nbsp;&nbsp; Doughnut Chart</a></li>
-                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-pie"></i> &nbsp;&nbsp;Pie Chart</a></li>
-                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-bubble"></i> &nbsp;&nbsp;Scartter Chart</a></li>
-                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-bar"></i> &nbsp;&nbsp;Bar Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' 'areachart' %}"><i class="mdi mdi-chart-areaspline"></i>&nbsp;&nbsp;Area Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' 'linechart' %}"><i class="mdi mdi-chart-line"></i> &nbsp;&nbsp;Line Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' 'arcchart' %}"><i class="mdi mdi-chart-arc"></i>&nbsp;&nbsp; Doughnut Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' 'piechart' %}"><i class="mdi mdi-chart-pie"></i> &nbsp;&nbsp;Pie Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' 'bubblechart' %}"><i class="mdi mdi-chart-bubble"></i> &nbsp;&nbsp;Scartter Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' 'barchart' %}"><i class="mdi mdi-chart-bar"></i> &nbsp;&nbsp;Bar Chart</a></li>
               </ul>
             </div>
           </li>

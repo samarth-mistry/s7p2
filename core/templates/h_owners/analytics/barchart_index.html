@@ -1,0 +1,235 @@
+{% extends 'base_h_owner.html' %}
+{% load static %}
+{% block content %}
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title my-auto fw-bold">Analytics
+      <span style="float: right;">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-dark btn-icon">
+            <i class="mdi mdi-magnify-minus"></i>
+          </button>
+          <button type="button" class="btn btn-dark btn-icon">
+            <i class="mdi mdi-magnify-plus"></i>
+          </button>
+        </div>
+        <button type="button" id="chart-settings-btn" class="btn btn-dark btn-icon">
+          <i class="mdi mdi-settings"></i>
+        </button>
+        <button type="button" id="export-chart" class="btn btn-dark btn-icon">
+          <i class="mdi mdi-invert-colors"></i>
+        </button>
+        <button type="button" class="btn btn-dark btn-icon">
+          <i class="mdi mdi-refresh"></i>
+        </button>
+        <div class="btn-group" role="group" aria-label="Select Chart">
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-arc"></i>
+          </button>
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-areaspline"></i>
+          </button>
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-histogram"></i>
+          </button>
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-bar"></i>
+          </button>
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-line"></i>
+          </button>
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-pie"></i>
+          </button>
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-bubble"></i>
+          </button>
+          <button type="button" class="btn btn-warning text-dark">
+            <i class="mdi mdi-chart-histogram"></i>
+          </button>
+        </div>
+      </span>
+      </h4>
+    </div>
+    <div class="card-body">
+      <div class="row mx-auto mt-3 px-auto">
+        <div class="col-lg-9 my-auto">
+          <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+          <canvas id="barChartSales" width="100%" style="display: block;" class="chartjs-render-monitor bg-light rounded border"></canvas>
+        </div>
+        <div class="col-lg-3">
+          <div class="row">
+            <label class="fw-bold col-lg-3">From:</label>
+            <div class="col-lg-9">
+              <input type="text" class="rounded input-sm form-control" id="filter_start_date">
+            </div>
+          </div>
+          <div class="form-group row mt-1">
+            <label class="fw-bold col-lg-3">To:</label>
+            <div class="col-lg-9">
+              <input type="text" class="mb-2 rounded input-sm form-control" id="filter_end_date">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="fw-bold col-lg-3">Items:</label>
+            <div class="col-lg-9">
+              <select class="form-control" name="item_ids" id="item_ids" multiple>
+                {% for i in items %}
+                <option value="{{i.id}}">{{ i.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="fw-bold col-lg-3">X-Axis:</label>
+            <div class="col-lg-9">
+              <select class="form-control" name="x_axis_data" id="x_axis_data">
+                <option value="dp">Date Period</option>
+                <option value="ht">Hotel Table</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="fw-bold col-lg-3">Y-Axis:</label>
+            <div class="col-lg-9">
+              <select class="form-control" name="y_axis_data" id="y_axis_data">
+                <option value="rate">Amount of Order (₹)</option>
+                <option value="quantity">Quantity of Order</option>
+              </select>
+                <!-- <input type="text" class="form-control" name="y_axis_data" id="y_axis_data" placeholder="Vertical axis"> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <span>
+              <button type="button" class="col-sm-2 rounded btn-sm btn-outline-primary" id="filter_commit" style="float: right;"><i class="mdi mdi-magnify"></i></button>
+              <button type="button" class="col-sm-2 mx-3 rounded btn-sm btn-outline-danger" id="filter_clear" style="float: right;"><i class="mdi mdi-window-close"></i></button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="chart-settings-modal" role="dialog">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">                      
+          <div class="modal-header">
+              <h4 class="font-size-lg text-dark font-weight-bold mb-6">Advanced Chart Settings</h4><br>
+              <button type="button" class="close" data-dismiss="modal"><i class="mdi mdi-window-close"></i></button>
+          </div>
+          <div class="modal-body">
+              <div class="panel panel-default">
+                  <div class="form-group row">
+                      <div class="col-lg-6">
+                        <div class="form-check form-check-primary">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" id="x-grid">X-Axis grid
+                          <i class="input-helper"></i></label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-check form-check-primary">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" checked="" id="y-grid">Y-Axis grid
+                          <i class="input-helper"></i></label>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>                    
+  </div><!--Model diaolog-->
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/jquery-dateformat.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var barChartCanvas = $("#barChartSales").get(0).getContext("2d");
+    $("#item_ids").select2();
+    var newdate = new Date()
+    newdate.setDate(newdate.getDate() - 7);
+    $('#filter_start_date').datepicker({format: "dd-M-yyyy",}).datepicker("setDate",new Date(newdate));
+    $('#filter_end_date').datepicker({format: "dd-M-yyyy",todayHighlight: true,}).datepicker("setDate",'now');
+    $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}' }});
+    
+    $("#filter_commit").click(function(e){
+      var start = new Date($('#filter_start_date').val())
+      var end = new Date($('#filter_end_date').val())
+      var item_ids = $("#item_ids").val();
+      start = start.getFullYear()+'-'+ ('0'+(start.getMonth()+1)).slice(-2)+'-'+('0' + start.getDate()).slice(-2)
+      end = end.getFullYear()+'-'+ ('0'+(end.getMonth()+1)).slice(-2)+'-'+('0' + end.getDate()).slice(-2)
+
+      $.ajax({
+          type: 'POST',
+          url: "{% url 'api.get-barchart-data'  %}",
+          data: {
+            "start": start, 
+            "end": end,
+            "item_ids[]": item_ids
+          },
+          success: function(response) {
+            var canvas = document.getElementById('barChartSales');
+            var context = canvas.getContext('2d');
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            chartRefresh(response)
+          }
+      });
+    })
+    $("#chart-settings-btn").click(function(e){$("#chart-settings-modal").modal('show')})
+    $("#export-chart").click(function(e){exportChart()})
+    //##################################################################
+    function callChartAPIOnLoad(){
+      $.ajax({
+        url: '{% url "api.get-barchart-data" %}',
+        beforeSend: function(){$(".loading-image").show()},
+        complete: function(){$(".loading-image").hide()},
+        success: function(response){
+          chartRefresh(response)
+        }
+      })
+    }
+    callChartAPIOnLoad()
+    //##################################################################
+    function exportChart(){
+      console.log(multiAreaCanvas.toBase64Image())
+    }
+    //##################################################################
+    function chartRefresh(final_json){
+      var options = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        },
+        legend: {
+          display: true
+        },
+        elements: {
+          point: {
+            radius: 0
+          }
+        }
+      };
+      var data = final_json;
+
+      if ($("#barChartSales").length) {
+        var barChart = new Chart(barChartCanvas, {
+          type: 'bar',
+          data: data,
+          options: options
+        });
+      }
+    }
+  })
+</script>
+<script>
+  $(document).ready(function() {
+    
+  })
+</script>
+{% endblock %}
+  

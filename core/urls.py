@@ -45,8 +45,9 @@ urlpatterns = [
 
     path('order-management',views.orderManagementIndex,name='order-management'),
     path('order-management/analytic-mode',views.orderManagementAnalyticMode,name='order-management.analytic-mode'),
-    path('analytics',views.analyticsIndex,name='analytics'),
+    path('analytics/<str:type>',views.analyticsIndex,name='analytics'),
 
+    path('api/get-barchart-data',apis.getBarChartData,name='api.get-barchart-data'),
     path('api/get-multiareachart-data',apis.getMultiAreaChartData,name='api.get-multiareachart-data'),
     path('api/get-multiareachart-data/<str:start_>/<str:end_>)',apis.getMultiAreaChartData),
     path('api/get-linechart-data',apis.getLineChartData,name='api.get-linechart-data'),

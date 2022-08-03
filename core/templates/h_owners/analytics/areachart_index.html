@@ -17,7 +17,7 @@
         <button type="button" id="chart-settings-btn" class="btn btn-dark btn-icon">
           <i class="mdi mdi-settings"></i>
         </button>
-        <button type="button" class="btn btn-dark btn-icon">
+        <button type="button" id="export-chart" class="btn btn-dark btn-icon">
           <i class="mdi mdi-invert-colors"></i>
         </button>
         <button type="button" class="btn btn-dark btn-icon">
@@ -146,6 +146,7 @@
 <script src="https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/jquery-dateformat.min.js"></script>
 <script>
   $(document).ready(function() {
+    var multiAreaCanvas = $("#areaChartSales").get(0).getContext("2d");
     $("#item_ids").select2();
 
     var newdate = new Date()
@@ -182,14 +183,46 @@
           }
       });
     })
-  })
-  
-  function chartRefresh(final_json){
+    $("#chart-settings-btn").click(function(e){
+      $("#chart-settings-modal").modal('show')
+    })
+    $("#export-chart").click(function(e){
+      exportChart()
+    })
+
+    function callChartAPIOnLoad(){
+      $.ajax({
+        url: '{% url "api.get-multiareachart-data" %}',
+        beforeSend: function(){$(".loading-image").show()},
+        complete: function(){$(".loading-image").hide()},
+        success: function(response){
+          chartRefresh(response)
+        }
+      })
+    }
+    callChartAPIOnLoad()
+    // exportChart()
+    function exportChart(){
+      console.log(multiAreaCanvas.toBase64Image())
+    }
+
+    function chartRefresh(final_json){
       var multiAreaData = final_json
       var multiAreaOptions = {
         plugins: {
           filler: {
             propagate: true
+          },
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true
+              },
+              mode: 'xy',
+            }
           }
         },
         elements: {
@@ -212,32 +245,21 @@
       }
 
       if ($("#areaChartSales").length) {
-        var multiAreaCanvas = $("#areaChartSales").get(0).getContext("2d");
+        // var multiAreaChart = new Chart(multiAreaCanvas, {});
+        // multiAreaChart.destroy()
         var multiAreaChart = new Chart(multiAreaCanvas, {
           type: 'line',
           data: multiAreaData,
           options: multiAreaOptions
         });
+        multiAreaChart.update()
       }
-  }
-   
+    }
+  })
 </script>
 <script>
   $(document).ready(function() {
-    $("#chart-settings-btn").click(function(e){
-      $("#chart-settings-modal").modal('show')
-    })
-    function callChartAPIOnLoad(){
-      $.ajax({
-        url: '{% url "api.get-multiareachart-data" %}',
-        beforeSend: function(){$(".loading-image").show()},
-        complete: function(){$(".loading-image").hide()},
-        success: function(response){
-          chartRefresh(response)
-        }
-      })
-    }
-    callChartAPIOnLoad()
+    
   })
 </script>
 {% endblock %}
