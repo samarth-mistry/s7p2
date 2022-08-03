@@ -30,15 +30,18 @@ from random import randrange
 
 
 def getLineChartData(request,start_="",end_=""):
-    if start_!="" and end_!="":
-        dt_range = pd.date_range(start='2022-01-10', end='2022-02-10')
+    if request.method == "POST":
+        start = request.POST['start']
+        end = request.POST['end']
     else:
-        dt_range = pd.date_range(start=start_, end=end_)
+        start = '2021-04-10'
+        end = '2022-12-31'
     
-    orders = pd.DataFrame(list(FoodOrder.objects.all().order_by('-id').values()))
-
-    vis = [order for in_range in dt_range for order in orders.index if str(in_range).split(" ")[0] == str(orders['created_at'][order]).split(" ")[0]]
-    data = orders.iloc[vis]
+    orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
+    data = orders
+    # orders = pd.DataFrame(list(FoodOrder.objects.all().order_by('-id').values()))
+    # vis = [order for in_range in dt_range for order in orders.index if str(in_range).split(" ")[0] == str(orders['created_at'][order]).split(" ")[0]]
+    # data = orders.iloc[vis]
     data['created_at'] = pd.to_datetime(data['created_at']).dt.strftime("%d-%b")
     json = {
         "lc_x": list(data['rate']),
@@ -53,28 +56,30 @@ def getMultiAreaChartData(request,start_="",end_=""):
     if request.method == "POST":
         start = request.POST['start']
         end = request.POST['end']
+        item_ids = request.POST.getlist('item_ids[]')
     else:
         start = '2021-04-10'
         end = '2022-12-31'
+        item_ids = ["1","12","9"]
     
     orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
     data = orders
     data['created_at'] = pd.to_datetime(data['created_at']).dt.strftime("%d %b %y")
 
-    item_ids=["1","11","15","46"]
     ds_list=[]
-    id_cnt=[]
+
     for item_id in item_ids:
         x_data_list = []
+        itemObj = FoodItem.objects.get(pk=item_id)
         for data_row in orders.index:
             if item_id == orders["item_id"][data_row]:
-                x_data_list.append(str(orders["quantity"][data_row]))
+                x_data_list.append(str(orders["rate"][data_row]))
             else:
                 x_data_list.append(0)
 
         color = 'rgba({a},{b},{c},{d})'.format(a=randrange(0,170),b=randrange(0,170),c=randrange(0,170),d=randrange(10,100,10)/100)
         ds_dict = {
-            "label": item_id,
+            "label": itemObj.name,
             "data": x_data_list,
             "borderColor": [color],
             "backgroundColor": [color],
@@ -82,9 +87,6 @@ def getMultiAreaChartData(request,start_="",end_=""):
             "fill": True
         }
         ds_list.append(ds_dict)
-
-    # return JsonResponse({"it":id_cnt})
-    
 
     final_json = {
       "labels": list(orders['created_at']),

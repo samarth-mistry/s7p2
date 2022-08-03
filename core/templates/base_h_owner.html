@@ -12,12 +12,7 @@
   <link rel="stylesheet" href="{% static 'core/vendors/simple-line-icons/css/simple-line-icons.css' %}">
   <link rel="stylesheet" href="{% static 'core/vendors/css/vendor.bundle.base.css' %}">
   <link rel="stylesheet" href="{% static 'core/vendors/select2/select2.min.css'%}">
-  <!-- <link rel="stylesheet" href="{% static 'core/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}"> -->
-  <!-- <link rel="stylesheet" href="{% static 'core/js/select.dataTables.min.css' %}"> -->
   <link rel="stylesheet" href="{% static 'core/css/vertical-layout-light/style.css' %}">
-  <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> -->
-  <!-- <link rel="stylesheet" href="{% static 'core/js/select.dataTables.min.css' %}"> -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/yadcf/0.9.4-beta.45/jquery.dataTables.yadcf.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs5/1.12.1/dataTables.bootstrap5.min.css" integrity="sha512-DYpTY0Ub8eZR1nPIgYG0eNVCWim5dFXr834XUOfrVw/5NNRUrPMl8mpNyHvt+CUjG3TyfV898AYXg9eOS+ekmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="shortcut icon" href="{% static 'core/images/logo.png' %}" />
@@ -28,7 +23,7 @@
       position:fixed;
       z-index:9999;
       background:url("{% static 'core/images/dashboard/loading-min.gif' %}") no-repeat center center rgba(0,0,0,0.25)
-  }
+    }
   </style>
 </head>
 <body>
@@ -42,9 +37,7 @@
   <script src="{% static 'core/js/settings.js' %}"></script>
   <script src="{% static 'core/js/todolist.js' %}"></script>
   <script src="{% static 'core/js/jquery.cookie.js' %}" type="text/javascript"></script>
-  <!-- <script src="{% static 'core/js/dashboard.js' %}"></script> -->
   <script src="{% static 'core/js/chart.js' %}"></script>
-  <!-- <script src="{% static 'core/js/Chart.roundedBarCharts.js' %}"></script> -->
   <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs5/1.12.1/dataTables.bootstrap5.min.js" integrity="sha512-nfoMMJ2SPcUdaoGdaRVA1XZpBVyDGhKQ/DCedW2k93MTRphPVXgaDoYV1M/AJQLCiw/cl2Nbf9pbISGqIEQRmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{% static 'core/vendors/select2/select2.min.js'%}"></script>
@@ -53,20 +46,20 @@
     document.onreadystatechange = function () {
       var state = document.readyState
       if (state == 'interactive') {
-          // document.getElementById('container-scroller').style.visibility="hidden";
       } else if (state == 'complete') {
           setTimeout(function(){
             document.getElementById('load').style.visibility="hidden";
-            // document.getElementById('container-scroller').style.visibility="visible";
           },1000);
       }
     }
+  // $(document).ready(function() {
+  //   $('.navbar-toggler').click()
+  // })
   </script>
   {% block scripts %}
   {% endblock %}
   <div id="load"></div>
   <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 d-flex align-items-top flex-row pt-2">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <div class="me-3">
@@ -131,12 +124,12 @@
           </li>
           <li class="nav-item nav-category">Your Hotel</li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic1">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-manage" aria-expanded="false" aria-controls="ui-manage">
               <i class="menu-icon mdi mdi-floor-plan"></i>
               <span class="menu-title">Manage</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-basic1">
+            <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-manage">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link {% if request.resolver_match.url_name == 'hotel-table.create' %} active{% else %} {% endif %}" href="{% url 'hotel-table' %}"><i class="mdi mdi-chair-school"></i> Hotel Tables</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{% url 'food-item' %}"><i class="mdi mdi-glass-tulip"></i> Food Items</a></li>
@@ -158,10 +151,20 @@
           </li>
           <li class="nav-item nav-category">Analytics and Reports</li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'analytics' %}">
+            <a class="nav-link"  data-bs-toggle="collapse" href="#ui-analy" aria-expanded="false" aria-controls="ui-analy">
               <i class="mdi mdi-chart-areaspline menu-icon"></i>
               <span class="menu-title">Analytics</span>
             </a>
+            <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-analy">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' %}"><i class="mdi mdi-chart-areaspline"></i>&nbsp;&nbsp;Area Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-line"></i> &nbsp;&nbsp;Line Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-arc"></i>&nbsp;&nbsp; Doughnut Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-pie"></i> &nbsp;&nbsp;Pie Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-bubble"></i> &nbsp;&nbsp;Scartter Chart</a></li>
+                <li class="nav-item"> <a class="nav-link" href=""><i class="mdi mdi-chart-bar"></i> &nbsp;&nbsp;Bar Chart</a></li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">

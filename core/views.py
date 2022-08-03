@@ -499,4 +499,5 @@ def orderManagementAnalyticMode(request):
 
 
 def analyticsIndex(request):
-    return render(request,'h_owners/analytics/index.html')
+    items = FoodItem.objects.all().order_by('-id')
+    return render(request,'h_owners/analytics/index.html',{'items':items})
