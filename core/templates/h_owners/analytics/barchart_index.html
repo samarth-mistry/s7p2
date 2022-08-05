@@ -143,6 +143,8 @@
 </div>
 {% endblock %}
 {% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.esm.js" integrity="sha512-59oaQE+Oz94NSelkRzYEkfwlKDjUj7IWGPlZQJwWtHjbkYxwjnVgwDV3mCn/Vg6CiLUVcdjZO+Kta2bjVemV3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://raw.githubusercontent.com/phstc/jquery-dateFormat/master/dist/jquery-dateformat.min.js"></script>
 <script>
   $(document).ready(function() {
@@ -150,6 +152,7 @@
     $("#item_ids").select2();
     var newdate = new Date()
     newdate.setDate(newdate.getDate() - 7);
+    //#############################################################
     $('#filter_start_date').datepicker({format: "dd-M-yyyy",}).datepicker("setDate",new Date(newdate));
     $('#filter_end_date').datepicker({format: "dd-M-yyyy",todayHighlight: true,}).datepicker("setDate",'now');
     $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}' }});

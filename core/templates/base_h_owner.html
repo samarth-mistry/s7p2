@@ -25,6 +25,56 @@
       background:url("{% static 'core/images/dashboard/loading-min.gif' %}") no-repeat center center rgba(0,0,0,0.25)
     }
   </style>
+  <style>
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .switch label input[type="checkbox"]:checked+.lever {
+        background-color: #09859b;
+    }
+    .switch label {
+        cursor: pointer;
+    }
+    .switch label input[type="checkbox"]:checked+.lever:after {
+      left: 1.5rem;
+      background-color: #ee0101;
+    }
+    .switch label .lever {
+      position: relative;
+      display: inline-block;
+      margin: 0 1rem;
+      margin-right: 0.625rem;
+      vertical-align: middle;
+      content: "";
+      background-color: #ee0101;
+      border-radius: 0.9375rem;
+      width: 2.5rem;
+      height: 0.9375rem;
+      -webkit-transition: background .3s ease;
+      transition: background .3s ease;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .switch label .lever:after {
+      position: absolute;
+      top: -0.1875rem;
+      left: -0.3125rem;
+      display: inline-block;
+      content: "";
+      background-color: #09859b;
+      border-radius: 1.3125rem;
+      -webkit-box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgb(0 0 0 / 40%);
+      box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgb(0 0 0 / 40%);
+      width: 1.3125rem;
+      height: 1.3125rem;
+      -webkit-transition: left .3s ease,background .3s ease,-webkit-box-shadow 1s ease;
+      transition: left .3s ease,background .3s ease,-webkit-box-shadow 1s ease;
+      transition: left .3s ease,background .3s ease,box-shadow 1s ease;
+      transition: left .3s ease,background .3s ease,box-shadow 1s ease,-webkit-box-shadow 1s ease;
+    }
+  </style>
 </head>
 <body>
   <script src="{% static 'core/vendors/js/vendor.bundle.base.js' %}"></script>
@@ -69,10 +119,7 @@
         </div>
         <div>
           <a class="navbar-brand brand-logo" href="{% url 'hotel-dashboard' %}">
-            <h2 class="fw-bold">
-              <img src="{% static 'core/images/logo.png' %}" alt="logo" border=2> 
-              AH
-            </h2>
+            <h2 class="fw-bold"><img src="{% static 'core/images/logo.png' %}" alt="logo" border=2>AH</h2>
           </a>
           <a class="navbar-brand brand-logo-mini" href="{% url 'hotel-dashboard' %}">
             <img src="{% static 'core/images/logo.svg' %}" alt="logo">
@@ -82,7 +129,10 @@
       <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Greetings of the day! <span class="text-black fw-bold">{{ request.user.username }}</span></h1>
+            <h1 class="welcome-text">
+              {% block wsp_title %}
+              {% endblock %}
+            </h1>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -152,8 +202,9 @@
           <li class="nav-item nav-category">Analytics and Reports</li>
           <li class="nav-item">
             <a class="nav-link"  data-bs-toggle="collapse" href="#ui-analy" aria-expanded="false" aria-controls="ui-analy">
-              <i class="mdi mdi-chart-areaspline menu-icon"></i>
+              <i class="menu-icon mdi mdi-chart-areaspline"></i>
               <span class="menu-title">Analytics</span>
+              <i class="menu-arrow"></i>
             </a>
             <div class="collapse {% if request.resolver_match.url_name == 'hotel-owner.create' %}show{% else %} {% endif %}" id="ui-analy">
               <ul class="nav flex-column sub-menu">

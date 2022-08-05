@@ -58,40 +58,59 @@ def getMultiAreaChartData(request,start_="",end_=""):
         start = request.POST['start']
         end = request.POST['end']
         item_ids = request.POST.getlist('item_ids[]')
+        if not len(item_ids):
+            item_ids = ["1"]
     else:
-        start = '2022-04-10'
-        end = '2022-12-31'
-        item_ids = ["1","12","9"]
+        start = '2022-05-31'
+        end = '2022-06-03'
+        item_ids = ["5"]
     
     orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
-    data = orders
-    data['created_at'] = pd.to_datetime(data['created_at']).dt.strftime("%d %b %y")
 
-    ds_list=[]
+    if len(orders):
+        data = orders
+        data['created_at'] = pd.to_datetime(data['created_at']).dt.strftime("%d %b %y")
 
-    for item_id in item_ids:
-        x_data_list = []
-        itemObj = FoodItem.objects.get(pk=item_id)
-        for data_row in orders.index:
-            if item_id == orders["item_id"][data_row]:
-                x_data_list.append(str(orders["rate"][data_row]))
-            else:
-                x_data_list.append(-10)
+        ds_list=[]
 
-        color = generate_new_color()
-        ds_dict = {
-            "label": itemObj.name,
-            "data": x_data_list,
-            "borderColor": [color],
-            "backgroundColor": [color],
-            "borderWidth": 1,
-            "fill": True
+        for item_id in item_ids:
+            x_data_list = []
+            itemObj = FoodItem.objects.get(pk=item_id)
+            for data_row in orders.index:
+                if item_id == orders["item_id"][data_row]:
+                    x_data_list.append(str(orders["rate"][data_row]))
+                else:
+                    x_data_list.append(-10)
+
+            color = generate_new_color()
+            ds_dict = {
+                "label": itemObj.name,
+                "data": x_data_list,
+                "borderColor": [color],
+                "backgroundColor": [color],
+                "borderWidth": 1,
+                "fill": True
+            }
+            ds_list.append(ds_dict)
+
+        status = '1'
+        message = "Showing data from \""+start+"\" to \""+end+"\""
+        data_json = {
+            "labels": list(orders['created_at']),
+            "datasets": ds_list
         }
-        ds_list.append(ds_dict)
+    else:
+        status = '0'
+        message = "No data from \""+start+"\" to \""+end+"\""+". Try expanding your range!"
+        data_json = {
+            "labels": [],
+            "datasets": []
+        }
 
     final_json = {
-      "labels": list(orders['created_at']),
-      "datasets": ds_list
+        "status": status,
+        "message": message,
+        "data": data_json
     }
 
     return JsonResponse(final_json)
@@ -104,7 +123,7 @@ def getBarChartData(request,start_="",end_=""):
     else:
         start = '2022-04-10'
         end = '2022-06-10'
-        item_ids = ["1","4","9","7"]
+        item_ids = ["1","4","3"]
     
     orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
     data = orders
@@ -132,35 +151,6 @@ def getBarChartData(request,start_="",end_=""):
             "fill": False
         }
         datasets.append(ds_dict)
-
-    # if request.method == "POST":
-    #     start = request.POST['start']
-    #     end = request.POST['end']
-    # else:
-    #     start = '2022-05-01'
-    #     end = '2022-07-01'
-    
-    # orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
-    # orders['created_at'] = pd.to_datetime(orders['created_at']).dt.strftime("%d-%b")
-
-    # c1 = generate_new_color()
-    # c2 = generate_new_color()
-    # datasets = [{
-    #     "label": 'Dataset',
-    #     "data": list(orders['rate']),
-    #     "backgroundColor": c1,
-    #     "borderColor": c1,
-    #     "borderWidth": 1,
-    #     "fill": False
-    # },
-    # {
-    #     "label": 'DS2',
-    #     "data": list(orders['rate']),
-    #     "backgroundColor": c2,
-    #     "borderColor": c2,
-    #     "borderWidth": 1,
-    #     "fill": False
-    # }]
 
     final_json = {
         "labels": list(orders['created_at']),

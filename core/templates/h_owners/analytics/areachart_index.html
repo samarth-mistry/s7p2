@@ -1,11 +1,16 @@
 {% extends 'base_h_owner.html' %}
 {% load static %}
+{% block wsp_title %}~ / <span class="text-black fw-bold">Analytics</span>{% endblock %}
 {% block content %}
 <div class="col-lg-12 grid-margin stretch-card">
-  <div class="card">
+  <div class="card bg-gradient-secondary">
     <div class="card-header">
       <h4 class="card-title my-auto fw-bold">Analytics
       <span style="float: right;">
+        <button type="button" id="api-message" class="d-none btn fw-bold btn-outline-danger"></button>
+        <button type="button" id="download-image-btn" class="btn btn-dark btn-icon">
+          <i class="mdi mdi-download"></i>
+        </button>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-dark btn-icon">
             <i class="mdi mdi-magnify-minus"></i>
@@ -17,10 +22,10 @@
         <button type="button" id="chart-settings-btn" class="btn btn-dark btn-icon">
           <i class="mdi mdi-settings"></i>
         </button>
-        <button type="button" id="export-chart" class="btn btn-dark btn-icon">
+        <button type="button" id="des" class="btn btn-dark btn-icon">
           <i class="mdi mdi-invert-colors"></i>
         </button>
-        <button type="button" class="btn btn-dark btn-icon">
+        <button type="button" id="refresh-chart-btn" class="btn btn-dark btn-icon">
           <i class="mdi mdi-refresh"></i>
         </button>
         <div class="btn-group" role="group" aria-label="Select Chart">
@@ -54,7 +59,7 @@
     </div>
     <div class="card-body">
       <div class="row mx-auto mt-3 px-auto">
-        <div class="col-lg-9 my-auto">
+        <div class="col-lg-9 my-auto canvas1">
           <!-- <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div> -->
           <canvas id="areaChartSales" width="100%" style="display: block;" class="chartjs-render-monitor bg-light rounded border"></canvas>
         </div>
@@ -124,45 +129,58 @@
                       <div class="col-lg-6">
                         <div class="form-check form-check-primary">
                           <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" id="x-grid">X-Axis grid
-                          <i class="input-helper"></i></label>
+                            <div class="switch">
+                              <label><b>X-Axis</b>
+                                <input type="checkbox" id="x-grid">
+                                <span class="lever"></span>
+                              </label>
+                            </div>
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-check form-check-primary">
                           <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" checked="" id="y-grid">Y-Axis grid
-                          <i class="input-helper"></i></label>
+                            <div class="switch">
+                              <label><b>Y-Axis</b>
+                                <input type="checkbox" checked="" id="y-grid" onchange="resetChartOptions()">
+                                <span class="lever"></span>
+                              </label>
+                            </div>
                         </div>
                       </div>
                   </div>
-              </div>
+                  <div class="form-group row">
+                      <label>Zoom on axis:</label>
+                      <div class="col-lg-6">
+                        <div class="switch">
+                          <label>X-Axis<input type="checkbox" id="zoom-axis" onchange="resetChartOptions()">
+                            <span class="lever"></span>Y-Axis
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
           </div>
       </div>                    
   </div><!--Model diaolog-->
 </div>
 {% endblock %}
 {% block scripts %}
+<script src="{% static 'core/js/Chart.Zoom.min.js' %}"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.esm.js" integrity="sha512-59oaQE+Oz94NSelkRzYEkfwlKDjUj7IWGPlZQJwWtHjbkYxwjnVgwDV3mCn/Vg6CiLUVcdjZO+Kta2bjVemV3A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script src="{% static 'core/js/jquery-dateformat.min.js' %}"></script>
 <script>
   $(document).ready(function() {
-    var multiAreaCanvas = $("#areaChartSales").get(0).getContext("2d");
-    $("#item_ids").select2();
-
-    var newdate = new Date()
+    var canvas1_html = '<canvas id="areaChartSales" width="100%" style="display: block;" class="chartjs-render-monitor bg-light rounded border"></canvas>'
+    var multiAreaOptions = ""
+    var newdate = new Date('07-Jun-2022')
     newdate.setDate(newdate.getDate() - 7);     //7 days back
-    $('#filter_start_date').datepicker({
-       format: "dd-M-yyyy",
-    }).datepicker("setDate",new Date(newdate));
-
-    $('#filter_end_date').datepicker({
-        format: "dd-M-yyyy",
-        todayHighlight: true,
-    }).datepicker("setDate",'now');
-
-    $.ajaxSetup({
-      data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-    });
+    //###############################################################################
+    $("#item_ids").select2();
+    $('#filter_start_date').datepicker({format: "dd-M-yyyy",orientation: "auto"}).datepicker("setDate",new Date(newdate));
+    $('#filter_end_date').datepicker({format: "dd-M-yyyy",orientation: "auto",todayHighlight: true,}).datepicker("setDate",'now');
+    $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}' }});
     $("#filter_commit").click(function(e){
       var start = new Date($('#filter_start_date').val())
       var end = new Date($('#filter_end_date').val())
@@ -179,50 +197,37 @@
             "item_ids[]": item_ids
           },
           success: function(response) {
-            chartRefresh(response)
+            setApiMessage(response.status,response.message)
+            chartRefresh(response.data)
           }
       });
     })
-    $("#chart-settings-btn").click(function(e){
-      $("#chart-settings-modal").modal('show')
+    $("#chart-settings-btn").click(function(e){$("#chart-settings-modal").modal('show')})
+    $("#refresh-chart-btn").click(function(e){callChartAPIOnLoad()})
+    $('#download-image-btn').click(function(e){
+        var a = document.createElement('a');
+        a.href = multiAreaChart.toBase64Image('image/jpeg', 1);
+        a.download = 'chart_automated_hotels.png';
+        a.click();
     })
-    $("#export-chart").click(function(e){
-      exportChart()
-    })
-
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     function callChartAPIOnLoad(){
+      resetChartOptions()
       $.ajax({
         url: '{% url "api.get-multiareachart-data" %}',
         beforeSend: function(){$(".loading-image").show()},
         complete: function(){$(".loading-image").hide()},
         success: function(response){
-          chartRefresh(response)
+          setApiMessage(response.status,response.message)
+          chartRefresh(response.data)
         }
       })
     }
-    callChartAPIOnLoad()
-    // exportChart()
-    function exportChart(){
-      console.log(multiAreaCanvas.toBase64Image())
-    }
-
-    function chartRefresh(final_json){
-      var multiAreaData = final_json
-      var multiAreaOptions = {
+    function resetChartOptions(){
+      multiAreaOptions = {
         plugins: {
           filler: {
             propagate: true
-          },
-          zoom: {
-            zoom: {
-              wheel: {
-                enabled: true,
-              },
-              pinch: {
-                enabled: true
-              },
-              mode: 'xy',
-            }
           }
         },
         elements: {
@@ -241,25 +246,50 @@
               display: $("#y-grid").is(":checked")
             }
           }]
+        },
+        pan: {
+            enabled: true,
+            mode: 'x',
+            speed: 1
+        },
+        zoom: {
+            enabled: true,						
+            mode: $("#zoom-axis").is(":checked") ? 'y': 'x',
         }
       }
-
-      if ($("#areaChartSales").length) {
-        // var multiAreaChart = new Chart(multiAreaCanvas, {});
-        // multiAreaChart.destroy()
-        var multiAreaChart = new Chart(multiAreaCanvas, {
-          type: 'line',
-          data: multiAreaData,
-          options: multiAreaOptions
-        });
-        multiAreaChart.update()
+      // callChartAPIOnLoad()
+    }
+    function chartRefresh(final_json_data){
+      var multiAreaData = final_json_data
+      resetChartOptions()
+      $('.canvas1').html(canvas1_html);
+      var multiAreaCanvas = $("#areaChartSales").get(0).getContext("2d")
+      multiAreaChart = new Chart(multiAreaCanvas, {
+        type: 'line',
+        data: multiAreaData,
+        options: multiAreaOptions
+      });
+      multiAreaChart.ctx.canvas.addEventListener('wheel', multiAreaChart._wheelHandler);
+    }
+    function setApiMessage(status,message){
+      var btn = $('#api-message')
+      btn.html(message)
+      if(status=="0"){
+        btn.removeClass('btn-outline-info')
+        btn.addClass('btn-outline-danger')
+        btn.removeClass('d-none')
+      }
+      else if(status=="1"){
+        btn.removeClass('btn-outline-danger')
+        btn.addClass('btn-outline-info')
+        btn.removeClass('d-none')
+      } else {
+        btn.html()
+        btn.addClass('d-none')
       }
     }
-  })
-</script>
-<script>
-  $(document).ready(function() {
-    
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    callChartAPIOnLoad()
   })
 </script>
 {% endblock %}
