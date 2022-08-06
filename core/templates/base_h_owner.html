@@ -103,6 +103,15 @@
       transition: left .3s ease,background .3s ease,box-shadow 1s ease;
       transition: left .3s ease,background .3s ease,box-shadow 1s ease,-webkit-box-shadow 1s ease;
     }
+    .sidebar,.navbar .navbar-brand-wrapper,.navbar .navbar-menu-wrapper {
+      background-color: #a8c0d6;
+    }
+    .sidebar .nav .nav-item .nav-link{
+      border-radius: 10px 10px 0px 0px;
+    }
+    .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"]{
+      border-radius: 10px 10px 0px 0px;
+    }
   </style>
 </head>
 <body>
@@ -140,21 +149,21 @@
   <img class="loading-image" src="{% static 'core/images/dashboard/loading.gif' %}" alt="loading..">
   <div id="load"></div>
   <div class="container-scroller">
-    <nav class="navbar default-layout col-lg-12 col-12 p-0 d-flex align-items-top flex-row pt-2">
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 d-flex align-items-top flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <div class="me-3">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
         </div>
-        <div>
+        <!-- <div class="text-center"> -->
           <a class="navbar-brand brand-logo" href="{% url 'hotel-dashboard' %}">
-            <h2 class="fw-bold"><img src="{% static 'core/images/logo.png' %}" alt="logo" border=2>AH</h2>
+            <img src="{% static 'core/images/logo.png' %}" alt="logo" border=2>
           </a>
           <a class="navbar-brand brand-logo-mini" href="{% url 'hotel-dashboard' %}">
             <img src="{% static 'core/images/logo.svg' %}" alt="logo">
           </a>
-        </div>
+        <!-- </div> -->
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
@@ -195,7 +204,7 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper pt-0">
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
+        <ul class="nav px-1">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'hotel-dashboard' %}">
               <i class="mdi mdi-grid-large menu-icon"></i>
@@ -229,7 +238,7 @@
               </a>
             </li>
           </li>
-          <li class="nav-item nav-category">Analytics & Forcasting</li>
+          <li class="nav-item nav-category">Datastudio & Forcasting</li>
           <li class="nav-item">
             <a class="nav-link"  data-bs-toggle="collapse" href="#ui-analy" aria-expanded="false" aria-controls="ui-analy">
               <i class="menu-icon mdi mdi-chart-areaspline"></i>
@@ -246,6 +255,12 @@
                 <li class="nav-item"> <a class="nav-link" href="{% url 'analytics' 'barchart' %}"><i class="mdi mdi-chart-bar"></i> &nbsp;&nbsp;Bar Chart</a></li>
               </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-database menu-icon"></i>
+              <span class="menu-title">Datastudio</span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">
