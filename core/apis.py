@@ -8,17 +8,14 @@ from django.contrib.auth import login, logout, authenticate
 from .forms import *
 from .encrypt_util import *
 from .models import *
-
 from rest_framework import viewsets, status
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from rest_framework_datatables import pagination as dt_pagination
 from rest_framework_datatables.django_filters.filters import GlobalFilter
 from rest_framework_datatables.django_filters.filterset import DatatablesFilterSet
 from rest_framework_datatables.django_filters.backends import DatatablesFilterBackend
-
 from .serializers import *
 import uuid
 from datetime import date, datetime
@@ -27,6 +24,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 import pandas as pd
 from random import randrange
+import time
+import datetime
+
 
 alt_color = 0
 
@@ -57,6 +57,9 @@ def getMultiAreaChartData(request,start_="",end_=""):
     if request.method == "POST":
         start = request.POST['start']
         end = request.POST['end']
+        date_1 = datetime.datetime.strptime(end, "%Y-%m-%d")
+        end = str(date_1 + datetime.timedelta(days=1))
+        end = end.split(" ")[0]
         item_ids = request.POST.getlist('item_ids[]')
         if not len(item_ids):
             item_ids = ["1"]
@@ -66,7 +69,6 @@ def getMultiAreaChartData(request,start_="",end_=""):
         item_ids = ["5"]
     
     orders = pd.DataFrame(list(FoodOrder.objects.filter(created_at__gte=start,created_at__lte=end).order_by('created_at').values()))
-
     if len(orders):
         data = orders
         data['created_at'] = pd.to_datetime(data['created_at']).dt.strftime("%d %b %y")
@@ -80,7 +82,7 @@ def getMultiAreaChartData(request,start_="",end_=""):
                 if item_id == orders["item_id"][data_row]:
                     x_data_list.append(str(orders["rate"][data_row]))
                 else:
-                    x_data_list.append(-10)
+                    x_data_list.append(0)
 
             color = generate_new_color()
             ds_dict = {
@@ -113,6 +115,7 @@ def getMultiAreaChartData(request,start_="",end_=""):
         "data": data_json
     }
 
+    # time.sleep(3)
     return JsonResponse(final_json)
 
 def getBarChartData(request,start_="",end_=""):

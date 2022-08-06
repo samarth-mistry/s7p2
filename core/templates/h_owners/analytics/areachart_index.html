@@ -1,13 +1,14 @@
 {% extends 'base_h_owner.html' %}
 {% load static %}
-{% block wsp_title %}~ / <span class="text-black fw-bold">Analytics</span>{% endblock %}
+{% block wsp_title %}
+~ / <span class="text-black fw-bold">Analytics</span> / AreaChart / Weekly / <button type="button" id="api-message" class="d-none btn fw-bold btn-outline-danger"></button>
+{% endblock %}
 {% block content %}
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card bg-gradient-secondary">
     <div class="card-header">
-      <h4 class="card-title my-auto fw-bold">Analytics
+      <h4 class="card-title my-auto fw-bold">Multi Items Area Graph
       <span style="float: right;">
-        <button type="button" id="api-message" class="d-none btn fw-bold btn-outline-danger"></button>
         <button type="button" id="download-image-btn" class="btn btn-dark btn-icon">
           <i class="mdi mdi-download"></i>
         </button>
@@ -111,6 +112,15 @@
               <button type="button" class="col-sm-2 mx-3 rounded btn-sm btn-outline-danger" id="filter_clear" style="float: right;"><i class="mdi mdi-window-close"></i></button>
             </span>
           </div>
+          <div class="form-group row">
+            <label class="fw-bold col-lg-3">Checkout Histroy:</label>
+            <div class="col-lg-9">
+              <select class="form-control" name="" id="history_sel">
+                <option value="rate">Amount of Order (₹)</option>
+                <option value="quantity">Quantity of Order</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -178,9 +188,14 @@
     newdate.setDate(newdate.getDate() - 7);     //7 days back
     //###############################################################################
     $("#item_ids").select2();
+    $("#history_sel").select2();
     $('#filter_start_date').datepicker({format: "dd-M-yyyy",orientation: "auto"}).datepicker("setDate",new Date(newdate));
     $('#filter_end_date').datepicker({format: "dd-M-yyyy",orientation: "auto",todayHighlight: true,}).datepicker("setDate",'now');
-    $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}' }});
+    $.ajaxSetup({
+      beforeSend: function(){$(".loading-image").show();},
+      complete: function(){$(".loading-image").hide();},
+      data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+    });
     $("#filter_commit").click(function(e){
       var start = new Date($('#filter_start_date').val())
       var end = new Date($('#filter_end_date').val())

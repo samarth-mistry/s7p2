@@ -17,6 +17,35 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs5/1.12.1/dataTables.bootstrap5.min.css" integrity="sha512-DYpTY0Ub8eZR1nPIgYG0eNVCWim5dFXr834XUOfrVw/5NNRUrPMl8mpNyHvt+CUjG3TyfV898AYXg9eOS+ekmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="shortcut icon" href="{% static 'core/images/logo.png' %}" />
   <style>
+    .loading-image {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        height: 5em;
+        width: 5em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .error {
+        color: red;
+        background-color: #acf;
+    }
+    
+    .close {
+      float: right;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #000;
+      text-shadow: 0 1px 0 #fff;
+      opacity: .5;
+  }
+  </style>
+  <style>
     #load{
       width:100%;
       height:100%;
@@ -108,6 +137,7 @@
   </script>
   {% block scripts %}
   {% endblock %}
+  <img class="loading-image" src="{% static 'core/images/dashboard/loading.gif' %}" alt="loading..">
   <div id="load"></div>
   <div class="container-scroller">
     <nav class="navbar default-layout col-lg-12 col-12 p-0 d-flex align-items-top flex-row pt-2">
@@ -199,7 +229,7 @@
               </a>
             </li>
           </li>
-          <li class="nav-item nav-category">Analytics and Reports</li>
+          <li class="nav-item nav-category">Analytics & Forcasting</li>
           <li class="nav-item">
             <a class="nav-link"  data-bs-toggle="collapse" href="#ui-analy" aria-expanded="false" aria-controls="ui-analy">
               <i class="menu-icon mdi mdi-chart-areaspline"></i>
@@ -219,6 +249,13 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">
+              <i class="mdi mdi-air-conditioner menu-icon"></i>
+              <span class="menu-title">Forcasting</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">Annual Reports</li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
               <i class="mdi mdi-cash-usd menu-icon"></i>
               <span class="menu-title">Earnings</span>
             </a>
@@ -229,7 +266,26 @@
               <span class="menu-title">Export Data</span>
             </a>
           </li>
+          <li class="nav-item nav-category">Activity & Logging</li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-clock-fast menu-icon"></i>
+              <span class="menu-title">Your Activity</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-buffer menu-icon"></i>
+              <span class="menu-title">User Logs</span>
+            </a>
+          </li>
           <li class="nav-item nav-category">others</li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="mdi mdi-alert menu-icon"></i>
+              <span class="menu-title">Alerts</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-help"></i>
