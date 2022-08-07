@@ -16,3 +16,6 @@ FrontEnd:
 
 Developer guide:
     create a new DB and remigrate all table to repair schema
+Export logs
+    git log --pretty=format:'"%h","%an","%aD","%s",' --shortstat --no-merges | paste - - - > log.csv
+
