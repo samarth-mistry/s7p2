@@ -104,7 +104,7 @@
       transition: left .3s ease,background .3s ease,box-shadow 1s ease,-webkit-box-shadow 1s ease;
     }
     .sidebar,.navbar .navbar-brand-wrapper,.navbar .navbar-menu-wrapper {
-      background-color: #a8c0d6;
+      background-color: #a8c0d6 !important;
     }
     .sidebar .nav .nav-item .nav-link{
       border-radius: 10px 10px 0px 0px;
@@ -112,9 +112,12 @@
     .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"]{
       border-radius: 10px 10px 0px 0px;
     }
+    .content-wrapper {
+    padding: 1rem 1rem 1rem 1rem;
+    }
   </style>
 </head>
-<body>
+<body class="sidebar-icon-only">
   <script src="{% static 'core/vendors/js/vendor.bundle.base.js' %}"></script>
   <script src=" {% static 'core/vendors/chart.js/Chart.min.js' %} "></script>
   <script src="{% static 'core/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
