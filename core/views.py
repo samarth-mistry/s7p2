@@ -26,6 +26,8 @@ from rolepermissions.roles import assign_role
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 
+import pyqrcode
+from pyqrcode import QRCode
 
 def auth1(request):
     # return HttpResponse(request.user.is_authenticated)
@@ -394,9 +396,11 @@ def tablePayment(request):
                 feedback = None,
                 description = None)
     data.save()
-
-    qr_code = QrCode.objects.filter(transaction_id=transaction_id)
-    return render(request,'others/payment.html',{'transaction_id': transaction_uuid,"amt":amt})
+    qr_code = QrCode.objects.get(transaction_id=transaction_id)
+    qr=qrcode.make(qr_code.transaction_id)
+    path="static\core\images\qrcode\\"+transaction_id+".png"
+    qr.save(path, scale = 6)
+    return render(request,'others/payment.html',{'qr':qr_code,'transaction_id': transaction_uuid,"amt":amt})
 
 def returnThankYou(request):
     del request.session['order_uuid']
