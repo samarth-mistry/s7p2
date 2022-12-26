@@ -1,1 +1,0 @@
-web:gunicorn automated-hotel.wsgi --logs.txt
