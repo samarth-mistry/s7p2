@@ -505,3 +505,6 @@ def orderManagementAnalyticMode(request):
 def analyticsIndex(request,type):
     items = FoodItem.objects.all().order_by('id')
     return render(request,'h_owners/analytics/'+type+'_index.html',{'items':items})
+
+def forecastIndex(request):
+    return render(request,'h_owners/forecast/index.html')

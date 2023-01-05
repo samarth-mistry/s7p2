@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 import qrcode
-from PIL import Image, ImageDraw
+#from PIL import Image, ImageDraw
+#import Image
 from io import BytesIO
 from django.core.files import File
 import random
@@ -89,7 +90,7 @@ class Payment(models.Model):
 class QrCode(models.Model):
     url=models.URLField()
     transaction_id = models.CharField(max_length=70)
-    image=models.ImageField(upload_to='qrcode',blank=True)
+    #image=models.ImageField(upload_to='qrcode',blank=True)
 
     def save(self,*args,**kwargs):
         qrcode_img=qrcode.make(self.url)

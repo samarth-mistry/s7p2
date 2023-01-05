@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
 from . import apis
+from . import forecast_ai
 # from hotel_owners_module. import h_views
 from rest_framework import routers
 
@@ -47,9 +48,13 @@ urlpatterns = [
     path('order-management/analytic-mode',views.orderManagementAnalyticMode,name='order-management.analytic-mode'),
     path('analytics/<str:type>',views.analyticsIndex,name='analytics'),
 
+    path('forecast',views.forecastIndex,name='forecast'),
+
     path('api/get-barchart-data',apis.getBarChartData,name='api.get-barchart-data'),
     path('api/get-multiareachart-data',apis.getMultiAreaChartData,name='api.get-multiareachart-data'),
     path('api/get-multiareachart-data/<str:start_>/<str:end_>)',apis.getMultiAreaChartData),
     path('api/get-linechart-data',apis.getLineChartData,name='api.get-linechart-data'),
     path('api/get-linechart-data/<str:start_>/<str:end_>)',apis.getLineChartData,kwargs={'start_': None,'end_': None}),
+
+    path('api/get-forecast',forecast_ai.get,name='api.get-forecast'),
 ]

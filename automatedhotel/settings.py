@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'automatedhotel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'automatedhotel1',
+        'NAME': 'ah',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
