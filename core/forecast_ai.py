@@ -3,7 +3,7 @@ import json
 from django.http import HttpResponseNotModified, JsonResponse 
 
 def get(request):
-  host = 'http://7fa6-34-147-127-134.ngrok.io/'
+  host = 'http://e199-34-125-195-178.ngrok.io/'
   upto = request.GET.get('upto')
   freq = request.GET.get('freq')
   interp = request.GET.get('interp')
